@@ -18,6 +18,12 @@
             "pages": [
               "media-formats"
             ]
+          },
+          {
+            "group": "Get Started",
+            "pages": [
+              "index"
+            ]
           }
         ]
       },
