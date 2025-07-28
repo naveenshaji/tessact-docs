@@ -14,15 +14,15 @@
         "tab": "Guides",
         "groups": [
           {
-            "group": "References",
-            "pages": [
-              "media-formats"
-            ]
-          },
-          {
             "group": "Get Started",
             "pages": [
               "index"
+            ]
+          },
+          {
+            "group": "References",
+            "pages": [
+              "media-formats"
             ]
           }
         ]
