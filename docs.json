@@ -3,9 +3,9 @@
   "theme": "willow",
   "name": "Tessact Docs",
   "colors": {
-    "primary": "#16A34A",
-    "light": "#07C983",
-    "dark": "#15803D"
+    "primary": "#495BFF",
+    "light": "#5D81FF",
+    "dark": "#3137CE"
   },
   "favicon": "/favicon.svg",
   "navigation": {
