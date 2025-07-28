@@ -44,6 +44,12 @@
               "ai-tools/claude-code",
               "ai-tools/windsurf"
             ]
+          },
+          {
+            "group": "References",
+            "pages": [
+              "media-formats"
+            ]
           }
         ]
       },
