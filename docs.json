@@ -2,72 +2,59 @@
   "$schema": "https://mintlify.com/docs.json",
   "theme": "maple",
   "name": "Tessact Docs",
+  "description": "Discover Tessact’s multi-agent media platform, its core value drivers, and the deployment models that let you run workflows and AI agents at any scale.",
   "colors": {
     "primary": "#495BFF",
     "light": "#5D81FF",
     "dark": "#3137CE"
   },
+  "contextual": {
+    "options": ["chatgpt", "claude"]
+  },
   "favicon": "/favicon.svg",
   "navigation": {
     "tabs": [
       {
-        "tab": "Guides",
-        "groups": [
+        "tab": " ",
+        "dropdowns": [
           {
-            "group": "Get Started",
-            "pages": [
-              "index",
-              "quickstart"
+            "dropdown": "Guides",
+            "icon": "book-open-cover",
+            "description": "Learn about Tessact",
+            "groups": [
+              {
+                "group": "Get Started",
+                "pages": ["index", "quickstart"]
+              },
+              {
+                "group": "References",
+                "pages": ["media-formats"]
+              }
             ]
           },
           {
-            "group": "References",
-            "pages": [
-              "media-formats"
-            ]
-          }
-        ]
-      },
-      {
-        "tab": "API reference",
-        "groups": [
-          {
-            "group": "API documentation",
-            "pages": [
-              "api-reference/introduction"
-            ]
-          },
-          {
-            "group": "Endpoint examples",
-            "pages": [
-              "api-reference/endpoint/get",
-              "api-reference/endpoint/create",
-              "api-reference/endpoint/delete",
-              "api-reference/endpoint/webhook"
+            "dropdown": "Changelog",
+            "icon": "newspaper",
+            "description": "Release notes and updates",
+            "groups": [
+              {
+                "group": "API documentation",
+                "pages": ["api-reference/introduction"]
+              },
+              {
+                "group": "Endpoint examples",
+                "pages": [
+                  "api-reference/endpoint/get",
+                  "api-reference/endpoint/create",
+                  "api-reference/endpoint/delete",
+                  "api-reference/endpoint/webhook"
+                ]
+              }
             ]
           }
         ]
       }
-    ],
-    "global": {
-      "anchors": [
-        {
-          "anchor": "Documentation",
-          "href": "https://mintlify.com/docs",
-          "icon": "book-open-cover"
-        },
-        {
-          "anchor": "Community",
-          "href": "https://mintlify.com/community",
-          "icon": "slack"
-        },
-        {
-          "anchor": "Blog",
-          "href": "https://mintlify.com/blog",
-          "icon": "newspaper"
-        }
-      ]
-    }
+    ]
   },
   "logo": {
     "light": "/logo/light.svg",

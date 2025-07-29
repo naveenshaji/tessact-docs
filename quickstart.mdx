@@ -1,65 +1,73 @@
 ---
 title: "Quick Start"
 description: "Sign up, upload your first asset, and run AI-powered actions in minutes."
+tag: "New"
 ---
 
 ## Before you begin
+Tessact is currently invite-only. You can request a demo from the [contact page](https://tessact.ai/contact).
 
-- **Invitation email** — You must receive a Tessact invite from an admin.
-- **Browser** — Latest Chrome, Edge, Safari, or Firefox.
-- **Test media** — An H.264/AAC `.mp4` under 10 Mb/s (≈500 MB per hour).
+- **Invitation email** — You must receive a Tessact invite from our team before you can sign up.
+- **Your assets** — You can upload any media file to Tessact. However for best performance, we recommend H.264/AAC `.mp4` under 12 Mb/s. For more information see [supported media formats](media-formats).
 
 <Warning>
-  The invitation link expires after **24 hours**. If it lapses, use Login with OTP on the login page instead.
+  The invitation link on the email expires after 24 hours for added security. If it lapses, use Login with OTP on the [login](https://app.tessact.ai/login) page instead.
 </Warning>
 
 ---
 
-## 1. Activate your account
+## 1. Set up your account
 
-<Frame caption="Invitation email with Activate button">
-  ![welcome-email.jpg](/images/welcome-email.jpg)
-</Frame>
+When you log in to tessact for the very first time, you will be asked to set up your account.
 
-<Steps>
-  <Step title="Open the invitation email">
-    Click **Activate your Tessact account**.
-  </Step>
-  <Step title="Set your password">
-    Choose a strong password, accept the Terms of Service, and submit.
-  </Step>
-</Steps>
 
-<Info>
-  If your invite is no longer valid, go to [https://app.tessact.ai/login](app.tessact.ai/login) → **Login with OTP** → enter your email → use the one-time code sent to you.
-</Info>
+<Tabs>
+  <Tab title="Sign up from an invitation email">
+    <Frame caption="Invitation email with Head to Tessact button">
+      ![welcome-email.jpg](/images/welcome-email.jpg)
+    </Frame>
+    <Steps>
+      <Step title="Open the invitation email">
+        Click **Head to Tessact**.
+
+        _If you don’t see the email, check your spam or promotions folder._
+
+      </Step>
+      <Step title="Complete your profile and set your password">
+        Choose a strong password, accept the Terms of Service, and submit.
+
+        _Password must be at least 8 characters and include a number or symbol._
+
+      </Step>
+    </Steps>
+    <Info>
+      If your invite is no longer valid, go to [https://app.tessact.ai/login](app.tessact.ai/login) → **Login with OTP** → enter your email → use the one-time code sent to you.
+    </Info>
+  </Tab>
+  <Tab title="Sign up with a registered email">
+
+    1. Navigate to [**https://app.tessact.ai/login**](https://app.tessact.ai/login).
+
+    <Frame caption="Login page with Password and OTP options">
+      ![login.jpg](/images/login.jpg)
+    </Frame>
+    
+    2. Sign in with your password _or_ choose **Send 6-digit code** if you prefer one-time codes.
+
+    <Check>
+      Successful login redirects you to the **Library** containing sample assets.
+    </Check>
+
+    You can still set up your profile including your name, avatar, and password by navigating to Profile icon → preferences → profile.
+
+  </Tab>
+</Tabs>
 
 ---
 
-## 2. Sign in
+## 2. Explore the Library
 
-<Frame>
-  ![CleanShot 2025-07-29 at 14.03.05@2x.png](/images/CleanShot2025-07-29at14.03.05@2x.png)
-</Frame>
-
-<Frame caption="Login page with Password and OTP options">
-  
-</Frame>
-
-1. Navigate to [**https://app.tessact.ai/login**](https://app.tessact.ai/login).
-2. Sign in with your password _or_ choose **Login with OTP** if you prefer one-time codes.
-
-<Check>
-  Successful login redirects you to the **Library** containing sample assets.
-</Check>
-
----
-
-## 3. Explore the Library
-
-<Frame caption="Library showing sample assets ready to delete, upload button, and drag-and-drop area">
-  
-</Frame>
+<Frame caption="Library showing sample assets ready to delete, upload button, and drag-and-drop area"></Frame>
 
 - Delete any sample asset via **⋯ → Delete**.
 - Notice the **Upload** button and drag-and-drop zone.
@@ -67,7 +75,7 @@ description: "Sign up, upload your first asset, and run AI-powered actions in mi
 
 ---
 
-## 4. Upload your first asset
+## 3. Upload your first asset
 
 <Steps>
   <Step title="Select files">
@@ -76,6 +84,7 @@ description: "Sign up, upload your first asset, and run AI-powered actions in mi
     <Tip>
       For the fastest turnaround, follow the media formats and codecs guide.
     </Tip>
+
   </Step>
   <Step title="Wait for ingest to finish">
     Tessact uploads and queues the file for AI analysis. A progress bar appears on the asset card.
@@ -83,22 +92,20 @@ description: "Sign up, upload your first asset, and run AI-powered actions in mi
 </Steps>
 
 <Note>
-  Average analysis speed is **≈ 15 minutes per hour of H.264/AAC content under 10 Mb/s**. Non-preferred codecs or higher bitrates trigger transcoding and extend processing time.
+  Average analysis speed is **≈ 15 minutes per hour of H.264/AAC content under
+  10 Mb/s**. Non-preferred codecs or higher bitrates trigger transcoding and
+  extend processing time.
 </Note>
 
-<Frame caption="Asset card showing AI analysis progress">
-  
-</Frame>
+<Frame caption="Asset card showing AI analysis progress"></Frame>
 
 ---
 
-## 5. Trigger AI actions
+## 4. Trigger AI actions
 
 ### Remix (create social clips)
 
-<Frame caption="Remix dialog with suggested and custom prompts">
-  
-</Frame>
+<Frame caption="Remix dialog with suggested and custom prompts"></Frame>
 
 1. Hover the asset → **Remix**.
 2. Pick a suggested prompt (e.g., “Generate a 15-sec teaser”) or write your own.
@@ -106,31 +113,32 @@ description: "Sign up, upload your first asset, and run AI-powered actions in mi
 
 ### AI Autofill metadata
 
-<Frame caption="Metadata panel with AI Autofill button">
-  
-</Frame>
+<Frame caption="Metadata panel with AI Autofill button"></Frame>
 
 1. Open the asset detail page → **Metadata** tab.
 2. Click **AI Autofill** to populate title, description, and tags.
 3. Edit values or approve as-is.
 
 <Info>
-  To customise fields or enforce naming standards, create Metadata Templates in **Settings → Metadata**. See the Metadata Guide for details.
+  To customise fields or enforce naming standards, create Metadata Templates in
+  **Settings → Metadata**. See the Metadata Guide for details.
 </Info>
 
 ---
 
-## 6. Next steps
+## 5. Next steps
 
-| Goal                                                       | Where to go                                         |
-| ---------------------------------------------------------- | --------------------------------------------------- |
-| **Sync an S3 bucket**                                      | Follow the S3 Connections setup.                    |
-| **Build multi-agent workflows                           ** | Open **Workflow Builder** → see Creating Workflows. |
-| **Invite teammates **                                      | **Settings → Users** → User Management.             |
-| **Deep-dive AI actions**                                   | Review AI Agents in Workflows.                      |
+| Goal                            | Where to go                                         |
+| ------------------------------- | --------------------------------------------------- |
+| **Sync an S3 bucket**           | Follow the S3 Connections setup.                    |
+| **Build multi-agent workflows** | Open **Workflow Builder** → see Creating Workflows. |
+| **Invite teammates**            | **Settings → Users** → User Management.             |
+| **Deep-dive AI actions**        | Review AI Agents in Workflows.                      |
 
 ---
 
 <Check>
-  You’ve uploaded your first asset, watched Tessact analyze it, and run AI actions—all in just a few minutes. Continue by connecting cloud storage or designing your own multi-agent workflow.
+  You’ve uploaded your first asset, watched Tessact analyze it, and run AI
+  actions—all in just a few minutes. Continue by connecting cloud storage or
+  designing your own multi-agent workflow.
 </Check>
