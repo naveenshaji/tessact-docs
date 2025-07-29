@@ -1,56 +1,89 @@
 ---
-title: "Introduction"
-description: "Welcome to Tessact"
+title: "Introduction to Tessact"
+description: "Learn what Tessact is, the problems it solves, and how its AI-driven workflow helps you create, collaborate on, and deliver video content at scale."
 ---
 
-## Setting up
+## What is Tessact?
 
-Get your documentation site up and running in minutes.
+Tessact is an end-to-end, AI-powered video platform that **automates editing, content analysis, and distribution**. You upload footage once, and Tessact’s large-context video model immediately understands every scene, enabling lightning-fast search, frame-perfect edits, and data extraction—all inside one workspace.
 
-<Card title="Start here" icon="rocket" horizontal href="/quickstart">
-  Follow our three step quickstart guide.
-</Card>
+<Info>
+Tessact follows a **Create → Collaborate → Deliver** lifecycle, so your team never leaves the platform from first ingest to final publish.
+</Info>
 
-## Make it yours
+---
 
-Design a docs site that looks great and empowers your users.
+## Why Tessact? Key Capabilities & ROI
 
-<Columns cols={2}>
-  <Card title="Edit locally" icon="pen-to-square" href="/development">
-    Edit your docs locally and preview them in real time.
-  </Card>
-  <Card title="Customize your site" icon="palette" href="/essentials/settings">
-    Customize the design and colors of your site to match your brand.
-  </Card>
-  <Card title="Set up navigation" icon="map" href="/essentials/navigation">
-    Organize your docs to help users find what they need and succeed with your product.
-  </Card>
-  <Card title="API documentation" icon="terminal" href="/api-reference/introduction">
-    Auto-generate API documentation from OpenAPI specifications.
-  </Card>
-</Columns>
+| Capability | How it helps you | Typical Impact* |
+|------------|-----------------|-----------------|
+| **AI Autopilot Editing** | Generate first-cut or social remixes by describing what you want. | 10 × faster first drafts |
+| **Scene-Aware Search** | Find any moment by people, objects, transcript, or visual theme. | 70 % reduction in clip-finding time |
+| **Real-Time Collaboration** | Frame-accurate comments, live follow-along, custom approval states. | 3 × faster review cycles |
+| **Predictive Analytics** | Forecast performance across social channels before you publish. | 20 % higher content engagement |
+| **Open API & Webhooks** | Automate ingest, metadata enrichment, and downstream delivery. | Hours saved per batch export |
 
-## Create beautiful pages
+<Note>
+*Impact figures are median results reported by Tessact customers across agencies, broadcasters, and in-house brand teams.
+</Note>
 
-Everything you need to create world-class documentation.
+---
 
-<Columns cols={2}>
-  <Card title="Write with MDX" icon="pen-fancy" href="/essentials/markdown">
-    Use MDX to style your docs pages.
-  </Card>
-  <Card title="Code samples" icon="code" href="/essentials/code">
-    Add sample code to demonstrate how to use your product.
-  </Card>
-  <Card title="Images" icon="image" href="/essentials/images">
-    Display images and other media.
-  </Card>
-  <Card title="Reusable snippets" icon="recycle" href="/essentials/reusable-snippets">
-    Write once and reuse across your docs.
-  </Card>
-</Columns>
+## How Tessact Fits into Your Workflow
 
-## Need inspiration?
+<Frame caption="High-level workflow: ingest → library → search/edit → review → distribution">
+<!-- Replace the image source with your own architecture or workflow diagram -->
+<img src="/images/workflow-diagram.png" alt="Tessact end-to-end workflow diagram" />
+</Frame>
 
-<Card title="See complete examples" icon="stars" href="https://mintlify.com/customers">
-  Browse our showcase of exceptional documentation sites.
-</Card>
+1. **Ingest**  
+   Upload files or point Tessact at a cloud bucket/watch folder.  
+2. **AI Analysis**  
+   The platform indexes scenes, detects faces, extracts text, and generates metadata.  
+3. **Search & Edit**  
+   Use natural-language search to locate clips, then issue prompt-based edits or manual timeline adjustments.  
+4. **Review & Collaborate**  
+   Invite teammates or clients for real-time feedback, approvals, and AI-generated summaries.  
+5. **Deliver**  
+   Export in preset formats or publish directly to social platforms via integrated connectors.
+
+<Tip>
+Add custom automations—such as “auto-generate a 30 s highlight reel when a new game video lands in the bucket”—using Tessact’s REST API and Webhooks.
+</Tip>
+
+---
+
+## Core Terminology
+
+| Term | Definition |
+|------|------------|
+| **Asset** | Any original video or audio file you upload. |
+| **Scene** | AI-detected segment within an asset based on narrative context, not just hard cuts. |
+| **Remix** | Auto-generated derivative video (e.g., social clip, teaser) based on prompts or presets. |
+| **Project** | Collection of assets, remixes, comments, and metadata for a specific deliverable. |
+| **Workspace** | Top-level tenant that holds libraries, users, and billing settings. |
+| **Preset** | Saved set of editing rules (graphics, TRT limits, aspect ratios) reusable across projects. |
+
+---
+
+## Deployment & Licensing Options
+
+Tessact is available in three deployment models:
+
+| Model | Description | When to choose |
+|-------|-------------|----------------|
+| **SaaS (default)** | Fully-managed, multi-tenant cloud; latest features without maintenance. | Most teams—fastest time to value. |
+| **Hybrid Cloud** | Media files stay in your object store (S3/GCS/Azure). Compute runs in Tessact Cloud. | When egress costs or data residency matter. |
+| **On-Prem** | Tessact nodes run inside your data centre or private cloud. | Broadcast or government environments with strict compliance. |
+
+Licensing is subscription-based, metered by **seats + monthly render minutes**. Custom enterprise agreements include SLA guarantees, dedicated support, and volume pricing.
+
+<Warning>
+On-prem deployments require GPU nodes that meet Tessact’s hardware reference (NVIDIA A10 or higher).
+</Warning>
+
+---
+
+<Check>
+You now understand Tessact’s value, core concepts, and where it slots into your media workflow. Continue to **Quick Start** to upload your first asset and see AI analysis in action.
+</Check>
