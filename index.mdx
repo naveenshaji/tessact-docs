@@ -1,84 +1,77 @@
 ---
 title: "Introduction to Tessact"
-description: "Learn what Tessact is, the problems it solves, and how its AI-driven workflow helps you create, collaborate on, and deliver video content at scale."
+description: "Discover Tessact’s multi-agent media platform, its core value drivers, and the deployment models that let you run workflows and AI agents at any scale."
 ---
 
 ## What is Tessact?
 
-Tessact is an end-to-end, AI-powered video platform that **automates editing, content analysis, and distribution**. You upload footage once, and Tessact’s large-context video model immediately understands every scene, enabling lightning-fast search, frame-perfect edits, and data extraction—all inside one workspace.
+Tessact is a **media-operations platform powered by a network of AI agents**.\
+You bring any media—video, audio, images—and Tessact orchestrates specialised agents (generative and analytical) to perform tasks such as:
+
+- **Editing & remixing** videos into multiple aspect ratios
+- **Auto-generating YouTube thumbnails** with brand-safe graphics
+- **Writing blog posts** or social captions based on spoken content
+- **Detecting compliance issues** like nudity or profanity
+- **Running manual review layers** when human sign-off is required
+
+Agents work on top of an operational layer of **workflows** and **projects**, so you design processes once and reuse them across teams. Tessact also integrates third-party AI providers, making it the single hub where all your media operations happen.
 
 <Info>
-Tessact follows a **Create → Collaborate → Deliver** lifecycle, so your team never leaves the platform from first ingest to final publish.
+  Think of Tessact as your **media “control room”**—a place where first-party and third-party agents collaborate to ingest, transform, review, and publish content.
 </Info>
 
 ---
 
 ## Why Tessact? Key Capabilities & ROI
 
-| Capability | How it helps you | Typical Impact* |
-|------------|-----------------|-----------------|
-| **AI Autopilot Editing** | Generate first-cut or social remixes by describing what you want. | 10 × faster first drafts |
-| **Scene-Aware Search** | Find any moment by people, objects, transcript, or visual theme. | 70 % reduction in clip-finding time |
-| **Real-Time Collaboration** | Frame-accurate comments, live follow-along, custom approval states. | 3 × faster review cycles |
-| **Predictive Analytics** | Forecast performance across social channels before you publish. | 20 % higher content engagement |
-| **Open API & Webhooks** | Automate ingest, metadata enrichment, and downstream delivery. | Hours saved per batch export |
+| Capability                     | How it helps you                                                          | Typical Impact\*                    |
+| ------------------------------ | ------------------------------------------------------------------------- | ----------------------------------- |
+| **Multi-Agent Orchestration**  | Chain generative and analytic agents into repeatable workflows.           | 4 × faster end-to-end turnaround    |
+| **Scene-Aware Search & Edit**  | Locate clips by visuals, speech, objects, or context.                     | 70 % reduction in clip-finding time |
+| **Augmented Content Creation** | Generate thumbnails, titles, blogs, and social cuts from a single upload. | \+25 % engagement on new assets     |
+| **Real-Time Collaboration**    | Frame-accurate comments, live sessions, approval gates.                   | 3 × faster review cycles            |
+| **Open Integrations Layer**    | Bring your own AI models or SaaS APIs via REST, Webhooks, or SDK.         | Hours saved per batch export        |
 
 <Note>
-*Impact figures are median results reported by Tessact customers across agencies, broadcasters, and in-house brand teams.
+  \*Impact figures represent median improvements reported by Tessact customers across agencies, broadcasters, and in-house brand teams.
 </Note>
 
 ---
 
 ## How Tessact Fits into Your Workflow
 
-1. **Ingest**  
-   Upload files or point Tessact at a cloud bucket/watch folder.  
-2. **AI Analysis**  
-   The platform indexes scenes, detects faces, extracts text, and generates metadata.  
-3. **Search & Edit**  
-   Use natural-language search to locate clips, then issue prompt-based edits or manual timeline adjustments.  
-4. **Review & Collaborate**  
-   Invite teammates or clients for real-time feedback, approvals, and AI-generated summaries.  
-5. **Deliver**  
-   Export in preset formats or publish directly to social platforms via integrated connectors.
+1. **Ingest**\
+   Upload files directly or connect cloud storage/watch folders.
+2. **Agent Workflows**\
+   Tessact assigns relevant AI agents—transcription, compliance, generative thumbnail, blog writer—according to your workflow definition.
+3. **Manual Review (Optional)**\
+   Route outputs to reviewers for approval or correction before continuing.
+4. **Publish & Distribute**\
+   Export in preset formats, push to CMS, or downstream pipelines.
 
 <Tip>
-Add custom automations—such as “auto-generate a 30 s highlight reel when a new game video lands in the bucket”—using Tessact’s REST API and Webhooks.
+  Use the **Workflow Builder** to drag-and-drop agents—first party or third party—into any sequence, then set conditional branches and approval gates.
 </Tip>
-
----
-
-## Core Terminology
-
-| Term | Definition |
-|------|------------|
-| **Asset** | Any original video or audio file you upload. |
-| **Scene** | AI-detected segment within an asset based on narrative context, not just hard cuts. |
-| **Remix** | Auto-generated derivative video (e.g., social clip, teaser) based on prompts or presets. |
-| **Project** | Collection of assets, remixes, comments, and metadata for a specific deliverable. |
-| **Workspace** | Top-level tenant that holds libraries, users, and billing settings. |
-| **Preset** | Saved set of editing rules (graphics, TRT limits, aspect ratios) reusable across projects. |
 
 ---
 
 ## Deployment & Licensing Options
 
-Tessact is available in three deployment models:
+| Model              | Description                                                                                  | When to choose                                              |
+| ------------------ | -------------------------------------------------------------------------------------------- | ----------------------------------------------------------- |
+| **SaaS (default)** | Fully-managed, multi-tenant cloud; continuous updates.                                       | Fastest time to value.                                      |
+| **Customer Cloud** | Tessact deployed entirely inside your AWS or GCP account; you control VPC, IAM, and billing. | Need full cloud sovereignty with minimal on-prem footprint. |
+| **Hybrid Cloud**   | Media stays in your object store; compute runs in Tessact Cloud.                             | Reduce egress costs or comply with data-residency policies. |
+| **On-Prem**        | Tessact nodes run in your data centre/private cloud.                                         | Broadcast or defence environments with strict compliance.   |
 
-| Model | Description | When to choose |
-|-------|-------------|----------------|
-| **SaaS (default)** | Fully-managed, multi-tenant cloud; latest features without maintenance. | Most teams—fastest time to value. |
-| **Hybrid Cloud** | Media files stay in your object store (S3/GCS/Azure). Compute runs in Tessact Cloud. | When egress costs or data residency matter. |
-| **On-Prem** | Tessact nodes run inside your data centre or private cloud. | Broadcast or government environments with strict compliance. |
-
-Licensing is subscription-based, metered by **seats + monthly render minutes**. Custom enterprise agreements include SLA guarantees, dedicated support, and volume pricing.
+Licensing is subscription-based, metered by **seats \+ monthly agent-compute minutes**. Custom enterprise plans include SLA guarantees, dedicated support, and volume pricing.
 
 <Warning>
-On-prem deployments require GPU nodes that meet Tessact’s hardware reference (NVIDIA A10 or higher).
+  On-prem and Customer-Cloud deployments require GPU nodes that meet Tessact’s hardware reference (NVIDIA A10 or higher).
 </Warning>
 
 ---
 
 <Check>
-You now understand Tessact’s value, core concepts, and where it slots into your media workflow. Continue to **Quick Start** to upload your first asset and see AI analysis in action.
+  You now have a high-level view of Tessact’s multi-agent architecture, value proposition, and deployment choices. Proceed to **Quick Start** to upload your first asset and trigger an agent workflow.
 </Check>
