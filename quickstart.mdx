@@ -33,7 +33,7 @@ When you log in to tessact for the very first time, you will be asked to set up 
 
       </Step>
       <Step title="Complete your profile and set your password">
-        Choose a strong password, accept the Terms of Service, and submit.
+        Set up your profile including your name, avatar, organisation, and password, and submit.
 
         _Password must be at least 8 characters and include a number or symbol._
 
@@ -57,7 +57,7 @@ When you log in to tessact for the very first time, you will be asked to set up 
       Successful login redirects you to the **Library** containing sample assets.
     </Check>
 
-    You can still set up your profile including your name, avatar, and password by navigating to Profile icon → preferences → profile.
+    You can still set up your profile including your name, avatar, organisation, and password by navigating to Profile icon → preferences → profile.
 
   </Tab>
 </Tabs>
@@ -66,11 +66,16 @@ When you log in to tessact for the very first time, you will be asked to set up 
 
 ## 2. Explore the Library
 
-<Frame caption="Library showing sample assets ready to delete, upload button, and drag-and-drop area"></Frame>
+<Frame caption="Library showing sample assets ready to delete, upload button, and drag-and-drop area"> 
+  ![login.jpg](/images/library.jpg)
+</Frame>
 
-- Delete any sample asset via **⋯ → Delete**.
 - Notice the **Upload** button and drag-and-drop zone.
 - AI status badges display ingest, transcode, and analysis progress for each asset.
+
+<Info> 
+  Delete any sample assets if you don't need them via **⋯ → Delete**.
+</Info>
 
 ---
 
@@ -78,37 +83,72 @@ When you log in to tessact for the very first time, you will be asked to set up 
 
 <Steps>
   <Step title="Select files">
-    Click **Upload** or drag your media into the Library.
+    Click **Upload** on the top right of the screen or drag your media into the Library.
 
     <Tip>
-      For the fastest turnaround, follow the media formats and codecs guide.
+      For the fastest turnaround, follow the [supported media formats](/media-formats) guide.
     </Tip>
 
+    <Frame caption="Asset card showing upload progress">
+      ![uploading.jpg](/images/uploading.jpg)
+    </Frame>
+
   </Step>
-  <Step title="Wait for ingest to finish">
-    Tessact uploads and queues the file for AI analysis. A progress bar appears on the asset card.
+  <Step title="Wait for analysing to finish">
+    Tessact uploads and queues the file for AI analysis. A progress pill appears on the asset card showing the progress of the analysis.
   </Step>
 </Steps>
 
 <Note>
   Average analysis speed is **≈ 15 minutes per hour of H.264/AAC content under
-  10 Mb/s**. Non-preferred codecs or higher bitrates trigger transcoding and
+  10 Mb/s**. [Non-preferred codecs](/media-formats) or higher bitrates trigger transcoding and
   extend processing time.
 </Note>
-
-<Frame caption="Asset card showing AI analysis progress"></Frame>
 
 ---
 
 ## 4. Trigger AI actions
 
+Once your asset is analysed, you can trigger AI actions on it. 
+
+<Tip>
+  You can upload as many files as you want to the Library and trigger AI actions on them all. 
+</Tip>
+
 ### Remix (create social clips)
 
-<Frame caption="Remix dialog with suggested and custom prompts"></Frame>
+Once analysing is finished, you can see the Remix bar at the bottom of the screen. Hovering on the suggestions will show you more suggestions for clips you can create with AI, or allow you to write your own prompt.
 
-1. Hover the asset → **Remix**.
-2. Pick a suggested prompt (e.g., “Generate a 15-sec teaser”) or write your own.
+<Frame caption="Remix dialog with suggested and custom prompts">
+  ![remix.jpg](/images/remix.jpg)
+</Frame>
+
+1. Hover over the remix suggestions on the **remix bar** at the bottom of the screen.
+2. Pick a suggested prompt from the list or write your own (e.g., “Generate a 15-sec teaser”).
 3. Tessact generates multiple aspect-ratio variants ready for download or review.
+
+### AI Search for clips
+
+AI search for clips is a powerful way to find the perfect clips for your next project. It works on not just the content in each scene, but also on the contextual understanding of the scene in relation to the overall content.
+
+<Card title="Explore AI Search" arrow="true" horizontal href="/index">
+  Learn more about how Tessact's AI search works.
+</Card>
+
+<Steps>
+  <Step title="Open the AI Search dialog">
+    Press `cmd/ctrl + K` → AI Search for clips <br/>
+    _or_ <br/>
+    Click the Search item on top of the left sidebar to open the AI Search dialog.
+  </Step>
+  <Step title="Type anything you want to find from your content">
+    Tessact finds ideal short clips that match your query that can be used in your next project.
+    <Frame caption="AI Search dialog showing clip results from your content">
+      ![ai-search-results.jpg](/images/ai-search-results.jpg)
+    </Frame>
+  </Step>
+</Steps>
+
 
 ### AI Autofill metadata
 
