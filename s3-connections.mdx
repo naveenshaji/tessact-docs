@@ -1,0 +1,206 @@
+---
+title: "AWS S3 Connections"
+description: "Connect an AWS S3 bucket to Tessact, then mount 1:1, two-way synced folders in the Library."
+---
+
+**S3 Connections** let Tessact work directly on the objects that already live in your own S3 bucket. Instead of copying files into Tessact storage, the platform simply links to a bucket and performs reads/writes on demand.
+
+### Why connect S3?
+
+- **Single source of truth** — Your media remains in S3; Tessact never makes a second copy.  
+- **Instant availability** — Existing libraries become browsable in minutes with zero-copy ingestion.  
+- **Two-way sync** — Upload, rename, or delete in either system, and the change appears in the other within minutes.  
+- **Enterprise-grade security** — All access happens through the temporary, least-privilege AWS credentials you supply.
+
+After you create a **Connection** in **Settings → Connections**, you can mount one or more **Connected Folders** in the Library. Each folder maps 1-for-1 to an entire bucket and stays in continuous sync.
+
+<Info>
+A **Connection** stores credentials and connectivity settings (account, region, encryption).  
+A **Connected Folder** mounts the entire bucket into a Library location with two-way sync.
+</Info>
+
+<Frame caption="Connections list and New Connection form">
+![Connections overview](/images/connections/s3-connections-list.png)
+</Frame>
+
+---
+
+## Prerequisites
+
+- **AWS account** with access to the target S3 bucket  
+- **IAM User** access keys scoped to the bucket  
+- **Bucket Region** (e.g., `ap-south-1`)  
+- **Least-privilege policy** as shown below – Tessact only needs list/read/write on the bucket, not full `s3:*` access  
+- Optional: **S3 Object Lock/Versioning** for safer deletes, **SSE-KMS** if you encrypt with a CMK
+
+<Tip>
+Generate **dedicated access keys** for a single-purpose IAM user and rotate them regularly (≤90 days) for best security.
+</Tip>
+
+---
+
+## Create a New S3 Connection
+
+<Steps>
+<Step title="Open Connections">
+  Navigate to **Settings → Connections → New Connection → Amazon S3**.
+</Step>
+
+<Step title="Choose authentication method">
+  Select **Access Keys**.
+</Step>
+
+<Step title="Enter core settings">
+  - **Display Name** — Human-readable label  
+  - **Region** — Exact AWS region (e.g., `ap-south-1`)  
+  - **Bucket** — Name only (no `s3://` prefix)  
+
+</Step>
+
+<Step title="Save">
+  Click **Create Connection** to save the connection.  
+  <Check>Connection status shows **Active**.</Check>
+</Step>
+</Steps>
+
+<Frame caption="New S3 Connection form">
+![New S3 Connection form](/images/connections/s3-new-connection.png)
+</Frame>
+
+---
+
+## Authentication
+
+Tessact currently authenticates to S3 **only** through an IAM user’s access keys.
+
+### Why use an IAM user?
+
+- Universally supported—no cross-account role required  
+- Quick to configure in any AWS account  
+- Enforces least-privilege when you attach a restrictive policy
+
+<Warning>
+Long-lived keys can be compromised.  
+• Rotate keys every 90 days (or sooner).  
+• Store the secret only in Tessact’s encrypted vault.  
+• Remove unused keys immediately.
+</Warning>
+
+### Setup steps
+
+1. In the AWS console open **IAM → Users → Add user**.  
+2. Tick **Programmatic access**.  
+3. Attach the **permissions-policy.json** below.  
+4. Finish the wizard and copy the **Access Key ID** and **Secret Access Key** into Tessact.
+
+### Least-privilege S3 policy
+
+```json permissions-policy.json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "BucketList",
+      "Effect": "Allow",
+      "Action": ["s3:ListBucket", "s3:GetBucketLocation"],
+      "Resource": ["arn:aws:s3:::your-bucket"]
+      
+    },
+    {
+      "Sid": "ObjectRW",
+      "Effect": "Allow",
+      "Action": [
+        "s3:GetObject",
+        "s3:PutObject",
+        "s3:DeleteObject",
+        "s3:AbortMultipartUpload",
+        "s3:ListMultipartUploadParts"
+      ],
+      "Resource": ["arn:aws:s3:::your-bucket/*"]
+    }
+  ]
+}
+```
+
+That’s it—Tessact will now read and write objects only within the bucket.
+
+---
+
+## Create a Connected Folder
+
+<Steps>
+<Step title="Open Library → New → Connected Folder">
+  From the Library toolbar, select **New → Connected Folder**.
+</Step>
+
+<Step title="Select Connection & path">
+  - Choose an **S3 Connection**  
+  - Pick **Path** to mount as a Connected Folder
+  - Enter a **Folder Name** for Tessact to display in the Library
+</Step>
+
+<Step title="Review and create">
+  Confirm the 1 : 1 mapping and two-way sync.  
+  <Check>Connected Folder appears with an S3 badge; contents index shortly.</Check>
+</Step>
+</Steps>
+
+<Frame caption="Connected Folder creation wizard">
+![Connected Folder wizard](/images/connections/connected-folder-wizard.png)
+</Frame>
+
+---
+
+## Sync Semantics
+
+| Operation in Tessact   | Effect in S3                | Notes                        |
+|------------------------|-----------------------------|------------------------------|
+| Upload                 | PutObject at bucket  | Multipart for large files    |
+| Rename/Move            | Copy → delete old key       | S3 has no atomic rename      |
+| Delete                 | DeleteObject                | Use Versioning for recovery  |
+| New object in S3       | Appears in Library          | Detected within minutes      |
+
+<Warning>
+Deletes propagate to S3. Enable **Bucket Versioning** or test in a non-production bucket before enabling two-way sync on critical data.
+</Warning>
+
+---
+
+## Performance & Scaling
+
+- Multipart uploads optimise files > 100 MB  
+- Parallel listing accelerates first-time indexing  
+- Back-pressure prevents S3 API throttling during high churn  
+- API activity (LIST, GET, PUT, DELETE) incurs normal S3 request and data-transfer charges  
+
+<Tip>
+Keep key depth predictable (e.g., `project/YYYY/MM/DD/shot`) for faster listings.
+</Tip>
+
+---
+
+## Troubleshooting
+
+<AccordionGroup>
+<Accordion title="AccessDenied or 403">
+Verify the IAM user policy includes **ListBucket** and **Get/Put/DeleteObject**. Check bucket **Region**.
+</Accordion>
+<Accordion title="KMS access denied">
+Ensure the IAM user has `kms:Decrypt`, `kms:Encrypt`, and related actions on the CMK.
+</Accordion>
+<Accordion title="Objects not appearing">
+Wait for the next sync cycle; verify that new objects appear in the Library.
+</Accordion>
+
+<Accordion title="Slow listings or throttling">
+S3 can throttle large numbers of consecutive **ListObjectsV2** calls. Tessact automatically backs off and retries, but you can improve performance by:  
+- Using deeper, date-based prefixes (e.g., `project/YYYY/MM/DD/`)  
+- Splitting very large buckets into several Connected Folders
+</Accordion>
+</AccordionGroup>
+
+---
+
+<Check>
+Your S3 bucket is now connected, and a two-way-synced folder is live in the Library. Upload, edit, and manage assets with full parity between Tessact and S3.
+</Check>

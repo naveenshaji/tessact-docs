@@ -28,11 +28,11 @@
               },
               {
                 "group": "Features",
-                "pages": ["content-library", "workflows", "ai-agents"]
+                "pages": ["content-library", "ai-search", "workflows", "ai-agents"]
               },
               {
                 "group": "Technical Guides",
-                "pages": ["media-formats"]
+                "pages": ["media-formats", "s3-connections"]
               }
             ]
           },

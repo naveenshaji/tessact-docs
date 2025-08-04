@@ -4,26 +4,31 @@ description: "Sign up, upload your first asset, and run AI-powered actions in mi
 ---
 
 ## Before you begin
-Tessact is currently invite-only. You can request a demo from the [contact page](https://tessact.ai/contact).
 
-- **Invitation email** — You must receive a Tessact invite from our team before you can sign up.
+Before you get started, make sure you have:
+
+- **An Invitation email** — You must receive a Tessact invite from our team before you can sign up.
+  <Card arrow="true" horizontal href="https://tessact.ai/contact">
+    Request an invite from our team
+  </Card><br/>
 - **Your assets** — You can upload any media file to Tessact. However for best performance, we recommend H.264/AAC `.mp4` under 12 Mb/s. For more information see [supported media formats](media-formats).
 
 <Warning>
-  The invitation link on the email expires after 24 hours for added security. If it lapses, use Login with OTP on the [login](https://app.tessact.ai/login) page instead.
+  The invitation link on the email expires after 24 hours for added security. If
+  it lapses, use Login with OTP on the [login](https://app.tessact.ai/login)
+  page instead.
 </Warning>
 
 ---
 
 ## 1. Set up your account
 
-When you log in to tessact for the very first time, you will be asked to set up your account.
-
+When you [log in to tessact](https://app.tessact.ai/login) for the very first time, you will be asked to set up your account.
 
 <Tabs>
   <Tab title="Sign up from an invitation email">
     <Frame caption="Invitation email with Head to Tessact button">
-      ![welcome-email.jpg](/images/welcome-email.jpg)
+      ![Welcome email screenshot](/images/welcome-email.jpg)
     </Frame>
     <Steps>
       <Step title="Open the invitation email">
@@ -40,24 +45,25 @@ When you log in to tessact for the very first time, you will be asked to set up 
       </Step>
     </Steps>
     <Info>
-      If your invite is no longer valid, go to [https://app.tessact.ai/login](app.tessact.ai/login) → **Login with OTP** → enter your email → use the one-time code sent to you.
+      If your invite is no longer valid, go to [https://app.tessact.ai/login](https://app.tessact.ai/login) → **Login with OTP** → enter your email → use the one-time code sent to you.
     </Info>
+
   </Tab>
   <Tab title="Sign up with a registered email">
 
     1. Navigate to [**https://app.tessact.ai/login**](https://app.tessact.ai/login).
 
     <Frame caption="Login page with Password and OTP options">
-      ![login.jpg](/images/login.jpg)
+      ![Login page screenshot](/images/login.jpg)
     </Frame>
-    
+
     2. Sign in with your password _or_ choose **Send 6-digit code** if you prefer one-time codes.
 
     <Check>
       Successful login redirects you to the **Library** containing sample assets.
     </Check>
 
-    You can still set up your profile including your name, avatar, organisation, and password by navigating to Profile icon → preferences → profile.
+    You can still set up your profile including your name, avatar, organisation, and password by navigating to Profile icon → Preferences → Profile.
 
   </Tab>
 </Tabs>
@@ -66,16 +72,14 @@ When you log in to tessact for the very first time, you will be asked to set up 
 
 ## 2. Explore the Library
 
-<Frame caption="Library showing sample assets ready to delete, upload button, and drag-and-drop area"> 
-  ![login.jpg](/images/library.jpg)
+<Frame caption="Library showing sample assets ready to delete, upload button, and drag-and-drop area">
+  ![Library screenshot](/images/library.jpg)
 </Frame>
 
 - Notice the **Upload** button and drag-and-drop zone.
 - AI status badges display ingest, transcode, and analysis progress for each asset.
 
-<Info> 
-  Delete any sample assets if you don't need them via **⋯ → Delete**.
-</Info>
+<Info>Delete any sample assets if you don't need them via **⋯ → Delete**.</Info>
 
 ---
 
@@ -90,89 +94,115 @@ When you log in to tessact for the very first time, you will be asked to set up 
     </Tip>
 
     <Frame caption="Asset card showing upload progress">
-      ![uploading.jpg](/images/uploading.jpg)
+      ![Asset upload progress](/images/uploading.jpg)
     </Frame>
 
   </Step>
   <Step title="Wait for analysing to finish">
     Tessact uploads and queues the file for AI analysis. A progress pill appears on the asset card showing the progress of the analysis.
+
+    <Note>
+      Average analysis speed is **≈ 15 minutes per hour of H.264/AAC content under
+      10 Mb/s**. [Non-preferred codecs](/media-formats) or higher bitrates trigger
+      transcoding and extend processing time.
+    </Note>
   </Step>
 </Steps>
 
-<Note>
-  Average analysis speed is **≈ 15 minutes per hour of H.264/AAC content under
-  10 Mb/s**. [Non-preferred codecs](/media-formats) or higher bitrates trigger transcoding and
-  extend processing time.
-</Note>
 
 ---
 
 ## 4. Trigger AI actions
 
-Once your asset is analysed, you can trigger AI actions on it. 
+Once your asset is analysed, you can trigger AI actions on it.
 
 <Tip>
-  You can upload as many files as you want to the Library and trigger AI actions on them all. 
+  You can upload as many files as you want to the Library and trigger AI actions
+  on them all.
 </Tip>
 
 ### Remix (create social clips)
 
 Once analysing is finished, you can see the Remix bar at the bottom of the screen. Hovering on the suggestions will show you more suggestions for clips you can create with AI, or allow you to write your own prompt.
 
-<Frame caption="Remix dialog with suggested and custom prompts">
-  ![remix.jpg](/images/remix.jpg)
-</Frame>
+<Columns cols={2}>
+  <Card title="Explore Remixes" arrow="true" horizontal href="/index">
+    Learn more about how Tessact's Remix AI works.
+  </Card>
+  <Card title="Prompting Guide" arrow="true" horizontal href="/index">
+    Learn more about how to write prompts for Tessact's Remix AI.
+  </Card>
+</Columns>
 
-1. Hover over the remix suggestions on the **remix bar** at the bottom of the screen.
-2. Pick a suggested prompt from the list or write your own (e.g., “Generate a 15-sec teaser”).
-3. Tessact generates multiple aspect-ratio variants ready for download or review.
+<Steps>
+  <Step title="Hover over the remix suggestions on the remix bar">
+    Pick a suggested prompt from the list or write your own (e.g., “Generate a
+    15-sec teaser”).
+    <Frame caption="Remix bar with suggested and custom prompts">
+      ![Remix bar screenshot](/images/remix.jpg)
+    </Frame>
+  </Step>
+  <Step title="Review and download your variants">
+    Tessact generates multiple aspect-ratio variants ready for download or
+    review.
+  </Step>
+</Steps>
 
 ### AI Search for clips
 
 AI search for clips is a powerful way to find the perfect clips for your next project. It works on not just the content in each scene, but also on the contextual understanding of the scene in relation to the overall content.
 
-<Card title="Explore AI Search" arrow="true" horizontal href="/index">
+<Card title="Explore AI Search" arrow="true" horizontal href="/ai-search">
   Learn more about how Tessact's AI search works.
 </Card>
 
 <Steps>
   <Step title="Open the AI Search dialog">
-    Press `cmd/ctrl + K` → AI Search for clips <br/>
-    _or_ <br/>
-    Click the Search item on top of the left sidebar to open the AI Search dialog.
+    Press <kbd>⌘/Ctrl + K</kbd> → AI Search for clips <br />
+    _or_ <br />
+    Click the Search item on top of the left sidebar to open the AI Search
+    dialog.
   </Step>
   <Step title="Type anything you want to find from your content">
-    Tessact finds ideal short clips that match your query that can be used in your next project.
+    Tessact finds ideal short clips that match your query that can be used in
+    your next project.
     <Frame caption="AI Search dialog showing clip results from your content">
-      ![ai-search-results.jpg](/images/ai-search-results.jpg)
+      ![AI search results](/images/ai-search-results.jpg)
     </Frame>
   </Step>
 </Steps>
 
-
 ### AI Autofill metadata
 
-<Frame caption="Metadata panel with AI Autofill button"></Frame>
+Tessact's deep understanding of video content allows it to automatically fill in any kind of metadata fields for you. Tessact is especially good at extracting qualitative as well as extremely accurate quantitative metadata (like timeframes, scores, and more) from videos.
 
-1. Open the asset detail page → **Metadata** tab.
-2. Click **AI Autofill** to populate title, description, and tags.
-3. Edit values or approve as-is.
+<Columns>
+  <Card title="Explore AI Autofill" arrow="true" horizontal href="/index">
+    Learn more about how Tessact's AI Autofill works.
+  </Card>
+  <Card title="Metadata Management" arrow="true" horizontal href="/index">
+    Learn more about managing metadata in Tessact.
+  </Card>
+</Columns>
 
-<Info>
-  To customise fields or enforce naming standards, create Metadata Templates in
-  **Settings → Metadata**. See the Metadata Guide for details.
-</Info>
+<Steps>
+  <Step title="Open the asset detail page → Metadata tab.">
+    Clicking on any asset in the library will open the asset detail page. The asset detail page has a **Metadata** tab on the right panel that allows you to edit the metadata fields associated with the asset.
+  </Step>
+  <Step title="Start from scratch or select a pre-defined template">
+    Click on the **Start from scratch** button to start from scratch and add your own fields, or select a pre-defined template from the list below. 
+    <Tip>
+      You can also create a new template in the **Settings → Metadata** page.
+    </Tip>
+  </Step>
+  <Step title="Click AI Autofill to populate title, description, and tags.">
+    Edit the automatically filled values by clicking on the field if needed.
 
----
-
-## 5. Next steps
-
-| Goal                            | Where to go                                         |
-| ------------------------------- | --------------------------------------------------- |
-| **Sync an S3 bucket**           | Follow the S3 Connections setup.                    |
-| **Build multi-agent workflows** | Open **Workflow Builder** → see Creating Workflows. |
-| **Invite teammates**            | **Settings → Users** → User Management.             |
-| **Deep-dive AI actions**        | Review AI Agents in Workflows.                      |
+    <Frame caption="Metadata panel with AI Autofilled data">
+      ![Metadata panel with AI autofill](/images/asset-metadata-filled.jpg)
+    </Frame>
+  </Step>
+</Steps>
 
 ---
 
@@ -181,3 +211,22 @@ AI search for clips is a powerful way to find the perfect clips for your next pr
   actions—all in just a few minutes. Continue by connecting cloud storage or
   designing your own multi-agent workflow.
 </Check>
+
+---
+
+#### Next steps
+
+  <Card title="Sync an S3 bucket" arrow="true" horizontal href="/s3-connections">
+    Follow the S3 Connections setup to connect your cloud storage.
+  </Card>
+  <Card title="Build multi-agent workflows" arrow="true" horizontal href="/workflows/creating-workflows">
+    Open Workflow Builder and see Creating Workflows to automate your processes.
+  </Card>
+  <Card title="Invite teammates" arrow="true" horizontal href="/settings/users">
+    Go to Settings → Users for User Management and collaboration.
+  </Card>
+  <Card title="Deep-dive AI actions" arrow="true" horizontal href="/ai-agents">
+    Review AI Agents in Workflows to explore advanced AI capabilities.
+  </Card>
+
+---
