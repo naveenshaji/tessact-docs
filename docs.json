@@ -28,7 +28,7 @@
               },
               {
                 "group": "Features",
-                "pages": ["content-library", "ai-search", "workflows", "ai-agents"]
+                "pages": ["content-library", "ai-search"]
               },
               {
                 "group": "Technical Guides",
