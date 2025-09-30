@@ -40,7 +40,7 @@
               },
               {
                 "group": "Technical Guides",
-                "pages": ["media-formats", "s3-connections", "workflows"]
+                "pages": ["media-formats", "s3-connections"]
               }
             ]
           },
