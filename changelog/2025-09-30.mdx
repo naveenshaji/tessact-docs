@@ -1,0 +1,80 @@
+---
+title: "30 September 2025"
+description: "Precise timeline rendering, editable subtitles, strengthened metadata permissions, and stability improvements."
+tag: "New"
+---
+
+## Overview
+
+This release improves **precision editing**, **subtitle workflows**, and **permission controls**. It also delivers smoother rendering and more consistent playback across devices.
+
+---
+
+## What's new
+
+### Selective timeline rendering on the editor
+Export only what is needed—avoid rendering the entire video. This lets you export multiple outputs from the same timeline.
+
+<Steps>
+  <Step title="Create a draft or open an existing one">
+    Start a new **Draft** from the **Library** and add your video to the timeline, or open an existing one.
+  </Step>
+  <Step title="Mark In/Out points">
+    Use <kbd>I</kbd> and <kbd>O</kbd> to set start and end for the segment you want to export.
+    <Frame caption="Segment marked in the timeline">
+        ![Selective rendering in editor](/images/changelog/30-09-2025/selective-timeline-rendering.jpg)
+    </Frame>
+    <Info>
+      You can clear your selection anytime by pressing <kbd>Esc</kbd>.
+    </Info>
+  </Step>
+  <Step title="Render the selection">
+    Click **Render** button on the action bar to export only the marked segment.
+    <Frame caption="Render button on the action bar with the selected time">
+        ![Render button on the action bar](/images/changelog/30-09-2025/render-button.jpg)
+    </Frame>
+  </Step>
+</Steps>
+
+---
+
+### Editable subtitles
+Subtitles are now **fully editable in the editor**—no external tools or re‑uploads. Fix transcription errors, refine phrasing, or localise content directly. Updates save instantly and are embedded on render.
+
+<Steps>
+  <Step title="Select a clip on the timeline">
+    Select a clip on the timeline and open the **Properties** panel, go to the **Subtitles** tab. Generate auto-subtitles if not already enabled.
+    <Frame caption="Subtitles tab in the Properties panel">
+        ![Subtitles tab in the Properties panel](/images/changelog/30-09-2025/subtitle-panel.jpg)
+    </Frame>
+  </Step>
+  <Step title="Scroll down to edit captions">
+    Scroll down to see time-stamped captions that you can click on to edit.
+    <Frame caption="Time-stamped captions in the Properties panel">
+        ![Time-stamped captions in the Properties panel](/images/changelog/30-09-2025/subtitle-edit.jpg)
+    </Frame>
+  </Step>
+  <Step title="Render with updates">
+    Save your changes to apply updated subtitles to your draft. This will reflect in any renders as well. 
+  </Step>
+</Steps>
+
+---
+
+### Enhancements
+
+- Read‑only metadata permissions — Metadata fields now respect **user‑level permissions**, making selected fields visible but uneditable for restricted users.
+- Numeric font‑size tooltips — Subtitle font sizes now display **numeric values** for precise adjustment.
+- Metadata export improvements — Template exports now include **prompt columns** in CSV files for clearer downstream data entry and automation.
+
+---
+
+### Fixes & Stability
+
+- Login redirects — Fixed an issue where logging out and then logging back in sometimes redirected to old URLs, causing access‑denied errors.
+- Tree node messaging — Clearer messaging when **rename** or **cut** actions are disabled on Connected Folders.
+- Subtitles in editor — Corrected bottom offset alignment; fixed overlaps when trimming from the start; resolved colour‑picker inconsistencies.
+- Face‑tracked video rendering — Fixed rendering glitches for face‑tracked content in the editor.
+- Mobile video playback — Vertical videos now maintain correct proportions after HLS transcoding.
+
+---

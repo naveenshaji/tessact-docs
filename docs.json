@@ -8,6 +8,14 @@
     "light": "#5D81FF",
     "dark": "#3137CE"
   },
+  "fonts" : {
+    "heading" : {
+      "family" : "Karla"
+    },
+    "body" : {
+      "family" : "Public Sans"
+    }
+  },
   "contextual": {
     "options": ["chatgpt", "claude"]
   },
@@ -32,7 +40,7 @@
               },
               {
                 "group": "Technical Guides",
-                "pages": ["media-formats", "s3-connections"]
+                "pages": ["media-formats", "s3-connections", "workflows"]
               }
             ]
           },
@@ -42,17 +50,8 @@
             "description": "Release notes and updates",
             "groups": [
               {
-                "group": "API documentation",
-                "pages": ["api-reference/introduction"]
-              },
-              {
-                "group": "Endpoint examples",
-                "pages": [
-                  "api-reference/endpoint/get",
-                  "api-reference/endpoint/create",
-                  "api-reference/endpoint/delete",
-                  "api-reference/endpoint/webhook"
-                ]
+                "group": "Releases",
+                "pages": ["changelog/2025-09-30"]
               }
             ]
           }

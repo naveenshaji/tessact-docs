@@ -1,4 +1,242 @@
 ---
-title: "Workflows"
-description: "Sign up, upload your first asset, and run AI-powered actions in minutes."
+title: "Multi-Agent Workflows"
+description: "Design repeatable, multi-team workflows that orchestrate first- and third-party AI agents, manual reviews, and automated transitions—at enterprise scale."
+tag: "WIP"
 ---
+
+## Overview
+
+Workflows are the backbone of collaboration in Tessact. A **workflow** defines *how work moves* from step to step across teams, which **AI agents** run (generative and analytical), and where **manual review layers** apply. You attach a workflow to one or more **projects** to run the same process consistently at scale.
+
+<Frame caption="Workflow Builder canvas with steps, teams, and connections">
+![Workflow Builder canvas](/images/workflows/workflow-canvas.png)
+</Frame>
+
+**Key characteristics**
+
+- **Composable steps**: Each step belongs to a team, has a **type**, and exposes **statuses** (with one default).  
+- **Semantic automation**: Status transitions can be triggered by **inputs**; completed statuses emit **outputs**. You wire outputs → inputs to automate orchestration across steps.  
+- **Multi-agent execution**: Invoke Tessact’s first-party agents (e.g., remix, compliance, captioning, thumbnail generation) or **bring your own** third-party AI via connectors and webhooks.  
+- **Safety by design**: Orchestration enforces **acyclic flows** (no infinite loops) and validates wiring before publish.
+
+<Info>
+Attach the same workflow to many projects. Each project tracks its own run state, artifacts, and audit history without duplicating design work.
+</Info>
+
+---
+
+## Core Concepts
+
+### Steps, Types, and Statuses
+
+- **Step** — A unit of work owned by a team (e.g., *Ingest*, *Edit*, *Compliance Review*, *Publish*).  
+- **Type** — Optimised configuration for that step’s work mode. Examples include:
+  - **Watch Folders** — Monitor Connected Folders and react to file events.
+  - **AI Agent** — Run one or more agents (e.g., *Generate YouTube thumbnails*, *Blog post from webinar*, *Compliance scan*).
+  - **Video Creation** — Editor-centric step for timeline edits and remixes.
+  - **Manual Review** — Gate with assignments, SLAs, and decision outcomes.
+  - **Publishing** — Prepare deliverables and push to destinations/CMS.
+  - **Utility / Transform** — Transcode, proxy, sprite sheet, metadata extraction.
+  - **Webhook / External Action** — Call external systems and wait for callbacks.
+
+- **Statuses** — Each step has a **default** status (e.g., *Not started*), plus additional statuses (e.g., *In progress*, *Needs edit*, *Approved*, *Rejected*). Statuses power both visibility and automation.
+
+<Frame caption="Step configuration: team, type, default status, and additional statuses">
+![Step configuration](/images/workflows/step-config.png)
+</Frame>
+
+### Inputs & Outputs (Wiring)
+
+- **Inputs** are *triggers* that cause a step’s status to change automatically (e.g., *AgentCompleted*, *FileMoved*, *ReviewApproved*, *TimeElapsed*, *WebhookReceived*, *MetadataUpdated*).  
+- **Outputs** are *signals* emitted when a status is reached (e.g., *Edit.Completed → outputs.Done*).
+
+**Wiring rules**
+
+- Connect **Output → Input** to propagate progress across steps.  
+- **Multiple Outputs → one Input** act as an **AND-gate**: the Input fires only when *all* connected Outputs are true.  
+- **One Output → multiple Inputs** (fan-out) is allowed.  
+- **No loops**: A step status cannot simultaneously use its own **IN** and **OUT** as triggers. The builder validates flows as a **DAG** (Directed Acyclic Graph).
+
+<Warning>
+Recurring loops are disallowed. The builder prevents connections that would create cycles or self-triggering feedback.
+</Warning>
+
+<Frame caption="Status wiring with AND/OR patterns and validation">
+![Status wiring](/images/workflows/status-wiring.png)
+</Frame>
+
+---
+
+## First-Party and Third-Party AI Agents
+
+Tessact ships with first-party agents (remix, captioning, translation, compliance, summarisation, blog/title/thumbnail generation, etc.). You can also add third-party AI (LLMs, vision, audio) via **connectors** or **webhooks** and treat them as workflow steps.
+
+<Tabs>
+<Tab title="First-party agent example">
+Configure a **Thumbnail Generator** agent:
+
+- **Inputs**: *Asset.Ready* (from Ingest), optional *MetadataUpdated:Brand*  
+- **Parameters**: aspect ratios, brand palette, overlay template  
+- **Outputs**: *Thumbnails.Created* (array of images), *Quality.OK/Fail*
+</Tab>
+<Tab title="Third-party agent example">
+Call an external captioning service:
+
+- **Webhook** step sends job spec (asset URL, language).  
+- External system posts back to Tessact’s **Run Callback URL**.  
+- On **Callback.Received** Input, move status to *Completed* and emit *Captions.Created*.
+</Tab>
+</Tabs>
+
+<Note>
+Agents can run in parallel within a step or as separate steps; use **conditions** to branch on their outputs (e.g., *Compliance.Fail → Manual Review*).
+</Note>
+
+---
+
+## Designing Workflows
+
+### Typical End-to-End Pattern
+
+1. **Ingest (Watch Folders / Library)** → asset appears and analyses automatically.  
+2. **AI Agent Pack** → captioning, compliance, thumbnails, social remixes.  
+3. **Manual Review** → approval gate with assignments and SLAs.  
+4. **Publish** → deliver to CMS/social, archive to Connected Folder.
+
+<Frame caption="Example: ingest → AI pack → review → publish">
+![Example flow](/images/workflows/example-flow.png)
+</Frame>
+
+### Advanced Patterns
+
+- **Editorial factory**: *AI Search for Clips* → *Remix* → *QC* → *Publish*.  
+- **Knowledge expansion**: *Blog Generation from Video* → *SEO title & description* → *Manual copy edit* → *Publish*.  
+- **Compliance with regional overrides**: *Compliance EU* AND *Compliance US* → both must pass before *Publish*.
+
+---
+
+## Create a Workflow (Step-by-Step)
+
+<Steps>
+<Step title="Open Workflow Builder">
+  Go to **Workflows** in the sidebar → **New Workflow**.
+</Step>
+
+<Step title="Add steps">
+  Drag **Step** onto the canvas. Choose **Type**, assign **Team**, and define **Statuses** (set a default).
+</Step>
+
+<Step title="Configure agents or actions">
+  For **AI Agent** steps, select agents and parameters. For **Watch Folders**, choose a [Connected Folder](/connections/s3-setup) and event triggers.
+</Step>
+
+<Step title="Wire statuses">
+  Connect **Output → Input** between steps. Use multiple Outputs to gate a single Input when all must be true.
+</Step>
+
+<Step title="Set manual review">
+  Add a **Manual Review** step with assignment rules, due-by (SLA), and decision outcomes (*Approved*, *Needs edit*, *Rejected*).
+</Step>
+
+<Step title="Validate and publish">
+  Click **Validate** to ensure the graph is acyclic and all required Inputs are satisfied. Then **Publish** the workflow.
+  <Check>
+  A green check indicates the workflow is ready to attach to projects.
+  </Check>
+</Step>
+</Steps>
+
+<Frame caption="Validation panel with DAG check and unresolved inputs">
+![Validation panel](/images/workflows/validation-panel.png)
+</Frame>
+
+---
+
+## Attach to a Project
+
+- Create or open a **Project** → **Workflow** → select the published workflow.  
+- Provide any **step-level parameters** required by chosen types (e.g., which Connected Folder to watch, or agent presets).  
+- On save, the project enters the workflow’s **initial status** and begins execution when triggers fire.
+
+<Info>
+A single workflow can be attached to many projects. Parameters are stored per project, not globally.
+</Info>
+
+---
+
+## Manual Review Layers
+
+- **Assignments** — Round-robin, owner-based, or group-based.  
+- **Checklists** — Define criteria (e.g., brand safety, loudness).  
+- **SLA timers** — Overdue states emit alerts and can auto-escalate.  
+- **Decisions** — *Approved*, *Needs edit*, *Rejected* emit Outputs you can wire forward.
+
+<Frame caption="Manual Review step with assignees, checklist, and SLA">
+![Manual Review UI](/images/workflows/manual-review.png)
+</Frame>
+
+---
+
+## Execution & Monitoring
+
+- **Run History** — Timeline of step/status changes, agent jobs, and callbacks.  
+- **Retries & Backoff** — Transient failures auto-retry with exponential backoff; hard failures surface with actionable logs.  
+- **Idempotency** — External calls include a run-scoped idempotency key to avoid duplicate work.  
+- **Alerts & Webhooks** — Subscribe to events (e.g., *Step.Failed*, *Publish.Completed*).
+
+
+```json Webhook (event subscription)
+{
+  "event": "workflow.step.failed",
+  "workflow_id": "wf_3bpv9",
+  "project_id": "proj_9f2mx",
+  "step": "Compliance Review",
+  "status": "Failed",
+  "attempt": 3,
+  "run_id": "run_1a2b3c",
+  "timestamp": "2025-08-25T10:45:12Z"
+}
+```
+
+
+### Performance & Cost Management
+
+- **Concurrency** — Limit concurrent agent executions per workflow or step.
+- **GPU quotas** — Reserve or cap GPU-bound steps for predictable throughput.
+- **Caching** — Reuse deterministic outputs (e.g., transcripts, embeddings) across runs.
+- **Agent-compute minutes** — Usage accrues per agent runtime; see org-level analytics.
+
+<Tip>
+Place heavy transforms behind success-gated compliance checks to avoid wasted compute on assets that will be rejected.
+</Tip>
+
+Troubleshooting
+<AccordionGroup>
+<Accordion title="Validation fails: cyclic wiring">
+Remove or reroute connections creating loops. The DAG validator highlights offending edges.
+</Accordion>
+<Accordion title="Step waits forever for Input">
+Check upstream Outputs—if multiple are wired to the same Input, *all* must be true. Inspect the Run History for missing signals.
+</Accordion>
+<Accordion title="External webhook never returns">
+Verify the callback URL and idempotency key. Confirm firewall rules and TLS. Use the **Resend** action in Run History.
+</Accordion>
+<Accordion title="Agent exceeds quotas">
+Increase concurrency limits or schedule during off-peak hours. Review compute minutes and cache eligibility.
+</Accordion>
+</AccordionGroup>
+
+---
+
+<Check>
+You’ve designed a robust, loop-safe workflow that orchestrates agents and people across projects. Attach it to a project to begin automated, traceable media operations at scale.
+</Check>
+
+
+---
+
+## Next Steps
+
+- [Create a Workflow](/workflows/create)
+- [Attach to a Project](/workflows/attach)
+- [Manual Review](/workflows/manual-review)

@@ -1,27 +1,3 @@
----
-title: "Cursor setup"
-description: "Configure Cursor for your documentation workflow"
-icon: "arrow-pointer"
----
-
-Use Cursor to help write and maintain your documentation. This guide shows how to configure Cursor for better results on technical writing tasks and using Mintlify components.
-
-## Prerequisites
-
-- Cursor editor installed
-- Access to your documentation repository
-
-## Project rules
-
-Create project rules that all team members can use. In your documentation repository root:
-
-```bash
-mkdir -p .cursor
-```
-
-Create `.cursor/rules.md`:
-
-````markdown
 # Mintlify technical writing rule
 
 You are an AI writing assistant specialized in creating exceptional technical documentation using Mintlify components and following industry-leading technical writing practices.
@@ -38,6 +14,7 @@ You are an AI writing assistant specialized in creating exceptional technical do
 - Maintain consistent terminology throughout all documentation
 - Keep sentences concise while providing necessary context
 - Use parallel structure in lists, headings, and procedures
+- Do not use emojis and write in a consistent style
 
 ### Content organization standards
 
@@ -58,6 +35,10 @@ You are an AI writing assistant specialized in creating exceptional technical do
 - Include verification steps to confirm success
 
 ## Mintlify component reference
+
+### docs.json
+
+- Refer to the [docs.json schema](https://mintlify.com/docs.json) when building the docs.json file and site navigation
 
 ### Callout components
 
@@ -316,11 +297,11 @@ Complete user object with all associated data.
 Wrap all images in frames:
 
 <Frame>
-<img src="/images/dashboard.png" alt="Main dashboard showing analytics overview" />
+![image.jpg](/images/image.jpg)
 </Frame>
 
 <Frame caption="The analytics dashboard provides real-time insights">
-<img src="/images/analytics.png" alt="Analytics dashboard with charts" />
+![image.jpg](/images/image.jpg)
 </Frame>
 
 #### Videos
@@ -417,4 +398,3 @@ description: "Concise description explaining page purpose and value"
 - Use **RequestExample/ResponseExample** specifically for API endpoint documentation
 - Use **ParamField** for API parameters, **ResponseField** for API responses
 - Use **Expandable** for nested object properties or hierarchical information
-````
