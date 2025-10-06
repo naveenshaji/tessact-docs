@@ -2,22 +2,25 @@
   "$schema": "https://mintlify.com/docs.json",
   "theme": "maple",
   "name": "Tessact Docs",
-  "description": "Discover Tessact’s multi-agent media platform, its core value drivers, and the deployment models that let you run workflows and AI agents at any scale.",
+  "description": "Discover Tessact\u2019s multi-agent media platform, its core value drivers, and the deployment models that let you run workflows and AI agents at any scale.",
   "colors": {
     "primary": "#495BFF",
     "light": "#5D81FF",
     "dark": "#3137CE"
   },
-  "fonts" : {
-    "heading" : {
-      "family" : "Karla"
+  "fonts": {
+    "heading": {
+      "family": "Karla"
     },
-    "body" : {
-      "family" : "Public Sans"
+    "body": {
+      "family": "Public Sans"
     }
   },
   "contextual": {
-    "options": ["chatgpt", "claude"]
+    "options": [
+      "chatgpt",
+      "claude"
+    ]
   },
   "favicon": "/favicon.svg",
   "navigation": {
@@ -32,16 +35,35 @@
             "groups": [
               {
                 "group": "Get Started",
-                "pages": ["index", "quickstart"]
+                "pages": [
+                  "index",
+                  "quickstart"
+                ]
               },
               {
                 "group": "Features",
-                "pages": ["content-library", "ai-search"]
+                "pages": [
+                  "content-library",
+                  "ai-search"
+                ]
               },
               {
                 "group": "Technical Guides",
-                "pages": ["media-formats", "s3-connections"]
+                "pages": [
+                  "media-formats",
+                  "s3-connections"
+                ]
               }
+            ]
+          },
+          {
+            "dropdown": "Features",
+            "icon": "sparkles",
+            "description": "Feature catalogue plus deep dives for MAM and AI.",
+            "pages": [
+              "features/catalog",
+              "features/mam",
+              "features/ai"
             ]
           },
           {
