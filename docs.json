@@ -61,9 +61,9 @@
             "icon": "book",
             "description": "Reference documentation",
             "pages": [
-              "features/catalog",
-              "features/mam",
-              "features/ai"
+              "resources/feature-catalog",
+              "resources/media-asset-management",
+              "resources/ai-platform"
             ]
           },
           {
