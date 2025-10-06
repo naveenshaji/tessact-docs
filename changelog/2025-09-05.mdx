@@ -13,18 +13,28 @@ This release adds **audio analysis**, a **global render queue**, **editor templa
 ### AI Video Templates
 Create reusable templates for intros, outros, overlays, or brand elements. Build once; apply to any draft or remix.
 
+<Info>
+ **AI Video Templates** differ from templates in other tools in that they are understood and applied intelligently by Tessact AI. 
+</Info>
+
 <Steps>
   <Step title="Go to AI Video Templates">
     Go to **Settings → AI Video Templates** and create a new template.
   </Step>
   <Step title="Assemble the template">
-    In the editor that opens, add assets from the **left panel**, arrange them on the **timeline**, and position them on the **canvas**. Add smart text where needed.
+    In the editor that opens, add assets from the **left panel**, arrange them on the **timeline**, and position them on the **canvas**. Add [dynamic text](#dynamic-text-in-the-editor) where needed.
+    <Frame caption="Creating an AI video template">
+       ![Creating an AI video template](/images/changelog/2025-09-05/ai-video-template-creation.jpg)
+    </Frame>
     <Tip>
       You can use smart text to automatically populate text fields based on the **prompt** and the **content** of the video that the template is applied to.
     </Tip>
   </Step>
   <Step title="Save the template">
-    Click **Save Template**. In the modal, enter a **name**, **description**, and refine **template instructions** if needed.
+    Click **Save Template**. In the modal, enter a **name**, **description**, and edit **template instructions** if needed.
+    <Frame caption="Saving the template">
+       ![Saving the template](/images/changelog/2025-09-05/save-template.jpg)
+    </Frame>
     <Tip>
       You can edit instructions to make the template behave differently when applied using natural language.
     </Tip>
@@ -34,47 +44,35 @@ Create reusable templates for intros, outros, overlays, or brand elements. Build
   </Step>
 </Steps>
 
-<Frame caption="Placeholder — building a template in the editor">
-![Editor templates placeholder](/images/releases/2025-09-30/editor-editable-subs.png)
-</Frame>
+
 
 ---
 
 ### Dynamic text in the editor
 Auto‑populate text fields based on the **prompt** and **draft content**. Inside templates, dynamic text adapts to each asset for consistent, on‑brand outputs.
 
-<Frame caption="Placeholder — dynamic text controls in the editor">
-![Dynamic text placeholder](/images/releases/2025-09-30/editor-fontsize-tooltip.png)
+Enable Dynamic text on any Text Layer (added by pressing <kbd>T</kbd> on the timeline) on the Properties panel on the right side. Once Dynamic Text is enabled, the content of that Text Layer will be automatically populated based on the **prompt** and **draft content**.
+
+<Frame caption="Dynamic text controls in the editor">
+![Dynamic text placeholder](/images/changelog/2025-09-05/dynamic-text.jpg)
 </Frame>
 
 ---
 
 ### Audio analysis
-Analyse audio‑only files. Tessact transcribes the audio with **timestamps** for easy review and reuse.
+Tessact AI can now analyse audio‑only files to get contextual understanding that enables downstream use-cases like AI Metadata Autofill, and subtitle localisation.
 
-<Steps>
-  <Step title="Open the transcript">
-    Go to **Review → Metadata → Audio** to view the transcript.
-  </Step>
-  <Step title="Translate (optional)">
-    Translate the transcript into another language via **Translate**.
-  </Step>
-  <Step title="Download captions">
-    Export as `.srt` for captioning or subtitling workflows.
-  </Step>
-</Steps>
-
-<Frame caption="Placeholder — audio transcript with timestamps">
-![Audio analysis placeholder](/images/releases/2025-09-30/detection-highlights.png)
+<Frame caption="Audio file being analysed">
+![Audio file being analysed](/images/changelog/2025-09-05/audio-file.jpg)
 </Frame>
 
 ---
 
 ### Global render queue
-Track all renders in one place from anywhere in the app. Monitor progress and manage jobs without changing context.
+Track all renders in one place from anywhere in the app. Monitor progress without changing context.
 
-<Frame caption="Placeholder — global render queue">
-![Global queue placeholder](/images/releases/2025-09-30/library-tree-messages.png)
+<Frame caption="Global queue">
+![Global queue](/images/changelog/2025-09-05/global-queue.jpg)
 </Frame>
 
 ---
