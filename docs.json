@@ -57,9 +57,9 @@
             ]
           },
           {
-            "dropdown": "Features",
-            "icon": "sparkles",
-            "description": "Feature catalogue plus deep dives for MAM and AI.",
+            "dropdown": "Resources",
+            "icon": "book",
+            "description": "Reference documentation",
             "pages": [
               "features/catalog",
               "features/mam",
