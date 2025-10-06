@@ -50,8 +50,12 @@
             "description": "Release notes and updates",
             "groups": [
               {
+                "group": "Upcoming",
+                "pages": ["changelog/2025-10-13"]
+              },
+              {
                 "group": "Releases",
-                "pages": ["changelog/2025-09-30"]
+                "pages": ["changelog/2025-09-30", "changelog/2025-09-05"]
               }
             ]
           }
