@@ -1,19 +1,72 @@
 ---
 title: "13 October 2025"
-description: ""
+description: "Webhook integration, asset activity logs, improved face tracking, scene exports, and stability improvements."
+tag: "New"
 ---
 
 ## Overview
 
-This release adds **Zapier integration** and **asset activity log**. It also improves **technical metadata** and **scene detection**.
+This release introduces **Webhook integration** for powerful external automation and a comprehensive **asset activity log** to monitor all user and AI-automated asset actions. Expect smoother workflows with improved **face tracking** accuracy, streamlined **scene exports**, and broad **stability improvements** throughout the platform.
 
 ---
 
 ## What's new
 
-### Zapier Integration
+### Asset Activity Log in Technical metadata
 
-Zapier is now supported as a webhook destination. This allows you to connect Tessact to your favorite automation tools.
+Track user and automated activities for each asset, complete with precise timestamps, inside the **Technical metadata → Activity** tab.
+
+#### Tracked activities
+
+- Upload
+- Rename
+- Status change
+- AI analyzing
+- Transcoding
+- Playback optimization
+
+<Frame caption="Asset Activity Log in Technical metadata">
+  ![Asset Activity Log](/images/changelog/2025-10-13/asset-activity.jpg)
+</Frame>
+
+<Info>
+  The asset activity log records actions **only for assets uploaded following
+  this release**; assets added earlier will not have activity history.
+</Info>
+
+---
+
+### Webhook Integration
+
+Connect Tessact to your automation workflows via outgoing webhooks. Use popular providers like **Zapier**, **n8n**, **IFTTT**, or your own custom endpoint.
+
+<Steps>
+  <Step title="Set up the webhook on your provider">
+    Using your chosen automation provider (such as Zapier, n8n, or IFTTT), set
+    up a new webhook by creating an endpoint and copying its URL for later use.
+    <Frame caption="Provider webhook configuration">
+      ![Provider webhook
+      configuration](/images/changelog/2025-10-13/zapier-setup.jpg)
+    </Frame>
+  </Step>
+  <Step title="Create a new action from Settings in Tessact">
+    In Tessact, navigate to **Settings**, then select **Actions** and click
+    **Create New Action**.
+  </Step>
+  <Step title="Choose a trigger and select 'Trigger webhook'">
+    Select your desired trigger from the list of available triggers, then choose
+    **Trigger webhook** as the action to link your workflow.
+    <Frame caption="Setting up webhook trigger">
+      ![Setting up webhook
+      trigger](/images/changelog/2025-10-13/webhook-action-setup.jpg)
+    </Frame>
+  </Step>
+  <Step title="Configure webhook details">
+    Fill in the webhook **name**, paste the **endpoint URL**, specify the
+    **watch folder**, define the **payload**, and optionally configure **HTTP
+    headers** as needed. Then, click **Save** to finish setup.
+  </Step>
+</Steps>
 
 #### Triggers
 
@@ -23,31 +76,31 @@ Zapier is now supported as a webhook destination. This allows you to connect Tes
 - File viewed
 - File downloaded
 - File analyzing started
-- File analyzing completed
+- File analyzing complete
 
 <Info>
-More triggers and actions will become available in upcoming releases.
+  More triggers and actions will become available in upcoming releases.
 </Info>
-
----
-
-### Asset Activity Log
-
-View the detailed activity log for any asset in the Library. This includes activity like Uploaded, Analyzing started, Analyzing completed, Status changed, and Asset renamed.
 
 ---
 
 ## Enhancements
 
-- A unique content ID will now be available for every asset in the technical metadata tab.
-- Now scene detection items can be exported directly from the AI Detected Metadata tab on the Asset page.
+- Face tracking — New algorithm using our latest face detection model for **improved accuracy**.
+- Scene detection export — **Export items as MP4** directly from the AI Detected Metadata tab.
+- Unique content ID — Available for every asset in the **Technical metadata** tab.
+- Folder deletion — **Optimized performance** for deeply nested structures.
 
 ---
 
 ## Fixes & Stability
 
-- Fixed a bug where audio files had an empty AI Detected metadata tab for video metadata. 
-- Fixed a bug where the relative due date options were not showing up when creating a new step in a workflow.
-- Improved button styling, font consistency, and maximum timeline tracks in the Editor.
+- Relative due date options — Fixed missing options when creating workflow steps.
+- Video player buttons and fonts — Unified sizes and standardised font.
+- Editor UI — Improved button styling, font consistency, and **increased maximum timeline tracks**.
+- Audio files metadata — Fixed empty AI Detected tab for video metadata.
+- Toast notifications — Fixed blank messages when multiple toasts were stacked.
+- Multi‑audio track analysis — Fixed failures for videos with multiple audio tracks.
+- Metadata Autofill API — Fixed multi‑select value parsing.
 
 ---

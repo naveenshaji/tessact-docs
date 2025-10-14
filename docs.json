@@ -73,11 +73,15 @@
             "groups": [
               {
                 "group": "Upcoming",
-                "pages": ["changelog/2025-10-13"]
+                "pages": []
               },
               {
                 "group": "Releases",
-                "pages": ["changelog/2025-09-30", "changelog/2025-09-05"]
+                "pages": [
+                  "changelog/2025-10-13",
+                  "changelog/2025-09-30",
+                  "changelog/2025-09-05"
+                ]
               }
             ]
           }
