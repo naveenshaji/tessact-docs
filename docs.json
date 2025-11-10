@@ -44,7 +44,8 @@
                 "group": "Features",
                 "pages": [
                   "content-library",
-                  "ai-search"
+                  "ai-search",
+                  "zapier-integration"
                 ]
               },
               {
@@ -54,16 +55,6 @@
                   "s3-connections"
                 ]
               }
-            ]
-          },
-          {
-            "dropdown": "Resources",
-            "icon": "book",
-            "description": "Reference documentation",
-            "pages": [
-              "resources/feature-catalog",
-              "resources/media-asset-management",
-              "resources/ai-platform"
             ]
           },
           {
@@ -78,6 +69,7 @@
               {
                 "group": "Releases",
                 "pages": [
+                  "changelog/2025-11-11",
                   "changelog/2025-10-13",
                   "changelog/2025-09-30",
                   "changelog/2025-09-05"
