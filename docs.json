@@ -44,6 +44,7 @@
                 "group": "Features",
                 "pages": [
                   "content-library",
+                  "custom-statuses",
                   "ai-search",
                   "zapier-integration"
                 ]
