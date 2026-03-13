@@ -6,11 +6,25 @@ description: "Organise, navigate, and perform bulk actions on large volumes of m
 
 ## Overview
 
-The **Library** is Tessact’s central repository for every asset in your workspace—raw footage, finished masters, thumbnails, audio stems, and more. Built for enterprise scale, the Library supports **millions of files** with virtualised scrolling and instant search responses.
+The **Library** is Tessact's main workspace for storing and operating on media. It brings together folders, uploads, metadata, review, and access controls in one place so teams can move from ingest to collaboration without switching tools.
 
 <Frame caption="Library in grid view with folders, search, and filters">
 ![Tessact Library grid view](/images/library.jpg)
 </Frame>
+
+---
+
+## What You Can Do In The Library
+
+- Browse folders and files in **grid** or **table** view.
+- Upload assets directly into the current location.
+- Search, filter, sort, and group assets using metadata.
+- Open any asset into a dedicated detail page for **preview**, **comments**, **metadata**, and **technical information**.
+- Update statuses, apply templates, and manage access without leaving the asset.
+
+<Info>
+The Library is not just a browser. It is also where the core review workflow starts: open an asset from the Library to comment, inspect detections, and work with metadata.
+</Info>
 
 ---
 
@@ -23,7 +37,7 @@ Tessact offers two main presentation modes:
 | **Grid** | Visual browsing, marketing teams, thumbnails | Card orientation, thumbnail fit/fill, flatten folders |
 | **Table** | Metadata-driven work, archivists, compliance | Column selection, pinning, custom metadata views |
 
-Use the **View Selector** in the upper-right corner of the Library to toggle between views. Your last-used view and layout persist per browser session.
+Use the **View selector** in the Library header to switch between views. Tessact preserves your working layout and then reuses it as you move through the workspace.
 
 ---
 
@@ -38,7 +52,7 @@ Use the **View Selector** in the upper-right corner of the Library to toggle bet
 - **Flatten folders** — Display every asset in the hierarchy as a single scrollable wall.
 
 <Tip>
-Flatten folders when you need to preview all shots from a shoot day without drilling into sub-folders.
+Flatten folders when you need to inspect everything inside a nested folder structure without drilling into each child folder.
 </Tip>
 
 ---
@@ -49,31 +63,33 @@ Flatten folders when you need to preview all shots from a shoot day without dril
 ![Table customisation](/images/table-view-options.jpg)
 </Frame>
 
-1. Select **View** → Properties to add any metadata field.   
-2. Pin a column via its **⋯ context menu** (right-click or tap **⋯**) to keep it visible while scrolling wide datasets.
-3. Move columns to the left or right to reorder them through the column context menu.  
-4. **Sort** and **filter** icons appear on every view on the action bar at the top of the screen.
-5. Assets can be grouped and sub-grouped by any metadata field by selecting **View** → Group by or **View** → Sub-group by.
+1. Select **View** → **Properties** to add metadata fields to the table.
+2. Pin a column from its **⋯ context menu** to keep key fields visible while scrolling.
+3. Reorder columns from the same menu to match each team's workflow.
+4. Use the **Sort** and **Filter** controls in the top action bar to refine the current result set.
+5. Group and sub-group rows by metadata when you need an editorial, operational, or compliance-driven view of the same assets.
 
 <Info>
-The Table view displays all available metadata fields by default, but you can customise the view to only show the fields you need.
+The table can mix built-in fields such as name, creator, file type, and dates with custom metadata fields configured for your workspace.
 </Info>
 
 ---
 
 ## Sorting, Filtering, and Search
 
-An action bar spans the top of the Library with a few core controls:
+The action bar at the top of the Library is the main control surface for narrowing large result sets:
 
 | Control | Behaviour |
 |---------|-----------|
-| **Search** | Natural-language or boolean queries across filenames and metadata that are visible in the current view. |
-| **Filter** | Apply multiple filters simultaneously. Filter by any technical or custom metadata field; conditions are additive by default. |
+| **Search** | Search assets by name and other indexed fields visible in the Library workflow. |
+| **Filter** | Add multiple filters across built-in fields, technical metadata, and custom metadata fields. |
 | **Sort** | Add one or more sort criteria. The order inside the Sort bar defines precedence (primary, secondary, tertiary, etc.). |
 | **Upload** | Upload new assets to the Library from your current device. For recommended file formats, see [Media Formats](/media-formats). |
 | **New Folder** | Create a new folder in the current path. |
 
-Filters and sorts apply to both Grid and Table views, persisting when you switch layouts.
+Common static filters include created date, modified date, creator, file type, codec, and extension. Tessact also exposes workspace-specific metadata fields in the same filtering flow, so operational teams do not need a separate search interface for custom schemas.
+
+Filters and sorts carry across Grid and Table views, so you can refine in one layout and inspect in another.
 
 ---
 
@@ -81,6 +97,24 @@ Filters and sorts apply to both Grid and Table views, persisting when you switch
 
 - Once you navigate into any folder in the library, the sidebar changes to show a tree view with the current folder selected.
 - Toggle **Flatten folders** to surface every asset in descendant directories without changing sidebar context.
+
+<Tip>
+Open folders for strict hierarchy work. Use flattening when you need a campaign-wide or shoot-wide view without changing where you are in the tree.
+</Tip>
+
+---
+
+## Open An Asset
+
+Click any asset to open its dedicated detail page. Tessact then gives you a larger working surface with:
+
+- **Preview** for video, audio, images, documents, or other supported file types
+- **Comments** for review and threaded collaboration
+- **Metadata** for custom fields, templates, and AI-assisted entry
+- **Technical metadata** for codec, bitrate, duration, and file-level details
+- **Access** controls when your role includes security permissions
+
+For version stacks, Tessact can route you to a specific version while keeping the stack relationship intact.
 
 ---
 
@@ -98,12 +132,13 @@ Filters and sorts apply to both Grid and Table views, persisting when you switch
 | Action | Description |
 |--------|-------------|
 | **Cut / Copy / Paste** | Move or duplicate assets within the Library. |
-| **Delete** | Send to workspace recycle bin (retained 30 days). |
-| **Rename** | Inline rename with slug safety checks. |
-| **Remix** | Generate social media ready edits from the selected assets with AI. |
+| **Delete** | Remove assets or folders from the current workspace location. |
+| **Rename** | Update names without opening a separate editor. |
+| **Select all** | Apply bulk actions across the current result set. |
+| **Status updates** | Update custom file statuses directly from supported views. |
 
 <Tip>
-Use **Paste into folder** to preserve original hierarchy during moves.
+Right-click menus are useful for focused operations on one item. Multi-select is better when you need to move, review, or clean up many assets at once.
 </Tip>
 
 ---
@@ -111,21 +146,22 @@ Use **Paste into folder** to preserve original hierarchy during moves.
 ## Performance at Scale
 
 - **Virtual scrolling** renders only visible rows/cards for smooth performance on huge libraries.  
-- **Parallel prefetch** loads thumbnails and metadata in background threads.  
-- **Adaptive thumbnail quality**: grid-view avatars downgrade to proxies after 10 000 visible items to maintain a responsive UI.
+- **Progressive loading** keeps long folders usable while more content streams in.  
+- **Background fetching** keeps permissions, thumbnails, and sub-content data fresh as you browse.  
+- **Live status refresh** updates ingest and indexing progress while uploads and analysis are running.
 
 ---
 
 ## Next steps
 
-<Card title="Define and automate metadata" arrow="true" horizontal href="/metadata/working-with-metadata">
-Learn how to manage and automate metadata for your assets.
+<Card title="Review assets with comments" arrow="true" horizontal href="/review-collaboration">
+Learn how comments, mentions, markers, and timed feedback work on asset pages.
 </Card>
-<Card title="Secure assets with roles and ACLs" arrow="true" horizontal href="/administration/access-control">
-Set up security and access control for your library.
+<Card title="Create custom statuses" arrow="true" horizontal href="/custom-statuses">
+Model editorial and approval stages directly inside the Library.
 </Card>
-<Card title="Share assets with external reviewers" arrow="true" horizontal href="/sharing/sharing-assets">
-Share assets easily with people outside your organization.
+<Card title="Search with AI" arrow="true" horizontal href="/ai-search">
+Jump from the Library into scene-aware search when keyword search is not enough.
 </Card>
 <Card title="Connect cloud storage (S3)" arrow="true" horizontal href="/s3-connections">
 Integrate external AWS S3 storage with your Library.
