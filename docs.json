@@ -58,6 +58,20 @@
                 ]
               },
               {
+                "group": "Admin",
+                "pages": [
+                  "admin/overview",
+                  "admin/operating-model",
+                  "admin/users/lifecycle",
+                  "admin/users/memberships",
+                  "admin/users/bulk-actions",
+                  "admin/security-groups/basics",
+                  "admin/security-groups/membership",
+                  "admin/security-groups/members",
+                  "admin/security-groups/when-to-use"
+                ]
+              },
+              {
                 "group": "Technical Guides",
                 "pages": [
                   "media-formats",

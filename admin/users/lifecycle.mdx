@@ -1,0 +1,110 @@
+---
+title: "User Lifecycle Management"
+sidebarTitle: "User Lifecycle"
+description: "Invite, activate, deactivate, and review users safely from the Tessact admin directory."
+---
+
+## Overview
+
+The **Users** directory is the main admin surface for the user lifecycle. It combines search, filters, bulk actions, row-level actions, and a user details sheet so admins can manage access without jumping between multiple settings pages.
+
+---
+
+## Invite A User
+
+Use **Invite user** from the action bar to add someone to the organization.
+
+The invite flow captures:
+
+- **email**
+- **first name**
+- **last name**
+- **display name**
+- **organization role**
+
+After that, Tessact can also assign the person to one or more workspaces during the same flow. Workspace assignment is optional, which is useful when onboarding and access approval happen in separate steps.
+
+<Tip>
+If you are not ready to decide workspace access yet, invite the user first and handle workspace membership later from the directory.
+</Tip>
+
+---
+
+## Review Existing Users
+
+The directory is organized around four high-signal columns:
+
+| Column | What it shows |
+|--------|----------------|
+| **Name** | Identity and email |
+| **Role** | Current organization role |
+| **Workspaces** | Where the user already has access |
+| **Last active** | Whether the account is still being used |
+
+These columns are enough for most admin decisions: who the person is, how much power they have, where they can work, and whether the account is still active in practice.
+
+---
+
+## Use Filters For Real Reviews
+
+The **Filter users** control opens the user filter bar. Current filters include:
+
+- **Status**: all, active, deactivated, no workspace
+- **Activity**: any activity, active in 7 days, active in 30 days, inactive 30+ days, never logged in
+- **Workspace**
+- **Organization role**
+
+These filters are the fastest way to run a review like:
+
+- users who never logged in
+- users with no workspace access
+- inactive users in a specific workspace
+- everyone holding a specific organization role
+
+---
+
+## Activate Or Deactivate Users
+
+Tessact supports status changes from both row actions and bulk actions.
+
+- Use **Deactivate user** when a person should temporarily or permanently lose access.
+- Use **Activate user** when returning access to an existing account.
+
+This is preferable to deleting and recreating accounts because it preserves the identity record and keeps future audits clearer.
+
+<Warning>
+Deactivation changes whether a person can use the product, but it does not automatically redesign your workspace access model. Review memberships and role assignments too.
+</Warning>
+
+---
+
+## Inspect A User In Detail
+
+Selecting a row opens a details sheet. Use it when the table summary is not enough and you need to verify a specific person's profile or access context before changing anything.
+
+This is especially useful when:
+
+- a user appears in several workspaces
+- role assignment is unclear
+- support requests are tied to the wrong display name or identity data
+
+---
+
+## Best Practices
+
+- Invite first, then add workspace access only where it is justified.
+- Use **activity filters** before deactivating dormant accounts.
+- Prefer deactivation over duplicate-user creation.
+- Keep organization roles limited to the people who truly need them.
+- Review users with **no workspace** regularly so org seats are not wasted on unused accounts.
+
+---
+
+## Next Steps
+
+<Card title="Membership operations" arrow="true" horizontal href="/admin/users/memberships">
+Manage workspace access cleanly from the users directory.
+</Card>
+<Card title="Admin bulk actions" arrow="true" horizontal href="/admin/users/bulk-actions">
+Speed up org-wide user maintenance with selection-based actions.
+</Card>

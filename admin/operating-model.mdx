@@ -1,0 +1,110 @@
+---
+title: "Admin Operating Model"
+sidebarTitle: "Operating Model"
+description: "How Tessact expects organization admins to approach access, workspace governance, and lightweight security controls."
+---
+
+## Overview
+
+Tessact's admin surface is built for a practical operating model:
+
+- **Users** handles the user lifecycle, org roles, and workspace membership changes.
+- **Workspaces** handles workspace-level governance, ownership, and capacity.
+- **Security Groups** handles reusable access cohorts without turning the admin app into a complex policy editor.
+
+The product is intentionally opinionated. It separates high-frequency admin work from deep configuration so admins can move quickly without carrying too much policy complexity in one place.
+
+---
+
+## The Three Main Admin Jobs
+
+### 1. Access Administration
+
+This includes:
+
+- inviting people into the organization
+- activating or deactivating accounts
+- assigning organization roles
+- adding or removing workspace membership
+
+In Tessact, this work starts from **Users**, because the user record is the cleanest place to understand who someone is, what role they hold, and where they already have access.
+
+### 2. Workspace Governance
+
+This includes:
+
+- reviewing how many workspaces exist
+- checking ownership and membership drift
+- watching storage growth
+- deciding where workspace-level policy belongs
+
+This work starts from **Overview** and **Workspaces**. Even if the immediate problem is a user complaint, the root cause is often a workspace configuration issue.
+
+### 3. Lightweight Security Cohorts
+
+This includes:
+
+- creating reusable groups for access cohorts
+- reviewing who belongs in each group
+- keeping group purpose understandable
+
+This work lives in **Security Groups**. The current admin model keeps group membership separate from deeper content-permission mapping so the core org admin flow stays simpler.
+
+---
+
+## How To Split Responsibility
+
+| Admin job | Best primary surface | Typical trigger |
+|-----------|----------------------|-----------------|
+| Add or remove people | **Users** | Onboarding, offboarding, role change |
+| Check org health | **Overview** | Weekly or monthly review |
+| Review workspace sprawl | **Workspaces** | Storage pressure, ownership drift |
+| Create reusable access cohorts | **Security Groups** | Repeated membership patterns |
+
+The common mistake is to manage everything from the workspace side first. Tessact generally works better when admins start from the organization view, then move down into the affected workspace only when needed.
+
+---
+
+## What Tessact Is Optimized For
+
+The current admin surface is optimized for:
+
+- medium and large organizations with many users
+- centralized admin or IT ownership
+- repeated membership changes across multiple workspaces
+- simple, auditable access cohorts
+
+It is less optimized for designing a deeply nested entitlement model inside admin itself. When a workflow requires that level of structure, Tessact expects admins to keep the org model clear first and then layer workspace-specific controls only where they add real value.
+
+---
+
+## Governance Rhythm
+
+A practical cadence is:
+
+1. **Weekly**: review overview metrics and recent user changes.
+2. **Monthly**: review inactive users, workspace growth, and security group membership drift.
+3. **Quarterly**: reassess org roles, seat usage, and whether security groups still reflect real operating teams.
+
+This cadence keeps admin work proportional. Most issues appear first as small drift, not as catastrophic failure.
+
+---
+
+## Best Practices
+
+- Keep **organization roles** sparse and understandable.
+- Use **workspace membership** for direct operational access.
+- Use **security groups** only when the same cohort needs to be reused.
+- Review access from the **org level first**, then go deeper.
+- Avoid creating parallel role systems that mean the same thing in different places.
+
+---
+
+## Next Steps
+
+<Card title="Org admin overview" arrow="true" horizontal href="/admin/overview">
+Start from the admin landing surface and the metrics it exposes.
+</Card>
+<Card title="Security groups basics" arrow="true" horizontal href="/admin/security-groups/basics">
+Learn where security groups fit in the simplified admin model.
+</Card>

@@ -1,0 +1,110 @@
+---
+title: "Managing Group Membership"
+sidebarTitle: "Group Members"
+description: "Add, review, and remove members inside a single Tessact security group."
+---
+
+## Overview
+
+Open any custom security group to manage its member list. The group detail page answers three practical questions:
+
+- who belongs here now?
+- where else do these people work?
+- who should be added or removed?
+
+This page is the operational side of security groups.
+
+---
+
+## What The Group Page Shows
+
+The group page includes:
+
+- a short group summary at the top
+- whether the group is **default** or **custom**
+- total member count
+- a searchable member table
+
+The member table focuses on:
+
+| Column | What it shows |
+|--------|----------------|
+| **Name** | Identity and email |
+| **Workspaces** | Where the member already works |
+| **Last active** | How recently the member used Tessact |
+
+This gives admins enough context to decide whether someone still belongs in the group.
+
+---
+
+## Add Members
+
+For custom groups, use **Add members** from the action bar.
+
+The add-members flow lets you:
+
+- search across organization users
+- exclude people already in the group
+- select multiple users at once
+- submit the cohort in one action
+
+This keeps group maintenance fast without forcing admins to leave the group page.
+
+<Info>
+Default groups do not expose manual add-member controls because their membership is automatic.
+</Info>
+
+---
+
+## Remove Members
+
+For custom groups, select one or more members and use **Remove members**.
+
+This is appropriate when:
+
+- a person changes teams
+- a temporary access cohort ends
+- a group becomes too broad over time
+
+Removing a user from a security group does not deactivate the account or remove workspace membership. It only changes the membership of that specific cohort.
+
+---
+
+## Use Workspace Context To Make Better Decisions
+
+The **Workspaces** column is important. It helps you answer whether a group is still grounded in real operational context.
+
+If a member no longer works in the workspaces associated with the group's purpose, that is usually a sign that the group membership should be reviewed.
+
+---
+
+## Activity As A Governance Signal
+
+The **Last active** column is not the sole criterion for removal, but it is a useful signal.
+
+Use it to spot:
+
+- dormant accounts lingering in a sensitive group
+- former collaborators who should be cleaned up
+- broad groups that have not been reviewed in a while
+
+---
+
+## Best Practices
+
+- Add members in batches when the cohort is obvious.
+- Remove members as soon as the group purpose no longer fits.
+- Use workspace context to validate the cohort.
+- Do not use security groups as a substitute for user deactivation.
+- Keep the member list aligned with a clear description of group purpose.
+
+---
+
+## Next Steps
+
+<Card title="Membership governance" arrow="true" horizontal href="/admin/security-groups/membership">
+Keep the broader governance model clear as groups change over time.
+</Card>
+<Card title="When to use security groups" arrow="true" horizontal href="/admin/security-groups/when-to-use">
+Decide when group-based access is the right tool in the first place.
+</Card>

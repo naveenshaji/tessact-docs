@@ -1,0 +1,83 @@
+---
+title: "Membership Governance"
+sidebarTitle: "Membership Governance"
+description: "How to review and maintain security group membership without overcomplicating the admin model."
+---
+
+## Overview
+
+Security groups are only useful when membership stays understandable. In Tessact, the membership governance job is simple:
+
+- make sure each group still has a clear purpose
+- make sure the right people belong
+- remove people when the cohort no longer matches reality
+
+Because the admin surface is intentionally lightweight, good governance depends more on discipline than on elaborate policy tooling.
+
+---
+
+## What To Review
+
+For each custom group, ask:
+
+1. Does the group still represent a real operating cohort?
+2. Is the description specific enough for another admin to understand it?
+3. Are the listed members still the right people?
+4. Is the group duplicating an organization role or workspace membership pattern?
+
+If the answer to the last question is yes, the group probably needs to be simplified or removed.
+
+---
+
+## Signals That A Group Needs Cleanup
+
+- The name is generic, but the members are highly specific.
+- The description is empty or no longer true.
+- The group has one member and no clear reason to exist as a reusable cohort.
+- Different admins would disagree about who should belong.
+- The same function could be expressed more clearly with workspace membership or org role assignment.
+
+---
+
+## Default Group Handling
+
+The built-in **All Organization** group is auto-managed. Admins should review it for understanding, not for manual curation.
+
+Use it as a conceptual baseline:
+
+- everyone belongs there automatically
+- it should not be used to express a special cohort
+- it should not be treated like a cleanup target
+
+---
+
+## Recommended Review Rhythm
+
+| Frequency | What to review |
+|-----------|----------------|
+| **Monthly** | custom groups with unclear descriptions or low membership |
+| **Quarterly** | whether groups still reflect real operating teams |
+| **After org changes** | groups tied to reorganizations, contractors, or temporary initiatives |
+
+This is usually enough. Security groups do not need daily attention unless the organization is changing rapidly.
+
+---
+
+## Best Practices
+
+- Make every group answer a clear business question.
+- Remove groups that exist only because nobody wanted to decide the right role or workspace.
+- Keep descriptions current.
+- Use membership reviews as part of quarterly access governance.
+- Prefer clarity over theoretical flexibility.
+
+---
+
+## Next Steps
+
+<Card title="Security groups basics" arrow="true" horizontal href="/admin/security-groups/basics">
+Return to the main model behind the security groups directory.
+</Card>
+<Card title="When to use security groups" arrow="true" horizontal href="/admin/security-groups/when-to-use">
+Decide whether a new group is warranted before creating one.
+</Card>

@@ -1,0 +1,115 @@
+---
+title: "Membership Operations"
+sidebarTitle: "Memberships"
+description: "Add, remove, and audit workspace access from the Tessact users directory."
+---
+
+## Overview
+
+In Tessact, workspace membership changes can start from the **Users** directory instead of only from an individual workspace. This matters when admins think in terms of people first:
+
+- where does this user already have access?
+- where should that access change?
+- is the same change needed for several users at once?
+
+That is why the user directory includes workspace-aware columns and bulk membership actions.
+
+---
+
+## Audit Membership From The Directory
+
+The **Workspaces** column gives the first membership signal. It helps you distinguish:
+
+- users with no workspace access
+- users with one clear operational home
+- users spread across many workspaces
+
+Use the workspace filter when you need to isolate everyone who belongs to one workspace and compare that against expected membership.
+
+---
+
+## Add Users To A Workspace
+
+When several people need the same access, select them in the directory and use **Add to workspace**.
+
+The membership modal lets admins:
+
+- choose the destination workspace
+- choose the workspace role
+- apply the change only to eligible users
+
+This is more efficient than opening each workspace individually when onboarding a team or correcting access for a cohort.
+
+---
+
+## Remove Users From A Workspace
+
+Use **Remove from workspace** when a user's organization account should stay active but their access to a specific workspace should not.
+
+This is the right action for:
+
+- team changes
+- project handoffs
+- temporary external access that has ended
+- workspace cleanup after an initiative closes
+
+Removing workspace membership is more precise than deactivating the account.
+
+---
+
+## When To Start From Users Instead Of Workspaces
+
+Start from **Users** when:
+
+- the change is about one person across several workspaces
+- the same correction affects multiple users
+- you are running access reviews by role or inactivity
+
+Start from **Workspaces** when:
+
+- you need to understand the workspace itself
+- the question is about workspace ownership or limits
+- the workspace member list is the primary object of review
+
+---
+
+## Common Review Patterns
+
+### Offboarding
+
+1. Filter or search the user.
+2. Remove workspace memberships that should end immediately.
+3. Deactivate the account if org access should also end.
+
+### Role Change
+
+1. Confirm current workspaces in the directory.
+2. Add or remove workspace memberships as needed.
+3. Adjust the organization role only if the person's admin responsibility also changed.
+
+### Cleanup
+
+1. Filter users with **no workspace**.
+2. Filter users inactive for **30+ days**.
+3. Review whether those accounts still need to exist.
+
+---
+
+## Best Practices
+
+- Use workspace membership changes before touching organization roles.
+- Keep workspace access narrow and operational.
+- Prefer **bulk membership changes** for repeatable org events.
+- Review inactive users with broad workspace access first.
+- Treat **no workspace** accounts as a recurring cleanup queue.
+
+---
+
+## Next Steps
+
+<Card title="User lifecycle management" arrow="true" horizontal href="/admin/users/lifecycle">
+Return to the broader user lifecycle flow.
+</Card>
+<Card title="Admin bulk actions" arrow="true" horizontal href="/admin/users/bulk-actions">
+See how membership changes fit into the full bulk action model.
+</Card>

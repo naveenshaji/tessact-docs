@@ -1,0 +1,105 @@
+---
+title: "Admin Bulk Actions"
+sidebarTitle: "Bulk Actions"
+description: "Use selection-based actions in the Tessact user directory for role assignment, membership changes, activation, and exports."
+---
+
+## Overview
+
+The **Users** directory is designed for batch admin work, not only one-off user edits. Once you select one or more users, Tessact exposes bulk actions for the most common org admin jobs.
+
+This is the fastest path for repeated operations such as onboarding, cleanup, and access correction.
+
+---
+
+## Available Bulk Actions
+
+Depending on permissions, bulk actions include:
+
+| Action | What it does |
+|--------|---------------|
+| **Add to workspace** | Adds selected users to a workspace with a chosen workspace role |
+| **Remove from workspace** | Removes selected users from a chosen workspace |
+| **Assign role** | Changes the organization role for the selected users |
+| **Activate users** | Restores access for deactivated accounts |
+| **Deactivate users** | Disables access for selected accounts |
+| **Download users** | Exports the selected users |
+
+Some actions only appear when your organization permissions allow them.
+
+---
+
+## Typical Bulk Workflows
+
+### Onboard A Team
+
+1. Invite or bulk add users.
+2. Select the new users.
+3. Use **Add to workspace**.
+4. Apply the correct workspace role.
+
+### Clean Up Dormant Access
+
+1. Filter for inactive users.
+2. Select the affected accounts.
+3. Remove workspace access or deactivate the accounts, depending on the case.
+
+### Standardize Org Roles
+
+1. Filter by current role or search for a cohort.
+2. Select the users.
+3. Use **Assign role**.
+
+This is safer than updating roles ad hoc over time because it keeps role changes intentional and visible.
+
+---
+
+## Use Selection Carefully
+
+Bulk actions are powerful because they compress admin time, but they also increase blast radius.
+
+Before applying a bulk change:
+
+- confirm the filters are still correct
+- check how many users are selected
+- verify whether the action changes **org role**, **workspace membership**, or **account status**
+
+<Warning>
+Bulk actions are best for repeatable, well-understood changes. If a case is ambiguous, open the user first and inspect the details sheet before changing it.
+</Warning>
+
+---
+
+## Exporting Users
+
+The users directory supports CSV-style export actions from both the page action menu and the selected-user bulk menu.
+
+Exports are useful for:
+
+- external audits
+- license planning
+- spreadsheet-based access reviews
+- reconciling user lists against HR or IT systems
+
+When you only need a review subset, exporting the selected users is cleaner than exporting the entire organization.
+
+---
+
+## Best Practices
+
+- Use bulk actions for cohorts, not edge cases.
+- Filter first, select second, apply third.
+- Keep role changes and membership changes conceptually separate.
+- Prefer removal from a workspace over full deactivation when the person still belongs in the organization.
+- Export before large cleanup passes if you want a simple audit trail.
+
+---
+
+## Next Steps
+
+<Card title="User lifecycle management" arrow="true" horizontal href="/admin/users/lifecycle">
+See the end-to-end flow for invites, activation, and review.
+</Card>
+<Card title="Membership operations" arrow="true" horizontal href="/admin/users/memberships">
+Focus specifically on workspace access changes from the user directory.
+</Card>

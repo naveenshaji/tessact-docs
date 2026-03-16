@@ -1,0 +1,103 @@
+---
+title: "When To Use Security Groups"
+sidebarTitle: "When To Use"
+description: "How to decide whether Tessact security groups are the right tool for an access problem."
+---
+
+## Overview
+
+Security groups are useful when the same access cohort appears repeatedly. They are not the right answer for every access problem.
+
+Use a security group when you need a reusable, named cohort. Do not use one when a simpler user or workspace change would be clearer.
+
+---
+
+## Good Fits For Security Groups
+
+Create a group when:
+
+- the same set of people is referenced repeatedly
+- the cohort has a stable purpose
+- the group needs a clear, reusable identity
+- membership should be reviewed as a unit
+
+Examples:
+
+- a standing review panel
+- a regional compliance team
+- a recurring partner or vendor cohort
+- a small internal approval group used across several workflows
+
+---
+
+## Poor Fits For Security Groups
+
+Do **not** create a group when:
+
+- one workspace assignment would solve the problem
+- the cohort is really an **organization role**
+- the group would have one member and no likely reuse
+- the purpose is so vague that future admins would guess at membership
+
+These cases usually create long-term confusion instead of clarity.
+
+---
+
+## Security Groups Versus Roles
+
+Use **organization roles** when the question is:
+
+- what can this person administer?
+- should this person manage users, workspaces, or security groups?
+
+Use **security groups** when the question is:
+
+- who belongs in this named cohort?
+
+Roles express authority. Groups express membership. Mixing the two makes governance harder.
+
+---
+
+## Security Groups Versus Workspace Membership
+
+Use **workspace membership** when the question is:
+
+- who should work inside this workspace right now?
+
+Use **security groups** when the same cohort needs to stay recognizable beyond a single one-off membership decision.
+
+If the only real problem is that someone needs access to one workspace, adding them to a group first is usually unnecessary.
+
+---
+
+## Decision Checklist
+
+Before creating a group, ask:
+
+1. Will this cohort still make sense in a few months?
+2. Is the purpose clearer than a generic team label?
+3. Would another admin make the same membership decision?
+4. Is this different from a role or simple workspace access?
+
+If several answers are no, avoid creating the group.
+
+---
+
+## Best Practices
+
+- Create groups for durable cohorts, not temporary uncertainty.
+- Prefer fewer, clearer groups over many overlapping ones.
+- Name groups by purpose, not by vague status.
+- Keep descriptions specific enough that membership stays auditable.
+- Delete groups that no longer represent a real access pattern.
+
+---
+
+## Next Steps
+
+<Card title="Security groups basics" arrow="true" horizontal href="/admin/security-groups/basics">
+Return to the core structure of the security groups directory.
+</Card>
+<Card title="Managing group membership" arrow="true" horizontal href="/admin/security-groups/members">
+Open the workflow for adding and removing people inside a group.
+</Card>
