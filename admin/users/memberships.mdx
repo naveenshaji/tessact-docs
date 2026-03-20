@@ -14,6 +14,10 @@ In Tessact, workspace membership changes can start from the **Users** directory 
 
 That is why the user directory includes workspace-aware columns and bulk membership actions.
 
+<Frame caption="Bulk workspace membership flow from the users directory">
+![Add selected users to a workspace](/images/admin/admin-users-add-to-workspace-live-v2.jpg)
+</Frame>
+
 ---
 
 ## Audit Membership From The Directory
@@ -40,6 +44,27 @@ The membership modal lets admins:
 
 This is more efficient than opening each workspace individually when onboarding a team or correcting access for a cohort.
 
+<Steps>
+<Step title="Filter or search until the right cohort is visible">
+  Start from **Users**, then narrow the list by status, activity, workspace, or role until the people you want to update are easy to verify.
+</Step>
+<Step title="Select the users and open bulk membership actions">
+  Use the left-side row selectors to choose the cohort. Tessact surfaces the selected-user action bar above the table as soon as you make the first selection.
+  <Frame caption="Bulk selection state in the users directory">
+    ![Users selected for bulk membership updates](/images/admin/admin-users-bulk-selection-live-v2.jpg)
+  </Frame>
+</Step>
+<Step title="Choose the workspace and workspace role">
+  Click **Add to workspace**, search for the destination workspace, then assign the shared workspace role that should apply to the eligible users.
+  <Frame caption="Workspace membership modal with workspace and role selected">
+    ![Add users to workspace modal](/images/admin/admin-users-add-to-workspace-live-v2.jpg)
+  </Frame>
+</Step>
+<Step title="Review the impact before applying">
+  The modal shows how many selected users are eligible for the change and how many will be skipped because they are already in the correct state. Use that preview to catch accidental over-selection before you submit.
+</Step>
+</Steps>
+
 ---
 
 ## Remove Users From A Workspace
@@ -54,6 +79,13 @@ This is the right action for:
 - workspace cleanup after an initiative closes
 
 Removing workspace membership is more precise than deactivating the account.
+
+Use the same selection flow for **Remove from workspace**:
+
+1. Select the cohort in **Users**.
+2. Open **Remove from workspace**.
+3. Choose the workspace that should no longer be available.
+4. Apply the removal without changing the organization account itself.
 
 ---
 

@@ -10,6 +10,10 @@ The **Users** directory is designed for batch admin work, not only one-off user 
 
 This is the fastest path for repeated operations such as onboarding, cleanup, and access correction.
 
+<Frame caption="Selected-user action bar in the users directory">
+![Bulk actions in the users directory](/images/admin/admin-users-bulk-selection-live-v2.jpg)
+</Frame>
+
 ---
 
 ## Available Bulk Actions
@@ -52,6 +56,24 @@ Some actions only appear when your organization permissions allow them.
 
 This is safer than updating roles ad hoc over time because it keeps role changes intentional and visible.
 
+<Steps>
+<Step title="Create a clean selection first">
+  Search or filter the directory until the cohort is unambiguous, then select the matching users from the table.
+  <Frame caption="Bulk selection state before opening a role update">
+    ![Selected users ready for a bulk action](/images/admin/admin-users-bulk-selection-live-v2.jpg)
+  </Frame>
+</Step>
+<Step title="Open the role assignment modal">
+  Click **Assign role** from the selected-user action bar. Tessact applies one organization role across the entire selected cohort.
+  <Frame caption="Assign role modal for selected users">
+    ![Assign organization role modal](/images/admin/admin-users-assign-role-live-v2.jpg)
+  </Frame>
+</Step>
+<Step title="Apply only when the scope is intentional">
+  Double-check that the selected users share the same intended admin responsibility. Organization role changes have broader impact than workspace membership changes, so they should stay deliberate and reviewable.
+</Step>
+</Steps>
+
 ---
 
 ## Use Selection Carefully
@@ -82,6 +104,18 @@ Exports are useful for:
 - reconciling user lists against HR or IT systems
 
 When you only need a review subset, exporting the selected users is cleaner than exporting the entire organization.
+
+---
+
+## Practical Bulk-Action Order
+
+When several changes are needed at once, keep the order clean:
+
+1. Filter and select the exact cohort.
+2. Use **Add to workspace** or **Remove from workspace** for access changes.
+3. Use **Assign role** only if the person's organization-level responsibility changed.
+4. Use activation or deactivation after the access model is correct.
+5. Export the selected cohort if you want an audit snapshot before a large cleanup.
 
 ---
 

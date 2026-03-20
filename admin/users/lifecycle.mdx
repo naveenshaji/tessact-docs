@@ -14,7 +14,7 @@ The **Users** directory is the main admin surface for the user lifecycle. It com
 
 ---
 
-## Invite A User
+## Guide: Invite A User
 
 Use **Invite user** from the action bar to add someone to the organization.
 
@@ -31,6 +31,27 @@ After that, Tessact can also assign the person to one or more workspaces during 
 <Tip>
 If you are not ready to decide workspace access yet, invite the user first and handle workspace membership later from the directory.
 </Tip>
+
+<Steps>
+<Step title="Open the invite flow from Users">
+  Go to **Admin → Users** and use **Invite user** from the top action bar. This keeps onboarding anchored in the same directory where you will later review activity, role, and workspace access.
+</Step>
+<Step title="Fill identity details and choose an organization role">
+  Add the person's email, first name, last name, display name, and initial organization role.
+  <Frame caption="Step 1 of the invite flow with identity fields and org role">
+    ![Invite user step 1](/images/admin/admin-invite-user-step1-live-v2.jpg)
+  </Frame>
+</Step>
+<Step title="Continue to workspace access">
+  Use the second step only if the person should land in one or more workspaces immediately. Choose the target workspaces and the shared workspace role for this invite.
+  <Frame caption="Step 2 of the invite flow with workspace selection">
+    ![Invite user step 2](/images/admin/admin-invite-user-step2-live-v2.jpg)
+  </Frame>
+</Step>
+<Step title="Invite now or defer workspace assignment">
+  Submit the invite when the role and workspace choices are correct. If access approval is still pending, skip workspace assignment and add memberships later from the directory.
+</Step>
+</Steps>
 
 ---
 
@@ -91,6 +112,30 @@ This is especially useful when:
 - a user appears in several workspaces
 - role assignment is unclear
 - support requests are tied to the wrong display name or identity data
+
+---
+
+## Common Lifecycle Reviews
+
+Use the directory for three recurring admin reviews:
+
+### Onboarding
+
+1. Invite the user with the correct organization role.
+2. Decide whether workspace access should be added immediately or later.
+3. Confirm the user appears with the expected role and membership state.
+
+### Dormant account cleanup
+
+1. Filter by **inactive 30+ days** or **never logged in**.
+2. Check whether those users still need workspace access.
+3. Remove workspace access or deactivate the account, depending on the case.
+
+### Role verification
+
+1. Filter by organization role.
+2. Open edge cases in the details sheet.
+3. Use **Assign role** only when admin responsibility actually changed.
 
 ---
 
