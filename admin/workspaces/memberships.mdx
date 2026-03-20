@@ -1,0 +1,77 @@
+---
+title: "Workspace Membership Reviews"
+sidebarTitle: "Workspace Memberships"
+description: "How admins should audit member lists, roles, and dormant access inside one workspace."
+---
+
+## Overview
+
+The **Members** tab is the workspace-level access review surface. It lets admins answer:
+
+- who belongs in this workspace now
+- what workspace role each person holds
+- whether anyone should be added or removed
+
+<Frame caption="Workspace members table with role and activity columns">
+![Workspace members page](/images/admin/admin-workspace-members-live-v2.jpg)
+</Frame>
+
+---
+
+## What The Members Table Shows
+
+| Column | Why it matters |
+|--------|----------------|
+| **Name** | Confirms who the member actually is |
+| **Workspace role** | Shows how much authority they have inside this workspace |
+| **Last active** | Helps identify dormant or questionable access |
+
+This is enough context for most workspace access decisions.
+
+---
+
+## Guide: Add Members To A Workspace
+
+<Steps>
+<Step title="Open the workspace and go to Members">
+  Start from the workspace you want to review, then open the **Members** tab.
+</Step>
+<Step title="Use Add members for new workspace access">
+  Click **Add members** in the action bar, search the organization directory, and apply one workspace role to the selected batch.
+  <Frame caption="Add-members flow inside a workspace">
+    ![Add members to workspace modal](/images/admin/admin-workspace-add-members-live-v2.jpg)
+  </Frame>
+</Step>
+<Step title="Review the table after the change">
+  Confirm that the new members appear with the expected workspace role and that the member list still reflects a real operating team.
+</Step>
+</Steps>
+
+---
+
+## What To Review Regularly
+
+- members who no longer work in the workspace's active initiatives
+- members with broader roles than they need
+- dormant users who still hold access
+- workspaces where the member list is much larger than expected
+
+---
+
+## Best Practices
+
+- Review membership at the workspace level when the question is local to one workspace.
+- Keep the member list narrow and operational.
+- Pair role review with activity review so access stays grounded in real usage.
+- Export the member list before large cleanup passes if you want a simple audit trail.
+
+---
+
+## Next Steps
+
+<Card title="Workspace role assignments" arrow="true" horizontal href="/admin/workspaces/roles">
+See when each workspace role should be used.
+</Card>
+<Card title="Removing users safely" arrow="true" horizontal href="/admin/workspaces/removals">
+Handle member removal without breaking ownership or active work.
+</Card>

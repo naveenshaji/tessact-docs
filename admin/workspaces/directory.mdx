@@ -1,0 +1,78 @@
+---
+title: "Workspace Directory Reviews"
+sidebarTitle: "Workspace Directory"
+description: "How to use the Tessact workspace directory to spot empty, risky, or overprovisioned workspaces."
+---
+
+## Overview
+
+The workspace directory is a review surface. It is designed to help admins decide which workspace to open next, not to finish every investigation from one table.
+
+<Frame caption="Workspace directory with workspace, teams, users, and storage columns">
+![Workspace directory review surface](/images/admin/admin-workspaces-directory-live-v2.jpg)
+</Frame>
+
+---
+
+## What The Directory Shows
+
+| Column | What it tells you |
+|--------|-------------------|
+| **Workspace** | Identity, title, and the easiest clue about whether the workspace is recognizable |
+| **Teams** | Whether the workspace has real team structure behind it |
+| **Users** | Approximate membership footprint and whether access may be broader than expected |
+| **Storage** | Usage level and where capacity review may be needed |
+
+Together, these columns help you find the workspaces that deserve deeper review.
+
+---
+
+## Guide: Run A Directory Review
+
+<Steps>
+<Step title="Search or segment the list first">
+  Use the workspace search plus filter and sort controls to narrow the table before making decisions.
+</Step>
+<Step title="Scan for empty or unclear workspaces">
+  Focus on workspaces with weak identity, no clear operational footprint, or suspiciously low team activity.
+</Step>
+<Step title="Use storage and membership as escalation signals">
+  High storage usage, broad membership, or rapid growth are signs that the workspace should be opened for a deeper admin review.
+</Step>
+</Steps>
+
+---
+
+## Review Patterns That Work Well
+
+### Sprawl review
+
+Use **A to Z** to spot duplicates, naming drift, or old workspaces that should be merged or retired.
+
+### Operational review
+
+Use **Most teams** to find the workspaces most likely to need active governance.
+
+### Cleanup review
+
+Use **Without teams** to isolate workspaces that may no longer represent active work.
+
+---
+
+## Best Practices
+
+- Open the workspace when the table raises a question; do not infer too much from the directory alone.
+- Treat naming clarity as part of governance, not cosmetic detail.
+- Review both small empty workspaces and unusually large ones.
+- Use the directory regularly so workspace cleanup stays incremental.
+
+---
+
+## Next Steps
+
+<Card title="Workspace governance" arrow="true" horizontal href="/admin/workspaces/governance">
+Return to the broader operating model behind workspace reviews.
+</Card>
+<Card title="Workspace membership reviews" arrow="true" horizontal href="/admin/workspaces/memberships">
+Go deeper into access review once a workspace needs attention.
+</Card>

@@ -1,0 +1,74 @@
+---
+title: "Behavior And Access Settings"
+sidebarTitle: "Access Controls"
+description: "What the workspace behavior toggles affect and when admins should change them."
+---
+
+## Overview
+
+The **General** tab also includes the workspace-level behavior toggles that affect project visibility and exported media behavior.
+
+<Frame caption="Workspace General tab showing project access and export controls">
+![Workspace behavior and access controls](/images/admin/admin-workspace-access-controls-live-v2.jpg)
+</Frame>
+
+---
+
+## Settings In This Section
+
+Current controls include:
+
+- **Project files visibility**
+- **Project tasks visibility**
+- **Analyze AI clips exports**
+- **Enable video watermarking**
+- **Custom watermark text** when watermarking is enabled
+
+These settings change how the workspace behaves, not who belongs in it.
+
+---
+
+## Guide: Change Access Behavior Carefully
+
+<Steps>
+<Step title="Review project visibility toggles first">
+  Use the project visibility controls to decide how much task members can see inside projects in this workspace.
+</Step>
+<Step title="Change export settings only with a clear reason">
+  Export-analysis and watermark settings affect downstream media behavior, so they should be changed intentionally rather than casually.
+</Step>
+<Step title="Watch enterprise-gated controls">
+  Some export settings are gated to enterprise plans. If the toggle is unavailable, check plan context before assuming the setting is broken.
+</Step>
+</Steps>
+
+---
+
+## When To Use These Controls
+
+Use them when:
+
+- the workspace needs tighter or broader project visibility
+- exported media should follow a specific watermark policy
+- the workspace has a distinct automation or clip-processing rule
+
+Do not use them as a substitute for user or role cleanup.
+
+---
+
+## Best Practices
+
+- Keep access behavior aligned with the real operating model of the workspace.
+- Review visibility toggles whenever external or temporary collaborators are added.
+- Document why watermarking or export-analysis behavior differs from other workspaces.
+
+---
+
+## Next Steps
+
+<Card title="Workspace branding and identity" arrow="true" horizontal href="/admin/workspaces/general">
+Return to the broader General tab.
+</Card>
+<Card title="Storage policy planning" arrow="true" horizontal href="/admin/workspaces/storage-policy">
+Separate behavior settings from capacity policy and storage controls.
+</Card>

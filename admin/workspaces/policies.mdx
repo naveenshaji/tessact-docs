@@ -1,0 +1,72 @@
+---
+title: "Status Systems And Limits"
+sidebarTitle: "Policies"
+description: "How library status visibility and storage policy work together in workspace admin."
+---
+
+## Overview
+
+Most workspace policy work in Tessact happens in two places:
+
+- **Library**, where admins decide whether file statuses are visible and which statuses exist
+- **Limits**, where admins review storage usage and set capacity controls
+
+These two sections shape how the workspace operates without turning the workspace surface into a heavy policy console.
+
+---
+
+## Library Policy
+
+Use the **Library** tab when you need to control:
+
+- whether file status is visible in the workspace
+- how many status types exist
+- the order, naming, and default behavior of those statuses
+
+<Frame caption="Library settings for status visibility and status catalog">
+![Workspace library settings](/images/admin/admin-workspace-library-live-v2.jpg)
+</Frame>
+
+---
+
+## Capacity Policy
+
+Use the **Limits** tab when you need to control:
+
+- whether the workspace is capped or unlimited
+- the current storage limit in GB
+- whether usage is approaching a point that needs review
+
+<Frame caption="Workspace limits and current usage">
+![Workspace limits settings](/images/admin/admin-workspace-limits-live-v2.jpg)
+</Frame>
+
+---
+
+## Why These Policies Belong Together
+
+Status systems shape how work is tracked. Storage policy shapes how much work can accumulate. Reviewing both together helps admins answer a practical question:
+
+Is this workspace designed clearly enough for how much work it is expected to carry?
+
+That is why these two sections work well as a paired review.
+
+---
+
+## Best Practices
+
+- Keep status systems simple enough that teams will actually use them.
+- Review storage policy before workspaces hit emergency cleanup mode.
+- Avoid changing status behavior and storage policy without a clear operating reason.
+- Revisit both policies during quarterly workspace health reviews.
+
+---
+
+## Next Steps
+
+<Card title="Library status design" arrow="true" horizontal href="/admin/workspaces/library-statuses">
+Go deeper into status catalog design and rollout.
+</Card>
+<Card title="Storage policy planning" arrow="true" horizontal href="/admin/workspaces/storage-policy">
+See how to set limits and when unlimited storage makes sense.
+</Card>

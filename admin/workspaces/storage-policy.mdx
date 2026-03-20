@@ -1,0 +1,78 @@
+---
+title: "Storage Policy Planning"
+sidebarTitle: "Storage Policy"
+description: "How to think about workspace storage caps, unlimited mode, and exceptions."
+---
+
+## Overview
+
+The **Limits** tab is where admins review current usage and decide whether the workspace should stay capped or run without an enforced storage ceiling.
+
+<Frame caption="Workspace limits with current usage and cap controls">
+![Workspace storage policy controls](/images/admin/admin-workspace-limits-live-v2.jpg)
+</Frame>
+
+---
+
+## What This Section Controls
+
+The current workspace limits surface covers:
+
+- current storage usage
+- whether the workspace is **Unlimited**
+- the storage limit in GB when capped
+
+<Info>
+In the current admin build, the save action is still mocked until the backend wiring is finished. The page is already useful for policy review and UI documentation.
+</Info>
+
+---
+
+## When To Use A Storage Cap
+
+Use a cap when:
+
+- the workspace has a bounded purpose
+- growth should stay predictable
+- admins want a clear review threshold before more storage is consumed
+
+Use unlimited mode when:
+
+- the workspace is expected to grow continuously
+- operational friction from caps is worse than the governance benefit
+- the org has already decided this workspace is a long-term high-volume surface
+
+---
+
+## Guide: Review Storage Policy
+
+<Steps>
+<Step title="Check current usage first">
+  Use the usage summary to understand whether the workspace is still well within policy or approaching a point that needs attention.
+</Step>
+<Step title="Decide whether the workspace should stay capped">
+  Use **Unlimited storage** only when the operating reason is clear, not just to postpone cleanup.
+</Step>
+<Step title="Set a limit that matches the workspace purpose">
+  If the workspace should stay capped, choose a limit that reflects realistic growth rather than a purely arbitrary number.
+</Step>
+</Steps>
+
+---
+
+## Best Practices
+
+- Use storage policy to reinforce workspace purpose, not to patch over weak governance.
+- Review high-volume workspaces more often than static ones.
+- Document exceptions when a workspace is intentionally uncapped.
+
+---
+
+## Next Steps
+
+<Card title="Capacity reviews" arrow="true" horizontal href="/admin/workspaces/storage-reviews">
+See which signals should trigger a storage review.
+</Card>
+<Card title="Status systems and limits" arrow="true" horizontal href="/admin/workspaces/policies">
+Pair storage policy with library behavior during workspace reviews.
+</Card>
