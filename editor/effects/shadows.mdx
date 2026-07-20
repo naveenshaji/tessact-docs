@@ -1,0 +1,51 @@
+---
+title: "Shadows"
+description: "Stack, tune, and animate multiple shadows on supported visual layers."
+icon: "circle-half-stroke"
+---
+
+Shadows are supported on captions, frames, GIFs, images, solids, text, and video. A layer can carry multiple ordered shadow records.
+
+<Frame caption="An enabled shadow entry on a selected layer">
+  <img src="/images/editor/screenshots/editor-inspector-shadows.png" alt="Tessact Shadows inspector showing an enabled Shadow 1 entry on the selected forest video" />
+</Frame>
+
+## Shadow fields
+
+| Field | Meaning | Animation |
+| --- | --- | --- |
+| Enabled | Includes or excludes the shadow | Static toggle |
+| Color | Shadow color and alpha | Static in the current control |
+| X | Horizontal pixel offset | Keyframeable |
+| Y | Vertical pixel offset | Keyframeable |
+| Blur | Non-negative softness radius | Keyframeable |
+
+## Build a layered shadow
+
+Use one tight, dark shadow for separation and a second larger, low-alpha shadow for depth. For glowing text, use a colored shadow with near-zero offsets and a larger blur. Always inspect against the actual moving background.
+
+## Animation addressing
+
+Shadow animation properties use the shadow's array index, for example:
+
+```text
+shadows.0.offsetX
+shadows.0.offsetY
+shadows.0.blur
+```
+
+Numeric changes at the current frame upsert keyframes when the corresponding track exists. This makes ordering important: removing a shadow changes the index of later shadows, and cleanup must preserve coherent tracks.
+
+<Warning>
+  The current Remove action deletes only the shadow array entry. It does not delete that index's `shadows.<index>.*` keyframe tracks or reindex tracks belonging to later shadows. Removing an animated shadow can leave orphaned lanes or make a later shadow inherit animation addressed to its old index. Before removal, delete or record the affected shadow keyframes; afterward, inspect every shadow lane and rebuild animation deliberately.
+</Warning>
+
+## Legacy normalization
+
+The editor resolves older single-shadow data into the current shadow array for editing. Committing a shadow change writes the array form and clears the legacy field, creating one consistent representation.
+
+<Tip>
+  Shadows expand visible pixels beyond the layer box. Leave room around cropped or tightly framed content so a soft shadow is not clipped unexpectedly.
+</Tip>
+
+See [keyframe editing](/editor/animation/edit-keyframes) and [layer order](/editor/editing/alignment-layer-order).

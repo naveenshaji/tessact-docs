@@ -1,0 +1,33 @@
+---
+title: "Edit keyframes"
+description: "Change selected point values, timing, distribution, and easing across one or more tracks."
+icon: "pen-ruler"
+---
+
+Selecting timeline diamonds opens the keyframe inspector. Its header summarizes selected layer count, property names, and frame range.
+
+## Edit values
+
+For a shared property, enter a new numeric value. A mixed indicator means selected points disagree. Applying a number normalizes that property across all eligible selected points while respecting its value bounds and step.
+
+## Move in time
+
+Drag a point horizontally in its lane. Multi-selected points move as a group while remaining tied to their item and property; their delta is bounded so the group stays within its layer interval. Hold **Option/Alt** while dragging to duplicate the selected points before moving the copies. Resulting frames are normalized to whole numbers, sorted, and deduplicated; when two points land on the same track frame, the later normalized entry owns that frame.
+
+## Space evenly
+
+With three or more suitable selected points, **Space evenly** builds a distribution plan between the selection's outer frames. It changes timing, not values. Use it for rhythmic sequences or evenly sampled motion, then preview because mathematical spacing may not match musical or spoken emphasis.
+
+## Clear
+
+**Clear** removes selected keyframe points. It does not delete the layer. Empty tracks are removed from the layer's keyframe map.
+
+## Canvas geometry edits
+
+Dragging or resizing an animated layer can update points at the current frame or selected keyframe frames. This maintains visual editing speed but makes selection critical. Check the keyframe inspector header before performing a large gesture.
+
+<Warning>
+  A keyframe drag itself is bounded to the current item interval. A later trim or split can clamp/remove points or partition them into another item. Inspect every affected lane after structural timing changes.
+</Warning>
+
+See [easing](/editor/animation/easing), [custom curves](/editor/animation/custom-bezier), and [undo](/editor/editing/undo-redo).

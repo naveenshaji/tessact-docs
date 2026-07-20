@@ -1,0 +1,183 @@
+---
+title: Editor performance
+description: Diagnose slow playback, delayed interaction, timeline stutter, demanding layouts, media playback pressure, and expensive effects.
+icon: gauge-high
+---
+
+Performance problems usually affect one of four areas: **media playback**, **canvas rendering**, **timeline previews**, or **live collaboration**. Identify the affected area before simplifying the draft.
+
+## Fast triage
+
+| Symptom | Likely area | Isolation test |
+|---|---|---|
+| Playback drops frames but paused editing is responsive | Media playback or canvas effects | Pause on the affected frame, then hide demanding media or effect layers one at a time |
+| Timeline scroll or zoom stutters | Filmstrips, waveforms, or many visible lanes | Collapse keyframe lanes and use a less detailed timeline zoom |
+| Dragging a layer lags but playback is smooth | Snapping, layout, nesting, or collaborator activity | Turn off snapping, test a simple layer, and close duplicate draft tabs |
+| Typing in the Inspector lags | Large selection or a busy preview | Select one layer and pause playback |
+| The first view is slow but later views improve | Media and timeline previews are warming up | Let filmstrips and waveforms finish and avoid repeated reloads |
+| Preview is smooth but H.264 export is slow | Export workload or composition complexity | Follow export progress and inspect export-specific errors |
+
+## Establish a baseline
+
+<Steps>
+  <Step title="Preserve the current draft">
+    Finish active drags and text edits, then wait briefly for autosave before reloading or closing a tab.
+  </Step>
+  <Step title="Use one editor tab">
+    Close duplicate tabs for the same draft. Every open tab can play media, render previews, and participate in collaboration.
+  </Step>
+  <Step title="Pause playback">
+    Compare paused interaction with normal playback. This shows whether the problem depends on real-time video work.
+  </Step>
+  <Step title="Use a practical view">
+    Fit the timeline and canvas, then avoid continuous zoom changes while filmstrips and waveforms are still appearing.
+  </Step>
+  <Step title="Test by subtraction">
+    Hide or disable one demanding category at a time. Note the first change that clearly restores responsiveness.
+  </Step>
+</Steps>
+
+## Media playback pressure
+
+Video and GIF layers need frames near the playhead, while video and audio layers can also require continuous sound playback. Demand rises with:
+
+- multiple overlapping video layers;
+- very high source resolution or bit depth;
+- codecs that the browser or device cannot accelerate efficiently;
+- high playback speed and rapid seeking;
+- video files with long distances between keyframes;
+- oversized animated images;
+- remote media delivered over a slow or unstable connection.
+
+For editing, try a browser-friendly copy of the source at sensible dimensions. Keep the original master available, and replace the media only after confirming that the editing copy resolves the slowdown.
+
+## Canvas rendering cost
+
+Each visible frame can combine transforms, crop, opacity, nesting, layout, effects, shadows, text, captions, and animation. Several moderate choices can become expensive when they overlap.
+
+### High-cost patterns
+
+- many large blurred layers;
+- multiple full-frame effects;
+- stacked shadows with large blur values;
+- large semi-transparent layers covering the composition;
+- deeply nested frames with many visible descendants;
+- layout frames containing many children;
+- many animated effect controls;
+- animated media that remains active behind fully covering layers.
+
+Temporarily disable effects and shadows from the topmost visible layer downward. Test at the exact frame that stutters because the number of active layers changes over time.
+
+## Timeline preview cost
+
+Filmstrips, waveforms, snap guides, selection outlines, and keyframe lanes make editing easier but can add work to a dense timeline.
+
+- Collapse keyframe lanes with `U` when you are not editing animation.
+- Choose a zoom level where clips are readable without showing unnecessary detail.
+- Let newly visible filmstrips finish before rapidly scrolling elsewhere.
+- Avoid continuously resizing the timeline while previews are appearing.
+- Fit the current selection instead of navigating the entire draft at extreme zoom.
+- Expect the first view after clearing browser storage to take longer.
+
+## Selection and interaction lag
+
+Dragging can become less responsive when snapping, nested frames, layout rules, effects, or collaborator activity all apply at once.
+
+Diagnose in order:
+
+1. Select one simple visual layer.
+2. Pause playback.
+3. Move it with a one-pixel keyboard nudge instead of a pointer drag.
+4. Turn snapping off with `Shift+M` and compare pointer movement.
+5. Test a layer that is not inside auto layout or grid.
+6. Collapse keyframe lanes.
+7. Close duplicate draft tabs and test again.
+8. Restore each condition one at a time until the slowdown returns.
+
+If the layer reaches the correct final position but looks delayed while moving, record whether the delay occurs during the gesture, when the gesture ends, or only on a collaborator's screen.
+
+## Auto layout and grid
+
+Dense layout frames may need to reposition many children when the frame size, padding, gaps, order, or tracks change.
+
+- Prefer one clear layout frame over unnecessary layers of nested layout frames.
+- Avoid changing container dimensions continuously while editing many children.
+- Use explicit grid tracks only where they express the intended design.
+- Test dense grids with the expected final child count.
+- Finish structural layout work before adding demanding effects to the whole frame.
+- Use manual placement only when the design no longer benefits from automatic layout.
+
+## Keyframes and motion paths
+
+Many animated properties across many visible layers can increase the work required for every frame.
+
+- Remove redundant keyframes that produce the same value.
+- Keep keyframes on whole frames and use intentional spacing.
+- Animate a parent frame when every child truly shares the same movement.
+- Avoid animating a parent's geometry and every child's compensating geometry unless the design requires it.
+- Inspect easing and motion paths while paused, then test at normal speed.
+
+## Captions and text
+
+Large caption sequences, frequent page changes, complex typography, strokes, shadows, and effects can make text-heavy sections more demanding.
+
+- Keep page duration and maximum lines editorially meaningful.
+- Avoid extreme blur and shadow combinations on every caption.
+- Finish token edits before shuttling rapidly through the draft.
+- Test caption-heavy sections separately from footage-heavy sections.
+
+## Collaboration and autosave
+
+Connection changes, duplicate tabs, and overlapping edits can make interaction appear inconsistent even when local media playback is healthy.
+
+- Keep one active editor tab per person for the draft.
+- Finish active gestures before changing networks or closing the device.
+- Avoid repeated refreshes while autosave, media, filmstrips, and waveforms are settling.
+- Compare performance with one person editing, then invite collaborators back one at a time.
+- Use presence to avoid simultaneous work on the same demanding layer or layout.
+
+## Browser and device checks
+
+- Use a current browser with hardware acceleration enabled when available.
+- Keep adequate free memory and close other media-heavy tabs or applications.
+- Connect power on laptops if the operating system reduces performance on battery.
+- Test without extensions that inspect all page or network activity.
+- Use a private window only after accounting for sign-in and storage restrictions.
+- Record device model, browser version, display scaling, and hardware-acceleration status for a reproducible report.
+
+## Do not optimize the wrong area
+
+| If this works… | But this does not… | Investigate |
+|---|---|---|
+| Source file in the browser | Editor preview | Layer transforms, effects, crop, trim, or media compatibility |
+| Editor preview | Filmstrip | Timeline preview only |
+| Editor audio | Waveform | Waveform preview only |
+| Paused canvas | Playback | Real-time media and canvas workload |
+| Local interaction | Collaborator view | Connection and live collaboration |
+| Preview | H.264 export | Export workload, media access, or draft complexity |
+
+## Performance report
+
+Provide:
+
+- workspace and draft name;
+- approximate draft duration and frame rate;
+- time or frame range where the issue is strongest;
+- visible layer types and approximate overlap at that point;
+- source codec and dimensions when known;
+- enabled effects, shadow use, and frame layout mode;
+- whether paused interaction, playback, timeline scroll, or collaborator view is affected;
+- whether waiting for filmstrips and waveforms changes the result;
+- browser, operating system, device model, display scale, and hardware-acceleration status;
+- a short screen recording with the playhead and timeline visible.
+
+Do not include passwords, access tokens, or private media URLs.
+
+<CardGroup cols={2}>
+  <Card title="Editor loading" icon="gauge" href="/editor/troubleshooting/editor-loading">
+    Resolve draft startup, autosave, collaboration, and recovery issues.
+  </Card>
+  <Card title="Media troubleshooting" icon="file-circle-exclamation" href="/editor/troubleshooting/media">
+    Resolve playback, filmstrip, waveform, and remote media bottlenecks.
+  </Card>
+</CardGroup>

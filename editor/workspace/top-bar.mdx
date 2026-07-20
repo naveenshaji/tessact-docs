@@ -1,0 +1,31 @@
+---
+title: "Floating top bar"
+description: "Identify the draft, return to the previous page, and start a render."
+icon: "window-maximize"
+---
+
+The floating top bar anchors project-level actions above the canvas. It is deliberately separated from layer tools: actions here affect navigation or the output workflow rather than the selected object.
+
+## Read the project identity
+
+The center area shows the current draft title. In the worked example it reads **Wayanad — A Quiet Journey**. Verify your draft's title before a long editing or rendering session, especially when several drafts use similar thumbnails.
+
+## Go back
+
+Use the navigation control at the left of the bar to follow browser history to the previous page. When the draft was opened from Library, that usually returns to Library; a direct link or bookmark can return somewhere else. Let any active drag, text edit, or numeric scrub finish first so autosave and collaboration receive the completed interaction.
+
+## Render
+
+The **Render** action starts the H.264 output flow. It is a project-level operation based on the full current composition, not merely selected layers or a canvas viewport. Browser zoom, collapsed panels, canvas pan, and timeline zoom do not alter the output.
+
+<Warning>
+  Hidden layers, muted audio, accidental gaps, and an extended project end are creative state and do affect the render. Run the [preflight checklist](/editor/export/overview#preflight-checklist) first.
+</Warning>
+
+## Floating behavior
+
+The bar sits above the canvas and may support a draggable region in desktop contexts. Interactive controls inside it are excluded from that drag region so clicks remain reliable. If the bar overlaps a detail you need to inspect, pan or zoom the canvas instead of treating the bar position as part of the composition.
+
+<Card title="Render pipeline" icon="file-video" href="/editor/export/h264">
+  Understand H.264 output, composition inputs, and what the renderer evaluates.
+</Card>

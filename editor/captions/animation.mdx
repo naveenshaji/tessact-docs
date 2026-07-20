@@ -1,0 +1,36 @@
+---
+title: "Animate captions"
+description: "Use layer keyframes and the Typewriter Reveal effect without damaging reading rhythm."
+icon: "closed-captioning"
+---
+
+Caption animation should clarify timing, not compete with reading. The ordinary caption layer can be animated through supported transform and appearance properties, while **Typewriter Reveal** exposes a text-aware progress track.
+
+## Layer-level motion
+
+Use position, scale, rotation, dimensions, or opacity keyframes for the whole caption box. A short opacity and vertical-position entrance can establish the caption region without animating every word.
+
+## Typewriter Reveal
+
+Add **Typewriter Reveal** from Layer Effects. Its **Progress** parameter ranges from 0–100% and determines how much eligible caption text is revealed; **Softness** controls the reveal edge. Add keyframes to Progress for explicit reveal timing.
+
+## Visual fades
+
+Caption layers can display visual fade handles, but the current handle-finalization path does not reliably accept the caption type. Do not depend on those handles for a deliverable. Use opacity keyframes for a caption-layer entrance or exit and review the rendered frames.
+
+## Timing priorities
+
+1. Token timing matches speech.
+2. Pages remain on screen long enough to read.
+3. Layer motion settles before attention must move to the words.
+4. Effect animation does not hide a spoken token.
+
+<Warning>
+  Avoid combining a slow typewriter progress track with word timings that already reveal text sequentially unless you have reviewed every page. Two reveal systems can multiply into missing or late words.
+</Warning>
+
+## Test protocol
+
+Play the full caption section at normal speed, once while reading and once while watching the picture. Then frame-step the first page, a middle page boundary, and the final page. Check the H.264 output if browser text rendering or effect performance differs under load.
+
+See [keyframe overview](/editor/animation/overview) and [easing](/editor/animation/easing).

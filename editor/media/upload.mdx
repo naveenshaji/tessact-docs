@@ -1,0 +1,47 @@
+---
+title: "Upload local media"
+description: "Add image, video, or audio files from the computer through the Bin."
+icon: "cloud-arrow-up"
+---
+
+The Bin's upload control accepts local image, video, and audio categories. The browser reports each file's MIME type and provides bytes for upload, probing, and preview.
+
+## Upload sequence
+
+<Steps>
+  <Step title="Open Bin and choose upload">
+    Select one or more files with clear filenames. Avoid renaming extensions without changing the actual container format.
+  </Step>
+  <Step title="Wait for transfer and processing">
+    Large video or lossless audio can take time. Keep the tab open and avoid submitting the same file repeatedly.
+  </Step>
+  <Step title="Confirm the Bin entry">
+    Check the thumbnail, media kind, duration or dimensions, and filename.
+  </Step>
+  <Step title="Insert at an intentional frame">
+    Move the playhead first, then add the uploaded asset as a timeline layer.
+  </Step>
+  <Step title="Test decoding">
+    Seek and play the inserted layer. Upload success and browser decode success are separate stages.
+  </Step>
+</Steps>
+
+## File selection guidance
+
+- Prefer browser-friendly video and audio encodings for responsive previews.
+- Use source dimensions close to the expected composition use; huge still images consume more decoding and texture memory.
+- Preserve transparency only when the chosen image format and source actually contain an alpha channel.
+- Use a short ASCII filename when diagnosing a problematic upload.
+
+## Technical stages
+
+```mermaid
+flowchart LR
+  F["Local File"] --> U["Upload"] --> M["Remote asset metadata"] --> B["Bin"] --> L["Timeline layer"] --> D["Browser decode/cache"]
+```
+
+<Note>
+  The upload input advertises broad `image/*`, `video/*`, and `audio/*` categories. Actual success still depends on backend ingestion and browser codec support; category acceptance is not a promise that every container-codec combination will preview.
+</Note>
+
+See [supported media guidance](/editor/media/supported-formats) and [media diagnostics](/editor/troubleshooting/media).

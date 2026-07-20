@@ -1,0 +1,61 @@
+---
+title: "Visual fade handles"
+description: "Fade a supported visual layer's opacity at clip edges and understand timing, constraints, and evaluation."
+icon: "circle-half-stroke"
+---
+
+Visual fade handles create clip-edge opacity transitions independently from audio fades. The fade multiplies the layer's ordinary or animated opacity, so the two can be combined for more complex entrances and exits.
+
+## Supported timeline behavior
+
+| Layer type | Visual fade support | Recommended method |
+| --- | :---: | --- |
+| Video | ✓ | Drag the visual edge handles |
+| Image | ✓ | Drag the visual edge handles |
+| GIF | ✓ | Drag the visual edge handles |
+| Text | ✓ | Drag the visual edge handles |
+| Solid | ✓ | Drag the visual edge handles |
+| Frame | — | Animate opacity with keyframes |
+| Captions | — | Animate opacity with keyframes |
+| Audio | — | Use audio fade handles |
+
+<Warning>
+  Visual fade handles are supported for video, image, GIF, text, and solid layers. For frames and captions, use opacity keyframes and verify the transition in playback and export.
+</Warning>
+
+## Edit a visual fade
+
+1. Hover the visual portion of an eligible timeline clip.
+2. Drag the left handle inward for fade-in or the right handle inward for fade-out.
+3. Zoom the timeline before a short fade so the pixel-to-time mapping is controllable.
+4. Release once; the live preview is consolidated into one undo checkpoint.
+5. Play across the edge, then inspect the first/last several frames.
+
+On a video with audio, visual and audio fades are separate properties and can expose handles in different vertical regions of the clip. A visual fade changes pixels; an audio fade changes gain.
+
+## Evaluation
+
+For layer-local frame `f`, FPS `r`, duration `d`, fade-in seconds `fi`, fade-out seconds `fo`, and base opacity `o`:
+
+```text
+inProgress  = clamp(f / (fi × r), 0, 1)
+outStart    = d - fo × r
+outProgress = clamp(1 - (f - outStart) / (fo × r), 0, 1)
+
+evaluatedOpacity
+  = easing(inProgress) × easing(outProgress) × o
+```
+
+A zero-second fade contributes a multiplier of `1`. Fade easing is applied before multiplication with base/keyframed opacity, so a simultaneous opacity animation can compound the transition.
+
+## Drag constraints and undo
+
+Pointer travel is converted to time in proportion to clip width and duration. One fade cannot extend through the opposite fade, and the handles preserve a small separation so the transition remains valid. Zoom in before editing a short transition for finer control.
+
+The editor previews the fade continuously while you drag. Completing one drag creates one undo checkpoint.
+
+## Structural edits
+
+Trimming clamps fades to the remaining interval. Splitting clears the outgoing fade at the new internal edge of the left half and the incoming fade at the internal edge of the right half, while preserving applicable outer-edge fades within the shortened durations. Recheck every fade after a trim, split, or bulk duration edit.
+
+See [Audio fades](/editor/audio/fades), [Opacity keyframes](/editor/animation/animatable-properties), and [Split clips](/editor/timeline/split).

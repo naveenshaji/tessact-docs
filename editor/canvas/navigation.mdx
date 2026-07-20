@@ -1,0 +1,41 @@
+---
+title: "Navigate the canvas"
+description: "Pan, zoom, fit, and inspect off-canvas motion without changing the composition."
+icon: "magnifying-glass"
+---
+
+Canvas navigation changes only your viewport into the composition. It is safe to pan or zoom aggressively while inspecting details because these operations do not alter render geometry.
+
+## Zoom
+
+Use the lower-right zoom controls to enlarge fine detail or reveal extra workspace around the composition. The percentage reports view scale, not a layer's scale property. A 50% canvas view still renders at the composition's full pixel dimensions. `+` or `=` zooms in, `-` zooms out, `0` fits the composition, and `Shift+0` selects actual-size (`100%`) viewing when the canvas owns the shortcut.
+
+## Pan
+
+Pan through canvas workspace when a zoomed composition no longer fits the available panel. A normal wheel gesture pans, middle-button drag pans, and holding `Space` while dragging pans. `Cmd/Ctrl+wheel` zooms around the cursor position. Panning changes the translation of the editor viewport; it does not add an offset to any layer.
+
+## Fit
+
+Use the fit action or `0` after losing orientation, resizing a side panel, or switching between canvas-heavy and timeline-heavy layouts. Fit derives a zoom and pan that keep the whole output frame visible inside the current workspace. Double-clicking empty workspace resets to the fitted view.
+
+## Gesture precedence
+
+Canvas interaction distinguishes navigation from authoring. A middle-drag or `Space`-drag pans even when the pointer begins over rendered content. A plain primary drag can select, move, resize, crop, or draw depending on the current tool and target. During `Cmd/Ctrl+wheel` zoom, the composition point beneath the cursor is kept stable as closely as the viewport permits.
+
+<Note>
+  Browser zoom can intercept `Cmd/Ctrl` plus/minus combinations. The visible lower-right controls are authoritative when a shortcut is reserved by the browser or an input still has focus.
+</Note>
+
+## Off-canvas content
+
+Extra workspace around the composition is useful for motion paths, partially cropped layers, and objects entering from outside the frame. Only pixels within the output frame render. A layer can remain selected while its entire visual box is off-canvas.
+
+<Tip>
+  Before moving a layer that seems missing, fit the canvas and inspect the timeline interval. The problem may be viewport pan, playhead time, or layer geometry rather than deleted content.
+</Tip>
+
+## Input focus
+
+Canvas navigation gestures can conflict with browser or operating-system shortcuts. Use visible controls when precision matters, and ensure a numeric inspector input is not focused before expecting a canvas shortcut to act.
+
+See [fullscreen review](/editor/canvas/fullscreen), [canvas transforms](/editor/canvas/transforms), and [performance troubleshooting](/editor/troubleshooting/performance).

@@ -1,0 +1,109 @@
+---
+title: "Troubleshoot rendering"
+description: "Resolve disabled actions, stalled progress, missing media, audio issues, and downloads."
+icon: "triangle-exclamation"
+---
+
+Start with the visible top-bar state and the downloaded file, if one exists. Avoid repeatedly selecting **Render**: one careful retry after checking the draft is more useful than several duplicate attempts.
+
+## Render action is disabled
+
+Check the following:
+
+1. The timeline contains at least one visible layer.
+2. No render is already in **Starting…** or **Rendering _n_%** state.
+3. The draft has valid canvas dimensions, a frame rate, and a duration greater than zero.
+4. You still have access to the workspace and draft.
+5. Reload the draft only when no render is active, then try again.
+
+## Render stops with an error
+
+Read the visible error before changing the draft. Then:
+
+1. Confirm every image, video, and audio item loads in the editor.
+2. Scrub to the approximate point where progress stopped and inspect the active layers there.
+3. Remove or replace a media item that remains blank, shows a loading placeholder, or cannot play.
+4. Check for extremely large source files, unusually dense effects, or invalid layer timing.
+5. Save the draft and retry once with the editor tab kept open.
+
+If the error repeats, note its exact wording and use the [support template](#contact-support).
+
+## Progress appears stuck
+
+A complex section can hold the same displayed percentage longer than the rest of the video. Keep the tab open and allow additional time, especially for long, high-resolution, or effects-heavy drafts.
+
+Before retrying:
+
+- Confirm the device is awake and the internet connection is stable.
+- Check whether the browser has already started or completed a download.
+- Wait for either a visible error or the top-bar action to return to **Render video**.
+- Do not refresh solely because the percentage pauses.
+
+If the attempt clearly ends without a file, check the timeline and media once, then start one new render. If the same behavior happens again, contact support rather than creating more attempts.
+
+## Rendered video is blank or incomplete
+
+Inspect the draft in this order:
+
+1. **Composition duration:** confirm the intended content falls within the canvas duration.
+2. **Layer intervals:** verify each layer starts and ends where expected.
+3. **Visibility:** check hidden controls, opacity, crop, masks, and layer order.
+4. **First and final keyframes:** make sure position, scale, and opacity values do not move content off-canvas or make it transparent.
+5. **Parent timing and layout:** confirm grouped or attached items remain active for the required duration.
+6. **Effects and transitions:** temporarily simplify any effect that can fully obscure a layer.
+7. **Media readiness:** replace sources that show a placeholder, fail to seek, or do not load consistently in the editor.
+
+Create a short test render after isolating the suspected timestamp. Restore one element at a time until the cause is clear.
+
+## Audio is missing or incorrect
+
+Check row mute, item volume, fades, playback speed, and the source file's audio track. A visible waveform confirms that audio was detected, but it does not guarantee the final gain is audible.
+
+Also verify:
+
+- The audio item overlaps the intended timeline range.
+- A fade is not longer than the audible part of the clip.
+- Speed changes have not shifted the expected source section.
+- Overlapping tracks are not masking quieter speech.
+- The downloaded MP4 is not muted in the player or browser.
+
+For an isolated test, render a short range of the draft with one known-audible track and no fades, then reintroduce the original mix settings.
+
+## Output does not download
+
+1. Keep the editor tab open after progress completes; a large file can take additional time to save.
+2. Open the browser's downloads list and look for an active, completed, interrupted, or blocked item.
+3. Allow downloads from Tessact when the browser asks.
+4. Confirm there is enough free storage on the device.
+5. Check the default Downloads folder before rendering again.
+6. If the top bar returned to **Render video** but no download exists, retry once after confirming browser download permissions.
+
+Do not share a temporary download link as the delivery method. Save the MP4 locally, review it, and upload the approved file to its final destination.
+
+## The MP4 plays poorly after download
+
+Test the file in a current browser or media player before changing the draft. If playback is smooth there but not on the delivery platform, compare the platform's accepted resolution, frame rate, duration, file-size, and H.264 requirements.
+
+Fine text, film grain, gradients, and rapid motion are especially sensitive to compression. Review the file at 100% size and inspect the most detailed or fastest-moving section before publishing.
+
+## Contact support
+
+Copy this template and fill in what you can:
+
+```text
+Draft name:
+Workspace name:
+Date, time, and time zone of the attempt:
+Browser and version:
+Operating system:
+Canvas size, frame rate, and duration:
+Last top-bar state or highest percentage shown:
+Exact visible error message:
+Did an MP4 appear in the browser's downloads list? yes / no
+Timestamp where the output first looks or sounds wrong:
+Media type active at that timestamp: video / image / audio / text / caption
+Does one careful retry produce the same result? yes / no
+Steps to reproduce:
+```
+
+Attach a screenshot of the editor and, for an output problem, a short description of what is expected versus what appears in the MP4. Remove private media or sensitive links that are not needed to understand the issue.

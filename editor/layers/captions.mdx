@@ -1,0 +1,40 @@
+---
+title: "Captions inspector"
+description: "Edit caption geometry, typography, appearance, page behavior, and tokens."
+icon: "closed-captioning"
+---
+
+Captions are timed text backed by transcript data. Their inspector combines ordinary text styling with controls that map words into readable pages.
+
+## Inspector sections
+
+| Section | Controls |
+| --- | --- |
+| Transform | Alignment, dimensions, scale, and placement |
+| Typography | Font, style, size, line height, letter spacing, alignment, direction |
+| Appearance | Opacity, blend mode, text color, and highlight color |
+| Stroke | Stroke width and color |
+| Captions | Subtitle style, page duration, and maximum lines |
+| Tokens | Word-level transcript and timing data where exposed |
+
+## Caption geometry
+
+The caption box determines wrapping and safe placement. Unlike ordinary text, content changes over time as the active page or tokens change. Test the longest and shortest pages, not only the current one.
+
+## Page duration and line count
+
+Page duration influences how transcript tokens group into sequential caption pages. Maximum lines is applied after grouping to fitting and clamping; it can change visible lines or hide overflow but does not create more pages. Both can alter line breaks and readability, but only page duration repartitions the token sequence.
+
+## Styling hierarchy
+
+Caption fill, highlight, stroke, and shadow should create reliable contrast over changing picture content. Fill and highlight colors can be solid or gradient; strokes and shadows are solid-color only. The normal caption inspector does not expose an independent box-background control. A chosen subtitle style may render a background-like treatment; for an explicitly authorable box, place a solid or frame behind the caption layer. Avoid the same safe area as lower thirds.
+
+## Timing data
+
+Token timestamps remain the semantic foundation. Page boundaries are a presentation layer derived from or coordinated with those tokens. When words feel late, diagnose token time before compensating with box animation.
+
+<Note>
+  Caption inspector values are evaluated at the playhead frame. Seek to representative pages before judging line breaks, animation, or visibility.
+</Note>
+
+Continue to the complete [Captions guide](/editor/captions/overview).

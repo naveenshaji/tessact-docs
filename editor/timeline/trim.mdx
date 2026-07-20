@@ -1,0 +1,59 @@
+---
+title: "Trim clips"
+description: "Change layer boundaries while controlling which source frames remain visible or audible."
+icon: "arrows-to-line"
+---
+
+Trimming changes the active interval of a layer. For source-backed video and audio, it also changes the mapping between composition frames and media samples.
+
+## Left trim
+
+Drag the left edge right to remove the beginning. The layer starts later and its first used source sample advances. Dragging left can reveal earlier source content only when the source has available head material.
+
+## Right trim
+
+Drag the right edge left to remove the end. Dragging it right can reveal later source material only up to the source boundary. Draft-local solids, text, and frames are not constrained by a recorded source duration in the same way, though project and parent timing still matter.
+
+## Trim invariants
+
+| Property | Move | Left trim | Right trim |
+| --- | --- | --- | --- |
+| Start frame | Changes | Changes | Stays |
+| End frame | Changes | Usually stays while shortening from left | Changes |
+| Duration | Stays | Changes | Changes |
+| Used source range | Stays | In point changes | Out point changes |
+
+## Frame-accurate routine
+
+<Steps>
+  <Step title="Seek near the boundary">
+    Place the playhead at the intended first or last meaningful frame.
+  </Step>
+  <Step title="Zoom in">
+    Make individual frames distinguishable and confirm the pointer is on the trim edge.
+  </Step>
+  <Step title="Drag with snapping">
+    Snap to another item's start or end boundary when exact continuity is desired. The playhead remains a visual guide, not a snap target.
+  </Step>
+  <Step title="Review three frames">
+    Inspect one frame before, at, and after the boundary, then play through at normal speed.
+  </Step>
+</Steps>
+
+## Trim a selection
+
+When several items are selected and the dragged item's selection is preserved, a pointer trim applies the same frame delta to each selected item. Every item is then clamped independently by its source headroom, neighbors, parent bounds, and type-specific rules. The final edges can diverge even though the gesture began as one group trim. Inspect each resulting boundary before assuming they still align.
+
+For video and audio, a left trim accounts for playback rate when choosing the new source in-point. A left-trimmed GIF can restart at the new boundary instead of continuing from the corresponding point in the original animation.
+
+## Read the trim-limit overlays
+
+While an edge drag is active, the timeline displays guard overlays for the maximum allowable trim range. They visualize source head/tail limits and nested-parent timing boundaries; the active edge receives stronger feedback so you can distinguish the boundary being constrained from the opposite side. When the pointer keeps moving but the previewed edge stops, the highlighted guard—not snapping—is usually the limiting condition.
+
+Treat the overlay as live feedback, not an authored marker. It disappears when the trim gesture ends. If a nested item stops earlier than expected, inspect both its own source range and every parent interval before assuming media decoding is the cause.
+
+<Warning>
+  Trimming through a keyframe or fade region can clamp or remove temporal data outside the new interval. Open the relevant lanes and fade controls after an aggressive trim.
+</Warning>
+
+See [rolling edits](/editor/timeline/rolling-edits) when two adjacent clips should exchange time without moving the outer sequence boundaries.

@@ -1,0 +1,130 @@
+---
+title: Editor loading and recovery
+description: Diagnose a draft that stalls, opens partially, loses live collaboration, or becomes temporarily read-only.
+icon: life-ring
+---
+
+A video draft may become visible in stages. The editor interface, saved layers, collaborator activity, media previews, filmstrips, and waveforms can finish loading at different times.
+
+## Identify what is affected
+
+| What you see | Likely area | First action |
+|---|---|---|
+| The draft never leaves the Library | Workspace access or navigation | Confirm the active workspace and reopen the draft |
+| The editor appears but the draft is empty | Draft loading | Wait briefly, then refresh once if no layers appear |
+| Canvas and timeline appear, but collaborators or autosave seem disconnected | Connection or live collaboration | Check connectivity and avoid parallel edits until activity returns |
+| Layers are named in the timeline but media is blank | Media availability or browser playback | Follow [Media troubleshooting](/editor/troubleshooting/media) |
+| Only filmstrips or waveforms are missing | Timeline preview cache | Continue editing if playback works and allow previews to rebuild |
+| Preview works but H.264 export cannot start | Export request or draft eligibility | Follow [Export troubleshooting](/editor/export/troubleshooting) |
+
+## Safe recovery sequence
+
+<Steps>
+  <Step title="Keep one editor tab">
+    Close duplicate tabs for the same draft. Multiple tabs can show different local undo history and can make recovery harder to reason about.
+  </Step>
+  <Step title="Confirm workspace and draft">
+    Return to the Library and verify the active workspace and draft title. Similar draft names in different workspaces can look like a missing timeline.
+  </Step>
+  <Step title="Check connectivity">
+    Confirm the browser is online. If possible, temporarily rule out a VPN, firewall, privacy extension, or proxy that may block the application or its media.
+  </Step>
+  <Step title="Let autosave finish">
+    If the editor was responsive immediately before the issue, stop dragging and typing, then wait briefly before refreshing.
+  </Step>
+  <Step title="Refresh once">
+    Reload the page and allow the draft and its media to settle. Rapid repeated refreshes restart loading and can hide the original problem.
+  </Step>
+  <Step title="Reopen from the Library">
+    If the page still stalls, return to the Library and open the draft again from its workspace.
+  </Step>
+</Steps>
+
+<Warning>
+  Undo history belongs to the current editor session. Reloading can recover saved draft content, but it does not preserve the prior tab's full undo sequence.
+</Warning>
+
+## Blank or incomplete timeline
+
+Before assuming content was lost:
+
+1. Fit the full timeline with `\\`.
+2. Scroll vertically through the track area.
+3. Clear selection and check whether tracks are hidden.
+4. Seek with `Home` and `End` to confirm the composition range.
+5. Open Canvas settings with `Cmd/Ctrl+8` and inspect duration.
+6. Reopen the draft from the Library and compare the saved result.
+
+If the duration is nonzero but no layers are visible, capture a screenshot of the full editor before making structural changes. If support requests browser diagnostics, capture only the relevant failed request names and status codes; do not include access tokens, credentials, or private media links.
+
+## Live collaboration is missing or stale
+
+Signs of a connection problem include:
+
+- collaborators disappear unexpectedly;
+- remote pointers stop moving;
+- another person's completed edits do not appear after a reasonable wait;
+- the draft repeatedly changes after connectivity returns;
+- two freshly reopened sessions continue to show different results.
+
+### Recovery
+
+- Choose one tab as the authoritative editing session and close duplicate draft tabs.
+- Restore stable connectivity.
+- Stop dragging and typing so autosave can finish.
+- Refresh a non-authoritative tab first and compare the result.
+- If the difference remains, record the approximate time, affected layer names, and the order in which each person edited.
+
+Do not rely on another collaborator's undo to reverse your action. Each person has local undo history; when ownership is uncertain, agree on the desired result and make an explicit correction.
+
+## Changes do not stay applied
+
+If controls are disabled, a change immediately reverts, or the draft appears view-only, check:
+
+- workspace membership and permission;
+- whether the draft is still accessible from the Library;
+- whether the sign-in session expired;
+- whether another organization or workspace is active;
+- whether the browser is blocking required site storage or network access.
+
+After restoring access, sign in again if needed and reopen the draft from the Library.
+
+## Browser storage and cache
+
+The browser keeps disposable filmstrip and waveform previews along with local preferences. Storage problems can affect these editor conveniences without changing the saved video draft.
+
+Before clearing site data:
+
+1. Confirm recent creative changes are present after a clean reload.
+2. Expect to sign in again.
+3. Expect filmstrips and waveforms to rebuild.
+4. Expect session-only preferences and undo history to reset.
+
+Do not clear all browser data as the first response to a media-only problem.
+
+## Gather a useful support report
+
+Include:
+
+- workspace name and draft name;
+- exact local time and time zone;
+- browser name and version;
+- operating system and device model;
+- whether one or multiple tabs were open;
+- last successful action;
+- visible error message, if any;
+- whether one refresh and a Library reopen changed the result;
+- whether another signed-in browser sees the same saved draft;
+- screenshots of the full editor and affected panel;
+- a short screen recording for intermittent problems.
+
+Never share your password, access tokens, or private media URLs in a support report.
+
+<CardGroup cols={2}>
+  <Card title="How autosave works" icon="cloud-arrow-up" href="/editor/collaboration/autosave">
+    Understand what is saved, what remains local, and how to leave a draft safely.
+  </Card>
+  <Card title="Concurrent editing" icon="users" href="/editor/collaboration/concurrent-edits">
+    Coordinate simultaneous work and recover safely when edits overlap.
+  </Card>
+</CardGroup>

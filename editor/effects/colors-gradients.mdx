@@ -1,0 +1,59 @@
+---
+title: "Colors and gradients"
+description: "Author solid colors and two-stop linear gradients, understand alpha and commit behavior, and know which color fields stay solid-only."
+icon: "palette"
+---
+
+Tessact uses one shared color picker for text, captions, solids, and frames. Fill-like fields can switch between **Solid** and **Gradient**. Stroke and shadow colors deliberately remain solid-only.
+
+## Capability matrix
+
+| Property | Solid color | Linear gradient |
+| --- | :---: | :---: |
+| Text fill | ✓ | ✓ |
+| Text background | ✓ | ✓ |
+| Caption fill | ✓ | ✓ |
+| Caption highlight | ✓ | ✓ |
+| Solid layer fill | ✓ | ✓ |
+| Frame fill | ✓ | ✓ |
+| Stroke color | ✓ | — |
+| Shadow color | ✓ | — |
+
+Gradient availability follows the property, not merely the layer type. For example, a text fill can be gradient while that same text layer's stroke and shadow stay solid.
+
+## Solid mode
+
+Solid mode provides a hue/saturation picker with alpha, eight preset swatches, and an editable raw value. Common hex, hex-alpha, RGB/RGBA, HSL/HSLA, and named/transparent values are normalized for the picker where supported. The checkerboard behind a preview indicates transparency.
+
+## Gradient mode
+
+Gradient mode authors exactly one CSS-style linear gradient with two endpoint stops:
+
+- **Start** at `0%`;
+- **End** at `100%`;
+- each stop has independent alpha;
+- angle accepts `0` through `360` degrees;
+- four built-in presets provide quick starting values;
+- the raw field exposes the complete `linear-gradient(...)` value.
+
+Switching a solid value to Gradient starts at `135°`, preserves the current color as the first stop, and creates a transparent black end stop. Switching back to Solid extracts the first usable gradient color. Gradient stops cannot be added, removed, or repositioned; only their colors/alpha and the angle are authorable.
+
+## Undo and live preview
+
+Dragging in the picker or continuously editing the raw field updates the preview without producing an undo checkpoint for every tiny change. Rapid updates are grouped into one practical undo step when you pause or finish the interaction. Preset and mode changes follow the same grouped-edit behavior where applicable.
+
+<Tip>
+  Complete one color gesture, pause until it commits, and then start the next design decision. This makes Undo return through meaningful color states instead of an ambiguous partially edited value.
+</Tip>
+
+## Rendering and readability
+
+The authored value becomes a fill/background style during preview and render. Alpha is evaluated inside the color before layer opacity and blend mode. A partially transparent gradient over moving video can change perceived contrast frame by frame, so review the entire active interval.
+
+Strokes and shadows accept one solid color rather than a gradient. To create a gradient outline or glow, use a separate layered construction rather than pasting a gradient value into a solid-only field.
+
+<Warning>
+  A caption fill or highlight gradient is not an authorable caption box background. Use a separate solid or frame beneath captions when you need controlled box color, radius, padding, or timing.
+</Warning>
+
+See [Text inspector](/editor/layers/text), [Captions inspector](/editor/layers/captions), [Solid inspector](/editor/layers/solid), [Frame inspector](/editor/layers/frame), and [Shadows](/editor/effects/shadows).

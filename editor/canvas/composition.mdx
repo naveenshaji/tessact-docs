@@ -1,0 +1,33 @@
+---
+title: "Canvas settings"
+description: "Edit output dimensions and read the composition's timing contract."
+icon: "ruler-combined"
+---
+
+Canvas settings apply to the entire draft. Open **Canvas settings** from the right rail to inspect output dimensions, frame rate, and duration.
+
+<Frame caption="Canvas settings for the Wayanad composition">
+  <img src="/images/editor/screenshots/editor-canvas-settings.png" alt="Tessact Canvas settings inspector showing composition dimensions, frame rate, and duration" />
+</Frame>
+
+## Dimensions
+
+**W** and **H** define the encoded frame in pixels. Values use even-number stepping because common video encoding paths handle even dimensions predictably. The swap action exchanges width and height, making a fast landscape-to-portrait or portrait-to-landscape starting point.
+
+<Warning>
+  Swapping or changing dimensions does not automatically redesign every layer. Review crop, alignment, frame containers, text wrapping, captions, and off-canvas animation after any aspect-ratio change.
+</Warning>
+
+## Timing
+
+The panel displays the draft's frames per second and formatted duration. Frame rate is a read-only project timing contract in the current interface. Duration is derived from composition state rather than edited as an independent field here.
+
+## Coordinate impact
+
+Changing dimensions changes the coordinate space against which top-level layers align. Existing absolute positions remain numeric values; a former visual center may no longer be centered. Parent-managed layouts remain internally coherent but their top-level frame may still need repositioning or resizing.
+
+## Output impact
+
+Composition dimensions and frame rate flow into playback evaluation and H.264 rendering. Canvas view zoom, browser window size, and panel geometry do not. For a render estimate or downstream delivery requirement, use composition pixels and duration—not the screenshot size of the editor.
+
+See [frame math](/editor/reference/timecode-frame-math), [H.264 rendering](/editor/export/h264), and [frames](/editor/canvas/frames).

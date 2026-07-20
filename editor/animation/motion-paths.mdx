@@ -1,0 +1,36 @@
+---
+title: "Motion paths"
+description: "Interpret the sampled canvas path produced by X and Y keyframe tracks."
+icon: "route"
+---
+
+The canvas draws a motion path when a selected layer has at least two position-keyframe frames inside its visible interval. It combines horizontal and vertical tracks, evaluates layout, and plots the layer center.
+
+## Path construction
+
+1. Collect unique frames from X and Y tracks.
+2. Keep frames from layer start through the final visible frame.
+3. Sample between consecutive keyframe frames—at least two samples and at most twelve per segment, with denser samples for longer spans.
+4. Evaluate animated geometry and layout overrides at each sample.
+5. Connect the resulting center points.
+
+## What the overlay shows
+
+- Diamond markers represent position keyframe frames.
+- The connecting polyline approximates the evaluated path.
+- A current-position marker shows the layer center at the playhead.
+- Overlay stroke and marker size compensate for canvas zoom so they remain legible.
+
+## Layout-aware geometry
+
+The path uses computed layout rectangles when available. A child in auto layout or grid can therefore move because its parent layout changes even if its raw absolute values appear stable. The overlay describes evaluated output, not only stored X/Y fields.
+
+## Limitations
+
+The line is a sampled approximation, not a draggable Bézier spatial path. Easing changes sample spacing along time but the displayed polyline connects evaluated centers. Rotation and scale affect appearance but do not create a position path on their own.
+
+<Tip>
+  Use the path to detect an unintended arc, off-canvas excursion, or parent-layout jump. Use the keyframe inspector to change values and easing; the path itself is review evidence.
+</Tip>
+
+See [transforms](/editor/canvas/transforms), [keyframe lanes](/editor/animation/keyframe-lanes), and [easing](/editor/animation/easing).

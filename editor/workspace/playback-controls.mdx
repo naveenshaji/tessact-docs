@@ -1,0 +1,37 @@
+---
+title: "Playback controls"
+description: "Navigate frames, preview the edit, and access high-frequency editing actions."
+icon: "play"
+---
+
+The playback strip sits between the canvas and timeline. It combines transport controls with frequent edit and view actions, keeping timing work near the playhead.
+
+## Control families
+
+| Family | Controls | Use |
+| --- | --- | --- |
+| History | Undo, redo | Move through the current session's local edit history |
+| Edit | Split | Divide eligible selected layers at the playhead; if the selection contains no splittable target there, fall back to every eligible clip under the playhead on non-hidden tracks |
+| Timeline behavior | Snapping | Enable or disable magnetic alignment while moving and trimming |
+| Time display | Current time, project duration | Read or jump within the composition |
+| Frame navigation | Previous frame, next frame | Inspect exact boundaries |
+| Keyframe navigation | Previous keyframe, next keyframe | Move between animation decisions |
+| Transport | Play or pause | Review the evaluated composition over time |
+| Review | Loop, mute, fullscreen | Repeat a range of attention, silence preview, or remove UI distractions |
+| Timeline view | Zoom controls | Change temporal detail without changing the edit |
+
+## Playback is an evaluation loop
+
+At every displayed frame, the editor determines active layers, maps source time through trim and playback-rate settings, resolves base and keyframed properties, applies parent layout, renders visual effects, and mixes audio with volume and fades. Playback quality can therefore depend on source decoding, cache state, layer count, effect complexity, and browser resources.
+
+Click the current-time readout to enter absolute frames, seconds/minutes, clock timecode, or a signed relative offset. See the exact [current-time input grammar](/editor/timeline/playhead-timecode#current-time-input-grammar).
+
+<Tip>
+  For editorial truth, combine two review modes: watch at normal speed to judge rhythm, then step one frame at a time across every cut, fade boundary, caption change, and keyframe cluster.
+</Tip>
+
+## Avoid shortcut ambiguity
+
+Some keys are handled by more than one editor region, and a focused input can reserve its own keys. Prefer the visible playback buttons until you know which region has focus. The [shortcut reference](/editor/reference/shortcuts) lists stable controls and calls out context-dependent behavior.
+
+See [playhead and timecode](/editor/timeline/playhead-timecode), [splitting](/editor/timeline/split), and [keyframe lanes](/editor/animation/keyframe-lanes).

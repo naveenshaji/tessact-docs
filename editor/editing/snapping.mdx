@@ -1,0 +1,42 @@
+---
+title: "Use snapping"
+description: "Align edits to meaningful spatial and temporal targets without losing precision."
+icon: "magnet"
+---
+
+Snapping supplies magnetic targets while you move, resize, or trim. It improves repeatability, but the targets differ between the canvas and timeline.
+
+## Canvas snapping
+
+Canvas gestures can align a layer's left, horizontal center, and right to the composition's left, center, and right; the same applies to top, vertical center, and bottom. Temporary guides reveal the active composition relationship. Parent bounds, the current selection, and nearby-layer edges are not canvas snap targets. Zoom level changes the visual distance to a target but not the underlying composition coordinate.
+
+## Timeline snapping
+
+Timeline move and trim gestures can align a layer boundary to the start or end of another timeline item. The playhead is not included in the snap-point list. The playback strip exposes a snapping toggle so you can temporarily disable magnetic behavior for a deliberate near-miss.
+
+## A precision workflow
+
+1. Keep snapping enabled for broad arrangement.
+2. Zoom in until individual frames or fine canvas distances are legible.
+3. Drag toward the intended guide or boundary.
+4. Inspect the resulting numeric value or frame.
+5. Temporarily disable snapping only when the desired value is intentionally adjacent to a target.
+
+<Tip>
+  Snapping affects pointer gestures, not the mathematical precision of numeric inspector inputs. Enter an exact value when a target is known.
+</Tip>
+
+## Why a snap can feel unexpected
+
+The canvas evaluates the moving layer's crop-adjusted, axis-aligned base box against composition axes; it does not include rotation or scale in snap bounds. On the timeline, several item boundaries can occupy the same screen pixel at low zoom. Snap points include boundaries from other tracks even when those tracks are hidden or muted; only the items being moved/trimmed and livestream update placeholders are excluded. Increase zoom and reduce the selection before deciding that the snap target is wrong.
+
+The timeline uses a fixed `5 px` pointer tolerance converted to frames as `ceil(5 / pixelsPerFrame)`. At low zoom, that tolerance can span several frames; at high zoom, it approaches a one-frame target.
+
+<AccordionGroup>
+  <Accordion title="A clip keeps jumping past the intended frame">
+    Zoom in, identify overlapping item boundaries, or briefly turn snapping off. The playhead is not competing for the snap.
+  </Accordion>
+  <Accordion title="A layer centers in the wrong rectangle">
+    Canvas snapping targets the composition center. If you intended a frame or nearby-layer center, use alignment/layout controls or numeric coordinates instead.
+  </Accordion>
+</AccordionGroup>

@@ -1,0 +1,43 @@
+---
+title: "Track visibility and audio controls"
+description: "Use hide and mute states deliberately during review and final preflight."
+icon: "sliders-up"
+---
+
+Timeline track controls let you remove an entire track's visual or audible contribution without deleting its sequential clips. They are powerful review tools—and common causes of a render that appears incomplete.
+
+## Open the track menu
+
+Right-click the empty **track gutter** area of a row, not a clip body. A visual track offers **Hide track** or **Unhide track**; an audio-capable track offers **Mute track** or **Unmute track**. The action applies to the track, including every clip placed sequentially on that row.
+
+## Visibility
+
+Hiding a visual track removes the rendered pixels of its clips while preserving timing, geometry, keyframes, and configuration. Hidden tracks are also excluded from canvas marquee selection, select-at-playhead candidate discovery, and Split's fallback target set whenever the current selection contains zero splittable items at the playhead. Use hiding to compare treatments, isolate a background, or inspect layers beneath an opaque object.
+
+## Mute
+
+Muting an audible track removes the contribution of its clips from the audio mix without changing waveforms, clip intervals, volume settings, or fades. This is useful for isolating narration, music, ambient sound, or production audio.
+
+## Review patterns
+
+<Tabs>
+  <Tab title="Solo by subtraction">
+    Mute or hide every competing layer, evaluate the target, then restore the original states. The editor does not require destructive deletion for isolation.
+  </Tab>
+  <Tab title="A/B a treatment">
+    Stack two alternatives on aligned intervals and toggle visibility between them. Confirm only one remains active for the final render.
+  </Tab>
+  <Tab title="Diagnose an overlap">
+    Hide higher layers one at a time to reveal the first layer that changes the canvas result. This is faster than moving clips away from their intended timing.
+  </Tab>
+</Tabs>
+
+<Warning>
+  Hide and mute state affect the evaluated composition and H.264 output. Review every row before rendering; temporary isolation is easy to forget.
+</Warning>
+
+## Hidden is not inactive
+
+Clips on hidden or muted tracks remain authored and continue to carry keyframes, effects, and parent relationships. If you no longer need them and are certain no structure depends on them, remove them deliberately instead of using track state as permanent archival storage.
+
+See [render preflight](/editor/export/overview#preflight-checklist) and [layer order](/editor/editing/alignment-layer-order).

@@ -1,0 +1,61 @@
+---
+title: "Track render progress"
+description: "Understand the editor's starting, progress, completion, and error states."
+icon: "bars-progress"
+---
+
+After you select **Render**, the floating top bar becomes the status indicator for that render. Keep the editor tab open until the finished MP4 begins downloading.
+
+## Read the top-bar status
+
+| Top-bar state | What it means | What to do |
+| --- | --- | --- |
+| **Render video** | The draft is ready to render | Run the preflight, then select the action once |
+| **Starting…** | The render is being prepared | Keep the tab open and avoid selecting the action again |
+| **Rendering _n_%** | The video is being processed | You may monitor progress, but do not refresh or leave the editor |
+| **Render video** after completion | The current render has finished and the action is available again | Check the browser's downloads list for the MP4 |
+| Error message | The render could not complete | Read the message, correct any identified issue, and retry safely |
+
+A percentage can remain unchanged for a short time while a complex section is processed. Effects, high-resolution media, long compositions, and dense layer stacks can take longer than simpler drafts.
+
+## When the render completes
+
+The browser begins retrieving the finished MP4 automatically. Depending on browser settings, the file may appear directly in the default Downloads folder or the browser may ask where to save it.
+
+If no file appears:
+
+1. Check the browser's downloads list for an active, completed, or blocked download.
+2. Allow downloads from Tessact if the browser displays a permission indicator.
+3. Confirm the top bar returned to **Render video** after showing progress.
+4. Keep the tab open for a little longer if the file is large; saving can continue after rendering reaches completion.
+5. If the download still does not appear, follow [Output does not download](/editor/export/troubleshooting#output-does-not-download).
+
+## Leave the tab open
+
+The active status belongs to the open editor tab. Closing the tab, refreshing the page, or navigating away can prevent you from seeing completion and can interrupt the automatic download. For the most reliable result:
+
+- Keep the device awake and connected.
+- Leave the draft open in the same tab.
+- Avoid reloading the page while **Starting…** or a percentage is visible.
+- Do not start a second render to test whether the first one is still running.
+
+## Retry without creating duplicates
+
+Use this sequence when progress appears delayed:
+
+<Steps>
+  <Step title="Wait and observe">
+    Leave the editor open. A brief pause in the displayed percentage does not necessarily indicate a failure.
+  </Step>
+  <Step title="Look for a clear outcome">
+    Check for a visible error, a completed download, or the return of the **Render video** action.
+  </Step>
+  <Step title="Check the draft before retrying">
+    Confirm media still loads, the timeline is not empty, and the composition settings are valid. Also check whether the first MP4 is already in the browser's downloads list.
+  </Step>
+  <Step title="Retry once">
+    Start one new render only after the previous attempt has clearly ended. Keep the tab open through completion.
+  </Step>
+</Steps>
+
+If the same draft fails again at the same point, stop retrying and collect the details in the [support template](/editor/export/troubleshooting#contact-support) so the issue can be investigated without producing duplicate outputs.

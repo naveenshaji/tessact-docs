@@ -1,0 +1,42 @@
+---
+title: "Fullscreen review"
+description: "Evaluate clean playback without selection overlays or panel distractions."
+icon: "expand-wide"
+---
+
+Fullscreen review is the closest editor preview to the audience's experience. It removes surrounding workspace pressure and makes framing, readability, motion cadence, and visible artifacts easier to judge.
+
+## Before entering fullscreen
+
+1. Seek slightly before the section you want to review.
+2. Deselect layers if you want a clean canvas before the transition.
+3. Confirm preview mute and loop state.
+4. Close any transient menu or text-edit state.
+5. Start playback and enter fullscreen from the review controls.
+
+## What fullscreen does not change
+
+Fullscreen does not change composition dimensions, layer scale, crop, frame rate, timeline zoom, or render configuration. It changes only the presentation of the preview surface.
+
+## Review passes
+
+<Tabs>
+  <Tab title="Picture">
+    Watch edges, safe margins, crop continuity, flashes, unintentional blank frames, and visual stacking.
+  </Tab>
+  <Tab title="Motion">
+    Judge keyframed easing, title entrances, motion paths, and whether animated detail remains readable at speed. A live layout spring can appear after reflow, but it is not authored frame-timed output motion.
+  </Tab>
+  <Tab title="Captions">
+    Check line breaks, time on screen, contrast, reading speed, and collisions with important picture content.
+  </Tab>
+  <Tab title="Audio">
+    Listen for clicks, abrupt ambience changes, masking between speech and music, and overly long fades.
+  </Tab>
+</Tabs>
+
+<Tip>
+  A fullscreen review catches perceptual problems; frame stepping catches boundary problems. Use both before rendering.
+</Tip>
+
+If preview stutters, reduce competing browser load and follow [performance diagnostics](/editor/troubleshooting/performance). A smooth H.264 render can still be produced from a composition whose live browser preview drops frames, but timing decisions should be confirmed carefully.

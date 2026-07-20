@@ -1,0 +1,43 @@
+---
+title: "Duplicate, copy, and paste"
+description: "Reuse layer configuration without losing control of timing or relationships."
+icon: "copy"
+---
+
+Copying a layer reuses more than its visible pixels. The duplicated instance can carry timing length, transforms, crop, type-specific properties, keyframes, effects, shadows, audio settings, and layout metadata.
+
+## Choose the right reuse operation
+
+| Operation | Best for | Verify afterward |
+| --- | --- | --- |
+| Duplicate | A nearby variation of the selected layer | New interval, name, stack order, parent |
+| Copy and paste | Reusing one or more layers after navigating elsewhere | Paste location, active frame, keyframes |
+| Paste media from clipboard | Creating a new source-backed visual layer | Source resolution, aspect ratio, duration |
+| Reinsert from Bin | Creating a fresh instance from the original asset | Default transform and insertion time |
+
+## Safe duplication pattern
+
+<Steps>
+  <Step title="Select only the source layer">
+    Use the timeline when overlapping canvas objects make selection ambiguous.
+  </Step>
+  <Step title="Duplicate or copy and paste">
+    Invoke the available command from the context menu or keyboard reference.
+  </Step>
+  <Step title="Move the new instance immediately">
+    Separate it in time or space so later clicks cannot confuse it with the original.
+  </Step>
+  <Step title="Inspect inherited animation">
+    Open its keyframe lanes. Timeline duplicate/move and paste placement shift copied keyframe frame numbers by the placement delta, preserving animation relative to the new interval. Retime manually only when the animation should remain on a different composition beat.
+  </Step>
+</Steps>
+
+## Parent and layout considerations
+
+A copied child layer can retain a parent relationship when the relevant structure is copied coherently. If only the child is reused in a context where that parent is absent, inspect its placement and parent controls. A managed auto-layout or grid child does not behave like a free layer; duplicating it can also change sibling distribution because the container has one more child.
+
+<Note>
+  Duplicate source references are efficient: multiple layer instances can point to the same remote media while preserving independent edits. This is different from uploading the same file repeatedly.
+</Note>
+
+See [drag, drop, and paste media](/editor/media/drag-drop-paste), [parenting](/editor/canvas/parenting), and [keyframe editing](/editor/animation/edit-keyframes).

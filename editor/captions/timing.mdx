@@ -1,0 +1,50 @@
+---
+title: "Caption timing and pages"
+description: "Control token boundaries, clip offsets, page grouping, and maximum lines."
+icon: "clock"
+---
+
+Caption timing has several layers. A visible word can be wrong because of its token timestamp, page grouping, the caption layer's composition placement, or the source clip's own edit.
+
+## Time mapping
+
+```text
+composition time
+  -> caption layer local time
+  -> caption source offset
+  -> token timestamp in milliseconds
+  -> active page and word state
+```
+
+## Page duration
+
+**Page duration (ms)** sets the maximum grouping window. The control has a minimum of 200 ms and steps by 100 ms. Shorter values create more frequent page changes; longer values keep more words together until the duration threshold or other grouping conditions split them.
+
+## Maximum lines
+
+Maximum lines constrains displayed height and influences text fitting/clamping after a page has been grouped. It does not repartition tokens into additional pages. A lower value can improve scanability but can also force tighter fitting or hide overflow. Box width, font size, letter spacing, and line height also affect the result.
+
+## Diagnose the symptom
+
+| Symptom | First property to inspect |
+| --- | --- |
+| One word highlights early | That token's start/end timestamps |
+| Entire caption layer is offset | Layer start and caption source offset |
+| Pages change too frequently | Page duration |
+| Too many words on screen | Page duration and box width |
+| Unexpected third line | Maximum lines, font size, box width |
+| Captions drift after a speed change | Source playback rate and regenerated timing |
+
+## Frame conversion
+
+Token timestamps use milliseconds while playback uses frames. At `fps`:
+
+```text
+token frame ≈ round(tokenMs × fps / 1000)
+```
+
+Rounding means several millisecond values can map to the same frame. Judge the displayed frame boundary, not only the decimal timestamp.
+
+<Warning>
+  Changing the source clip's trim or playback rate after caption creation can invalidate alignment. Recheck or recreate the caption layer when the source time map changes materially.
+</Warning>

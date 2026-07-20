@@ -1,0 +1,41 @@
+---
+title: "Volume and decibels"
+description: "Set layer gain from −60 dB to +20 dB and understand the nonlinear signal result."
+icon: "volume-high"
+---
+
+The volume control stores a decibel adjustment from **−60 dB** to **+20 dB** in 0.5 dB steps. `0 dB` means unchanged source amplitude—not silence.
+
+## Decibel conversion
+
+For values above the minimum:
+
+```text
+linear gain = 10^(decibels / 20)
+```
+
+Examples:
+
+| Adjustment | Approximate linear gain | Interpretation |
+| ---: | ---: | --- |
+| −60 dB | 0 in the editor | Silence floor |
+| −12 dB | 0.251 | About one quarter amplitude |
+| −6 dB | 0.501 | About half amplitude |
+| 0 dB | 1.000 | Unity |
+| +6 dB | 1.995 | About double amplitude |
+
+## Inspector and timeline line
+
+The inspector slider is best for readable values. The timeline volume line supports direct vertical dragging between the same limits and shows a floating dB readout. One continuous drag publishes transient collaboration presence and commits a final history step on release.
+
+## Avoid clipping
+
+Positive gain can push a loud source or overlapping mix beyond available headroom. The editor does not make every loud combination safe automatically. Listen to the complete overlap and reduce competing layers rather than boosting everything.
+
+## Diagnosis order
+
+If a layer is silent, check preview mute, row mute, layer dB, fade multipliers, source audio track, active interval, and browser output—in that order. Raising gain will not fix the first two causes.
+
+<Tip>
+  Balance by subtraction. Reduce music beneath speech before boosting the speech layer above unity.
+</Tip>

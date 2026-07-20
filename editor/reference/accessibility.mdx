@@ -1,0 +1,148 @@
+---
+title: Accessibility and input methods
+description: Use the editor with keyboard, zoom, assistive technology, and reduced-motion preferences.
+icon: universal-access
+---
+
+The video editor combines dense controls, a spatial canvas, a frame-accurate timeline, and media playback. Use the workflow below to reduce pointer dependence and keep state changes understandable.
+
+<Note>
+  Accessibility behavior also depends on your browser, operating system, keyboard layout, display settings, and assistive technology. This guide describes the editor's available interaction patterns; it does not assert certification against a particular conformance level.
+</Note>
+
+## Keyboard-first workflow
+
+<Steps>
+  <Step title="Open the draft and establish focus">
+    After the editor loads, use `Tab` to move through controls. Browser focus indication shows which button, field, tab, or menu item will receive the next command.
+  </Step>
+  <Step title="Select a layer without hit-testing the canvas">
+    Use `Option/Alt+Up` and `Option/Alt+Down` to move through layers in track order. Use `D` to cycle visible layers intersecting the playhead.
+  </Step>
+  <Step title="Open the relevant properties">
+    Use `Cmd/Ctrl+7` for the Inspector or `Cmd/Ctrl+8` for Canvas settings. Continue with `Tab` and `Shift+Tab` inside the panel.
+  </Step>
+  <Step title="Edit with exact values">
+    Numeric fields, timeline shortcuts, and one-frame nudges avoid precision pointer work. Commit a field with `Enter` or move away with `Tab`.
+  </Step>
+  <Step title="Review with transport keys">
+    Use `J`, `K`, and `L` for shuttle review, `K+J` or `K+L` for single-frame steps, and `Home` / `End` for draft boundaries.
+  </Step>
+</Steps>
+
+See the complete [Keyboard shortcut reference](/editor/reference/shortcuts).
+
+## Focus and shortcut safety
+
+Global commands are intentionally blocked while focus is inside text-entry and editable controls. This prevents typing `T`, `V`, `J`, or `L` into a field from changing tools or playback.
+
+- `Enter` commonly commits the current value.
+- `Escape` cancels or leaves the current editing gesture where supported.
+- `Tab` commits or leaves many fields and advances focus.
+- Caption-token edits also commit after a short idle period, so wait for the field to settle before immediately testing undo.
+
+If a command does nothing, first check whether a caret is still visible in a field.
+
+## Screen magnification and browser zoom
+
+Browser zoom enlarges editor chrome; the canvas's own fit/zoom behavior determines how the composition fits inside the remaining workspace. At high browser zoom:
+
+- side panels and the timeline may have less room;
+- controls can wrap or require panel scrolling;
+- the preview can become smaller while authored composition dimensions stay unchanged;
+- timeline zoom may need separate adjustment to keep edit points readable.
+
+Use the timeline's explicit fit and zoom controls if the browser reserves common `Cmd/Ctrl +`, `-`, or `0` combinations. Use `\\` to fit the full timeline or `Cmd/Ctrl+Shift+2` to fit selected layers.
+
+## Pointer alternatives
+
+| Pointer action | Keyboard or field alternative |
+|---|---|
+| Click a covered layer | Cycle at playhead with `D` / `Shift+D` or navigate track order with `Option/Alt+Arrow` |
+| Drag a layer by a small amount | `Cmd+Option+Arrow` on macOS or `Ctrl+Alt+Arrow` elsewhere |
+| Drag a clip by one frame | `Cmd/Ctrl+Left` or `Cmd/Ctrl+Right` |
+| Drag a trim edge to playhead | `[` or `]` |
+| Split with a context menu | `Cmd/Ctrl+B` |
+| Resize or position visually | Enter exact transform values in the Inspector |
+| Select an obscured timeline layer | Navigate layers or temporarily hide an upper track with visible track controls |
+
+Some spatial operations—such as drawing a new frame rectangle, adjusting a crop handle, or editing a motion path directly—remain pointer-oriented. Use numeric properties for equivalent final geometry where available.
+
+## Color, contrast, and non-color cues
+
+Selection is communicated through outlines, handles, timeline highlighting, and Inspector state rather than color alone. Track mute, visibility, and solo states use labeled buttons and state styling. For better contrast:
+
+- use your operating system's contrast and display accommodations;
+- avoid evaluating subtle footage contrast under a semi-transparent selection overlay;
+- deselect layers before final visual review;
+- preview captions over both bright and dark frames and use stroke or shadow when needed.
+
+When designing the video itself, do not depend on color alone to communicate essential information. Add text, icons, shape changes, or motion cues as appropriate.
+
+## Motion and flashing content
+
+The editor may preview authored animation, rapid cuts, glitch-like effects, and animated media. To reduce exposure:
+
+- pause with `K` or `Space` and inspect one frame at a time;
+- disable or remove intense effects while editing;
+- use slow shuttle review before normal-speed playback;
+- honor the intended audience's reduced-motion needs in the video design itself;
+- avoid repeated high-contrast flashes.
+
+The operating system's reduced-motion preference can reduce some interface motion, but it does not automatically rewrite the authored video animation.
+
+## Captions and audio review
+
+Caption layers provide an on-canvas text alternative for spoken content. Check:
+
+- transcript wording and punctuation;
+- token boundaries against speech;
+- page duration and maximum lines;
+- readable font size, line height, and safe margins;
+- sufficient contrast over every underlying shot;
+- no collision with titles or lower thirds.
+
+Waveforms help locate speech but are not a textual alternative. Use the caption token editor for wording and frame-step review for timing. See [Caption editing](/editor/captions/edit-text) and [Caption timing](/editor/captions/timing).
+
+## Screen readers
+
+Buttons and interactive controls should be encountered by their accessible labels, and menus expose their item names and disabled state. The timeline and canvas are highly visual; a practical screen-reader workflow relies more heavily on:
+
+- layer names and deliberate `F2` renaming;
+- predictable track order;
+- Inspector field labels and exact numeric values;
+- keyboard selection navigation;
+- descriptive draft and asset names;
+- caption token text instead of visual waveform inference.
+
+Rename generic filenames such as `IMG_0042` into meaningful layer names such as `Tea plantation aerial — opening` before a complex pass.
+
+## Voice control and switch access
+
+Labeled buttons, tabs, menu commands, and fields are better targets than unlabeled spatial gestures. Use the Inspector and context menus for deterministic named actions. If a voice command conflicts with a single-letter editor shortcut, focus the intended control or pause voice input while entering text.
+
+## Fullscreen considerations
+
+`Shift+F` requests browser fullscreen for the preview. Browsers can require an eligible user gesture and may display a security transition. Escape behavior may be owned by the browser before the editor sees it. If fullscreen is disorienting, enlarge the application window and use the canvas fit controls instead.
+
+## Accessible editorial checklist
+
+<Check>
+  Use this checklist before rendering:
+
+  - Every important layer has a descriptive name.
+  - Captions are proofread and timed against frame-stepped speech.
+  - Text remains legible against the brightest and darkest footage.
+  - Essential meaning is not conveyed by color, sound, or motion alone.
+  - Rapid motion and flashing effects have been reviewed deliberately.
+  - The final H.264 is checked outside the editor with the target playback software.
+</Check>
+
+<CardGroup cols={2}>
+  <Card title="Caption workflow" icon="closed-captioning" href="/editor/captions/overview">
+    Create, edit, time, style, and review accessible on-screen speech.
+  </Card>
+  <Card title="Editor performance" icon="gauge-high" href="/editor/troubleshooting/performance">
+    Reduce lag that can make keyboard and assistive input harder to predict.
+  </Card>
+</CardGroup>

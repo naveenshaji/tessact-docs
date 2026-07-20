@@ -1,0 +1,35 @@
+---
+title: "Drag, drop, and paste media"
+description: "Use direct insertion while controlling the destination frame and layer result."
+icon: "hand-pointer"
+---
+
+Direct manipulation is the fastest acquisition path when the source is already under the pointer or clipboard. The editor accepts local operating-system files, supported remote-asset cards, and pasted PNG clipboard imagery in the relevant surfaces.
+
+## Drop a local file
+
+1. Place the playhead at the desired insertion frame.
+2. Drag an image, video, audio file, or GIF into the editor.
+3. Watch the insertion preview and release on the intended canvas or timeline target.
+4. Wait for upload and metadata resolution.
+5. Confirm the resulting layer type and start frame.
+
+## Drag an existing asset card
+
+Dragging from **Bin** or an available **AI Search** result inserts the chosen workspace asset directly. The editor keeps the available media type, dimensions, duration, thumbnail, and selected source range so it can create the appropriate layer with the expected timing. Library uses a selection-and-add workflow instead of draggable cards.
+
+## Paste an image
+
+When the clipboard contains a PNG image, a canvas context action can add it as an asset. This is useful for a quick graphic from a design or screenshot tool. Verify dimensions and crop after insertion.
+
+<Warning>
+  The playhead is part of the drop destination. A perfect spatial drop at the wrong frame still creates a timing error.
+</Warning>
+
+## Canvas versus timeline destination
+
+A canvas drop emphasizes spatial placement; a timeline drop emphasizes temporal placement. Both create a complete timeline layer. After either operation, inspect both views because an asset can land correctly in one axis and need adjustment in the other.
+
+## Rejected drops
+
+If no insertion preview appears, confirm the drag contains a supported file or an asset card from the editor, the editor is fully loaded, and the pointer is over an eligible region. See [media troubleshooting](/editor/troubleshooting/media) before retrying large files.

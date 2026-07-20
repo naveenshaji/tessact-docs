@@ -1,0 +1,54 @@
+---
+title: "Concurrent editing"
+description: "Coordinate simultaneous work and recover safely when edits overlap."
+icon: "people-arrows-left-right"
+---
+
+Collaboration is most predictable when people work in independent areas of the draft. Overlapping edits to the same layer, track structure, or composition setting require explicit coordination.
+
+## Risk by edit type
+
+| Edit | Conflict risk | Coordination pattern |
+| --- | --- | --- |
+| Adjust separate layers in separate scenes | Low | Work independently and watch presence |
+| Edit caption text while another person mixes audio | Low to moderate | Keep shared timing stable |
+| Move different clips on the same track | Moderate | Divide the work by time range |
+| Change the same layer's Inspector values | High | Let one person finish before the other begins |
+| Change frame parenting or layout mode | High | Announce the change and wait for confirmation |
+| Change composition dimensions | Very high | Pause dependent layout work for everyone |
+
+## What you may observe
+
+When another person saves a change, the canvas, timeline, or Inspector can update in your session. If you are already dragging or typing, the editor tries to let that active interaction finish cleanly. An overlapping change can still leave one person's result in the draft rather than combining both intentions.
+
+Newly added media may appear as a layer before every collaborator's browser has finished loading its preview. Give the media time to load before treating a blank preview as a conflict.
+
+## Prevent conflicts
+
+1. Divide ownership by scene, time range, or layer group.
+2. Check presence before starting a long drag, trim, caption rewrite, or layout change.
+3. Finish and verify one structural change before the next person begins.
+4. Avoid simultaneous parent changes, track reordering, and composition resizing.
+5. Communicate the exact frame or time range for timeline work.
+6. Keep one active editor tab per person for the draft.
+
+## Resolve an unexpected result
+
+1. Stop editing and pause playback.
+2. Note the current frame, selection, and visible timeline range.
+3. Ask each active collaborator what they changed and what result they intended.
+4. Decide which current result should be kept.
+5. Make one small corrective edit from the current draft.
+6. Verify the canvas, timeline, and Inspector before continuing.
+
+Avoid blindly replaying a long undo sequence. Undo is local to each session and may cross over work that another person intended to keep.
+
+<Note>
+  Editing different controls on the same layer at the same time can still create an overlap. For high-risk changes, let one person finish and verify the result before the next person starts.
+</Note>
+
+## Evidence for support
+
+If the issue repeats, provide the draft name, approximate time and time zone, affected layer names, the collaborators involved, the order of actions, and a short recording that shows both the canvas and timeline. Do not send credentials or private media URLs.
+
+See [undo boundaries](/editor/collaboration/undo-boundaries), [presence and live activity](/editor/collaboration/presence), and [how autosave works](/editor/collaboration/autosave).

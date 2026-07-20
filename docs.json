@@ -94,6 +94,185 @@
             ]
           },
           {
+            "dropdown": "Editor",
+            "icon": "film",
+            "description": "Create and refine video drafts in the Tessact Editor",
+            "groups": [
+              {
+                "group": "Start here",
+                "pages": [
+                  "editor/index",
+                  "editor/getting-started/open-draft",
+                  "editor/getting-started/editor-tour",
+                  "editor/getting-started/first-edit",
+                  "editor/getting-started/autosave",
+                  "editor/getting-started/first-render"
+                ]
+              },
+              {
+                "group": "Workspace",
+                "pages": [
+                  "editor/workspace/overview",
+                  "editor/workspace/top-bar",
+                  "editor/workspace/left-rail",
+                  "editor/workspace/right-inspector",
+                  "editor/workspace/canvas",
+                  "editor/workspace/playback-controls"
+                ]
+              },
+              {
+                "group": "Core editing",
+                "pages": [
+                  "editor/editing/selection",
+                  "editor/editing/move-resize-rotate",
+                  "editor/editing/crop",
+                  "editor/editing/duplicate-copy-paste",
+                  "editor/editing/alignment-layer-order",
+                  "editor/editing/snapping",
+                  "editor/editing/undo-redo"
+                ]
+              },
+              {
+                "group": "Timeline",
+                "pages": [
+                  "editor/timeline/overview",
+                  "editor/timeline/playhead-timecode",
+                  "editor/timeline/select-move",
+                  "editor/timeline/trim",
+                  "editor/timeline/split",
+                  "editor/timeline/rolling-edits",
+                  "editor/timeline/track-controls",
+                  "editor/timeline/filmstrips-waveforms",
+                  "editor/timeline/audio-fades",
+                  "editor/timeline/visual-fades",
+                  "editor/timeline/zoom-resize"
+                ]
+              },
+              {
+                "group": "Canvas and layout",
+                "pages": [
+                  "editor/canvas/navigation",
+                  "editor/canvas/transforms",
+                  "editor/canvas/composition",
+                  "editor/canvas/frames",
+                  "editor/canvas/auto-layout",
+                  "editor/canvas/grid-layout",
+                  "editor/canvas/parenting",
+                  "editor/canvas/fullscreen"
+                ]
+              },
+              {
+                "group": "Media",
+                "pages": [
+                  "editor/media/overview",
+                  "editor/media/bin",
+                  "editor/media/library",
+                  "editor/media/livestream-sources",
+                  "editor/media/upload",
+                  "editor/media/drag-drop-paste",
+                  "editor/media/supported-formats",
+                  "editor/media/ai-search",
+                  "editor/media/ai-search-diagnostics"
+                ]
+              },
+              {
+                "group": "Layers and inspectors",
+                "pages": [
+                  "editor/layers/overview",
+                  "editor/layers/video",
+                  "editor/layers/video-face-tracking",
+                  "editor/layers/audio",
+                  "editor/layers/image-gif",
+                  "editor/layers/text",
+                  "editor/layers/solid",
+                  "editor/layers/frame",
+                  "editor/layers/captions",
+                  "editor/layers/multi-selection"
+                ]
+              },
+              {
+                "group": "Effects and shadows",
+                "pages": [
+                  "editor/effects/overview",
+                  "editor/effects/colors-gradients",
+                  "editor/effects/layer-effects",
+                  "editor/effects/shadows"
+                ]
+              },
+              {
+                "group": "Audio",
+                "pages": [
+                  "editor/audio/overview",
+                  "editor/audio/volume",
+                  "editor/audio/fades",
+                  "editor/audio/waveforms"
+                ]
+              },
+              {
+                "group": "Captions",
+                "pages": [
+                  "editor/captions/overview",
+                  "editor/captions/create",
+                  "editor/captions/edit-text",
+                  "editor/captions/timing",
+                  "editor/captions/style",
+                  "editor/captions/animation"
+                ]
+              },
+              {
+                "group": "Animation and keyframes",
+                "pages": [
+                  "editor/animation/overview",
+                  "editor/animation/animatable-properties",
+                  "editor/animation/add-keyframes",
+                  "editor/animation/edit-keyframes",
+                  "editor/animation/keyframe-lanes",
+                  "editor/animation/easing",
+                  "editor/animation/custom-bezier",
+                  "editor/animation/motion-paths"
+                ]
+              },
+              {
+                "group": "Collaboration and recovery",
+                "pages": [
+                  "editor/collaboration/overview",
+                  "editor/collaboration/presence",
+                  "editor/collaboration/autosave",
+                  "editor/collaboration/concurrent-edits",
+                  "editor/collaboration/undo-boundaries"
+                ]
+              },
+              {
+                "group": "Render",
+                "pages": [
+                  "editor/export/overview",
+                  "editor/export/h264",
+                  "editor/export/progress-queue",
+                  "editor/export/troubleshooting"
+                ]
+              },
+              {
+                "group": "Reference",
+                "pages": [
+                  "editor/reference/shortcuts",
+                  "editor/reference/context-menus",
+                  "editor/reference/property-matrix",
+                  "editor/reference/media-matrix",
+                  "editor/reference/timecode-frame-math",
+                  "editor/reference/accessibility"
+                ]
+              },
+              {
+                "group": "Troubleshooting",
+                "pages": [
+                  "editor/troubleshooting/editor-loading",
+                  "editor/troubleshooting/media",
+                  "editor/troubleshooting/performance"
+                ]
+              }
+            ]
+          },
+          {
             "dropdown": "Changelog",
             "icon": "newspaper",
             "description": "Release notes and updates",

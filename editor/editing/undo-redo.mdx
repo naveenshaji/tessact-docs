@@ -1,0 +1,42 @@
+---
+title: "Undo and redo"
+description: "Navigate local editing history safely, especially during collaboration."
+icon: "rotate-left"
+---
+
+Undo and redo are exposed in the playback strip and through platform keyboard conventions. They operate on meaningful editor-state transitions in the current session.
+
+## What becomes a history step
+
+Typical steps include adding or removing layers, moving or trimming clips, applying inspector values, editing captions, adding or moving keyframes, changing effects, and updating composition properties. Continuous pointer gestures and numeric scrubs are coalesced so one deliberate interaction does not necessarily become hundreds of tiny undo steps.
+
+## A safe undo routine
+
+<Steps>
+  <Step title="Stop playback and finish the interaction">
+    An in-progress drag or text edit may not yet represent a stable history boundary.
+  </Step>
+  <Step title="Inspect selection and playhead">
+    Know which layer and frame you are evaluating before undoing.
+  </Step>
+  <Step title="Undo once">
+    Watch both the canvas and timeline; the changed property may be temporal rather than visible at the current frame.
+  </Step>
+  <Step title="Repeat deliberately">
+    Use multiple steps only after confirming each result. Redo remains available until a divergent new edit replaces the forward branch.
+  </Step>
+</Steps>
+
+## Collaboration boundary
+
+Remote snapshots update the shared draft but are not equivalent to ordinary local history entries. Undo should not be treated as a global history service or a way to reverse another person's intent. Coordinate when both users touched the same layer or timing region.
+
+<Warning>
+  After undoing an animation edit, seek to the affected keyframe frame. The base appearance at the current playhead can look unchanged even when a track point was removed or restored.
+</Warning>
+
+## Recovery hierarchy
+
+Use undo for a recent local mistake. Use redo when the reversal was wrong. For unclear collaborative state, pause and inspect the shared composition. For a loading or media failure, diagnose the resource instead of undoing unrelated creative work.
+
+See [undo boundaries](/editor/collaboration/undo-boundaries) and [autosave behavior](/editor/collaboration/autosave).

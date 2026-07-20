@@ -1,0 +1,63 @@
+---
+title: "How autosave works"
+description: "Understand when editor changes are saved, how they reach collaborators, and how to leave a draft safely."
+icon: "cloud-arrow-up"
+---
+
+Autosave keeps the draft up to date as you work. Changes appear in your editor immediately, then synchronize in the background without requiring a manual save command.
+
+## What happens after an edit
+
+<Steps>
+  <Step title="The editor applies the change">
+    A timeline, canvas, caption, or Inspector edit appears immediately so you can keep working without waiting for the network.
+  </Step>
+  <Step title="Rapid adjustments are grouped">
+    During a drag, trim, resize, or numeric scrub, the editor prioritizes the latest position instead of treating every tiny movement as a separate finished edit.
+  </Step>
+  <Step title="The draft is saved">
+    When the adjustment settles, the creative result is synchronized automatically. This includes composition settings, layer order, timing, media references, captions, effects, and animation.
+  </Step>
+  <Step title="Collaborators receive the update">
+    Other people viewing the same draft receive the saved result. Media can take a little longer to appear if their browser still needs to load it.
+  </Step>
+</Steps>
+
+## What autosave includes
+
+Autosave preserves the creative decisions that define the video, including:
+
+- composition dimensions, duration, and frame rate;
+- track and layer order;
+- start times, durations, trims, and playback settings;
+- canvas position, size, crop, rotation, and opacity;
+- captions, typography, effects, shadows, and keyframes;
+- media and audio used by the draft.
+
+Personal workspace details are kept with the current browser session. Your playhead position, selected layer, open Inspector section, timeline zoom, panel sizes, and undo history do not need to match another collaborator's view.
+
+## During an active gesture
+
+The editor tries to keep a drag, trim, crop, or scrub responsive while updates arrive. If someone changes the same layer at nearly the same time, the saved result can still reflect one person's change rather than combining both intentions.
+
+<Warning>
+  Autosave is not a layer lock. Before making a major structural change, check collaborator activity and agree who will edit the affected layer, track, or scene.
+</Warning>
+
+## Before leaving the draft
+
+1. Finish any active drag, text edit, crop, trim, or value scrub.
+2. Pause playback so you can clearly inspect the final frame.
+3. Wait briefly after the last substantial change, especially on a slow or unstable connection.
+4. Check the canvas and timeline for the intended result.
+5. If another collaborator is active, confirm the final arrangement before both people leave.
+
+## If a recent change appears missing
+
+1. Stop editing and keep only one tab open for the draft.
+2. Restore a stable connection and give autosave time to finish.
+3. Check the current frame, selection, and timeline range in case the content is out of view.
+4. Reopen the draft from the Library if the editor does not recover.
+5. If the result is still wrong, record the draft name, affected layers, approximate time, and the last successful action for support.
+
+See [concurrent editing](/editor/collaboration/concurrent-edits), [undo boundaries](/editor/collaboration/undo-boundaries), and [editor loading and recovery](/editor/troubleshooting/editor-loading).

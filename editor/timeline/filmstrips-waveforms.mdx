@@ -1,0 +1,39 @@
+---
+title: "Filmstrips and waveforms"
+description: "Use visual and audio summaries as navigation evidence—not as the final render."
+icon: "waveform-lines"
+---
+
+Filmstrips and waveforms compress source information into timeline-scale cues. They accelerate editorial decisions without replacing full-resolution canvas and audio review.
+
+## Filmstrips
+
+A filmstrip samples video frames across a clip and draws representative thumbnails. It helps locate shot changes, motion beats, and source sections after trimming. The sampling density depends on visible clip width and zoom; a narrow clip cannot show every source frame.
+
+## Waveforms
+
+A waveform summarizes audio amplitude over time. Tall peaks often indicate speech consonants, impacts, or loud musical transients; quiet regions can suggest pauses or room tone. Waveform pixels are an approximation of the decoded source and timeline scale.
+
+<Frame caption="Audio waveform visible in the selected layer workflow">
+  <img src="/images/editor/screenshots/editor-inspector-audio-waveform.png" alt="Tessact editor showing an audio layer and waveform-related controls" />
+</Frame>
+
+## Cache and asynchronous generation
+
+These summaries may appear after the clip itself because the editor can fetch, decode, sample, and cache them separately. Remote media access, browser decoding support, source duration, and current zoom all affect generation cost.
+
+## Editorial uses
+
+- Align a cut to a visible action change in a filmstrip.
+- Place a sound effect at the waveform's first transient.
+- Trim silence while preserving a natural lead-in.
+- Match caption boundaries to spoken phrase clusters.
+- Detect a source section that differs from the selected thumbnail.
+
+<Note>
+  A waveform does not prove that audio is audible. Mute state, volume, fades, source-channel content, browser output, and project preview mute are evaluated separately.
+</Note>
+
+## When a summary is missing
+
+Confirm the layer has a valid source reference and supported media, then allow the asset to finish loading. Increase timeline width or zoom so there is space to draw detail. If playback works but the summary remains absent, continue editing with direct playback and see [media troubleshooting](/editor/troubleshooting/media).

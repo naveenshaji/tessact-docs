@@ -1,0 +1,176 @@
+---
+title: Media, waveform, and caption-source issues
+description: Diagnose upload, metadata, preview, remote URL, filmstrip, waveform, and transcription-source failures.
+icon: file-circle-exclamation
+---
+
+Media can succeed at one stage and fail at another. Separate **asset acquisition**, **metadata**, **browser decode**, **timeline visualization**, **preview playback**, and **H.264 render access** before replacing a file.
+
+## Symptom matrix
+
+| Symptom | Likely boundary | What to test |
+|---|---|---|
+| Upload is rejected immediately | File family, size, MIME, or request | Try a small known-good file of the same family |
+| Asset appears but cannot be inserted | Missing metadata or unsupported layer mapping | Confirm duration/dimensions are available and reopen the panel |
+| Timeline layer exists but preview is blank | URL access, codec decode, or source range | Seek inside the layer and test the source in the same browser |
+| Video preview works but filmstrip is blank | Frame extraction or visualization cache | Zoom, wait, and allow cache regeneration |
+| Audio plays but waveform is blank | Audio decode or waveform cache | Continue by ear, then rebuild after checking decode support |
+| Waveform exists but no sound | Layer dB, fade, track mute, preview mute, or source channel | Reset monitoring and inspect gain in that order |
+| Media works locally but render fails | Render service cannot access source URL | Check durable URL/proxy access and expiration |
+| Captions cannot be created | No usable audio/transcript source or service failure | Follow [Caption source problems](#caption-source-problems) |
+
+## Upload and metadata
+
+<Steps>
+  <Step title="Verify the real file">
+    Confirm it opens from beginning to end in a current browser or trusted media inspector. A familiar extension does not prove the encoded video or audio codec is supported.
+  </Step>
+  <Step title="Use an unambiguous filename">
+    Keep the extension, avoid control characters, and use a descriptive name. Filename cleanup helps identify the correct layer later, although it does not repair a codec.
+  </Step>
+  <Step title="Test a smaller representative file">
+    A short transcode distinguishes general format support from size, duration, resolution, or upload-timeout limits.
+  </Step>
+  <Step title="Wait for metadata">
+    Duration, video dimensions, and audio availability may be populated after upload completes. Do not repeatedly insert the same asset while probing is still active.
+  </Step>
+  <Step title="Reinsert once metadata is stable">
+    Remove only the failed timeline instance if necessary; keep the source asset until you know the asset itself is invalid.
+  </Step>
+</Steps>
+
+## Codec versus container
+
+MP4, MOV, WebM, and similar names describe containers. The browser must also decode the video codec, audio codec, profile, level, pixel format, and channel layout inside the container.
+
+A practical compatibility transcode is typically:
+
+- H.264/AVC video in an MP4 container;
+- AAC audio;
+- a common 4:2:0 pixel format;
+- constant, well-formed timestamps;
+- dimensions suitable for browser hardware limits.
+
+Do not transcode the only master in place. Create a new compatible derivative and preserve the source.
+
+## Blank, frozen, or black preview
+
+Check the layer before changing media:
+
+1. Put the playhead inside `[from, from + durationInFrames)`.
+2. Confirm the track and layer are visible.
+3. Confirm opacity is above zero and scale/dimensions are nonzero.
+4. Fit the canvas so the layer is not simply outside the visible preview.
+5. Inspect crop values; four aggressive crop edges can remove the entire visible image.
+6. Disable expensive layer effects temporarily.
+7. Reset playback rate and confirm the requested source range exists.
+8. Test the source URL in the same authenticated browser context.
+
+If the first frames are black but later frames work, the media itself may begin with black frames or decoding may be waiting for a keyframe. Seek farther inside the source before diagnosing the whole file as blank.
+
+## Remote media and URL access
+
+Remote assets can fail because of:
+
+- expired signed URLs;
+- missing authentication in the browser or render service;
+- blocked cross-origin requests;
+- a server that rejects byte-range requests;
+- redirects to a host with different permissions;
+- thumbnail access succeeding while the full-resolution URL fails;
+- mixed-content or certificate errors;
+- a proxy or origin policy rejecting the request.
+
+Test the exact full-resolution URL path used by the layer, not only the thumbnail. Do not paste signed URLs, tokens, cookies, or credentials into a support message.
+
+## Filmstrip problems
+
+Filmstrips are derived timeline previews. If video playback works, a missing filmstrip does not imply missing authored media.
+
+- Keep the layer visible in the timeline long enough for extraction.
+- Zoom to a practical level; a very dense timeline requests a different sample pattern.
+- Avoid scrubbing and resizing continuously while extraction is underway.
+- Reload once to rebuild disposable memory state.
+- If necessary, clear only the site's cache/storage after verifying synchronized draft state.
+
+Filmstrips can be backed by in-memory and browser-persistent frame caches. Regeneration may be noticeably slower on the first pass after site data is cleared.
+
+## Waveform problems
+
+Waveform generation needs a decodable audio stream. Diagnose in this order:
+
+1. Can you hear the source outside the editor?
+2. Can you hear it in the editor with preview mute off?
+3. Is the selected track muted or hidden?
+4. Is layer volume above `-60 dB`?
+5. Do fade handles suppress the current region?
+6. Does the source actually contain an audio track?
+7. Is the audio codec supported by the browser?
+
+A flat waveform can be correct for silence or near-silence. Compare multiple source regions before assuming extraction failed.
+
+## Audio is present but inaudible
+
+The evaluated path is layered:
+
+```text
+source sample
+× layer dB gain
+× fade-in multiplier
+× fade-out multiplier
+× track state
+× preview monitoring state
+```
+
+Set the layer to `0 dB`, move the playhead away from fades, unmute the selected track, and unmute the preview. Then restore each intended control one at a time.
+
+## Caption source problems
+
+Caption creation needs an eligible video layer whose asset reports audio and provides a usable speech/transcript source. If the caption action is missing, disabled, or fails:
+
+- select exactly the intended video layer;
+- confirm the layer has audible speech in the active source range;
+- confirm its source and metadata are fully available;
+- remove total mute only for the diagnostic playback check;
+- avoid an extremely short or zero-length selection;
+- wait for the transcript request to finish before retrying;
+- check application/network status for the transcript service;
+- retry with a short, clear-speech source to isolate service versus media quality.
+
+If caption tokens are created but timing is wrong, determine whether the source layer was trimmed or playback-rate changed after transcription. The caption layer and source layer have separate timeline placement; align their starts and review token boundaries frame by frame.
+
+<Warning>
+  Do not invent missing words from the waveform. Verify speech against the source audio and edit caption tokens directly.
+</Warning>
+
+## GIF and animated-image issues
+
+- Confirm the file contains multiple frames; some `.gif` files are static.
+- Check reported duration and source range.
+- Reset playback rate.
+- Reduce very large pixel dimensions or unusually high frame counts with a derivative file.
+- Compare preview at several frames; the timeline thumbnail can show only one representative image.
+
+## Memory pressure and oversized media
+
+High-resolution images, long-GOP video, many simultaneous video layers, and large animated images increase decode and GPU memory. If the tab reloads or frames turn blank under load:
+
+- close duplicate editor tabs;
+- reduce simultaneous visible media layers;
+- disable effects while diagnosing;
+- use reasonably sized editing derivatives;
+- restart the browser after preserving synchronized draft state;
+- follow [Performance troubleshooting](/editor/troubleshooting/performance).
+
+## Collect diagnostics
+
+Record the source family, container, codecs if known, dimensions, duration, approximate size, whether it is local or remote, which stages succeed, and the first composition frame where behavior fails. Include browser/network errors without sensitive URLs or authorization values.
+
+<CardGroup cols={2}>
+  <Card title="Supported formats" icon="file-video" href="/editor/media/supported-formats">
+    Review acceptance, decode, and compatibility expectations.
+  </Card>
+  <Card title="Media workflow" icon="diagram-project" href="/editor/media/overview">
+    Review discovery, upload, placement, source ranges, and insertion verification.
+  </Card>
+</CardGroup>

@@ -1,0 +1,37 @@
+---
+title: "Audio fades"
+description: "Create click-free boundaries and deliberate transitions with constrained fade handles."
+icon: "wave-sine"
+---
+
+Audio fade-in and fade-out durations are stored in seconds on audio and audio-capable video layers. Timeline handles edit these values visually.
+
+## Gain function
+
+At each layer-local frame, the editor calculates a fade multiplier and multiplies it by the decibel-derived base gain:
+
+```text
+final volume(frame) = 10^(dB / 20) × fadeMultiplier(frame)
+```
+
+The fade-in rises from silence to full base gain; the fade-out falls back to silence.
+
+## Constraints
+
+Fade handles are constrained by the layer duration, the opposite fade, and a minimum one-frame gap between the two regions. The configured maximum is effectively unbounded; the active clip and opposite handle impose the practical limit. This prevents the fades from crossing or consuming the complete interval ambiguously.
+
+## Split and trim behavior
+
+Splitting partitions fade responsibility: the new internal boundary should not inherit an unintended full-clip fade from both sides. Trimming and extending clamp fade values to the new duration. Always recheck the curves after a structural edit.
+
+## Suggested uses
+
+- `1–2` frames or a very short time for click suppression.
+- A few tenths of a second for natural ambience entrances.
+- Longer fades for music or deliberate scene transitions.
+
+<Warning>
+  A long fade is not a substitute for mixing automation across dialogue. It changes the entire transition region and can make the midpoint quieter than expected.
+</Warning>
+
+See [timeline fades](/editor/timeline/audio-fades) and [volume](/editor/audio/volume).

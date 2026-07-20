@@ -1,0 +1,43 @@
+---
+title: "Timeline volume and fades"
+description: "Shape audio amplitude and transitions while seeing their temporal extent."
+icon: "volume-low"
+---
+
+Audio-capable layers can combine inspector-authored base volume with fade regions authored by timeline handles.
+
+## Signal model
+
+At a given layer-local frame, effective gain is conceptually:
+
+```text
+effective gain = base volume × fade-in gain × fade-out gain × mute state
+```
+
+The fade factors transition between silence and full layer gain over their configured durations. Overlapping layers are then mixed into the project output.
+
+## Fade-in
+
+Use a fade-in to soften an abrupt source start, introduce ambience, or bring music under narration. Keep it short for click removal and longer for a deliberate musical entrance.
+
+## Fade-out
+
+Use a fade-out before a clip ends to prevent a hard stop. A fade longer than the remaining interval can dominate the whole clip, so review the visible duration after trimming.
+
+## Timeline handles and inspector volume
+
+Timeline handles are the mounted authoring control for fade durations. The audio inspector provides base volume and playback rate; an audio-capable video inspector provides volume. Neither mounted inspector exposes numeric fade-duration fields, so use timeline zoom and frame/time readouts when a precise handle placement matters.
+
+<Warning>
+  Trimming can clamp a fade region or leave it disproportionate to the new duration. Reinspect fades after every boundary change.
+</Warning>
+
+## Mixing checks
+
+1. Listen to the layer alone if the mix is confusing.
+2. Restore the surrounding layers and review the transition in context.
+3. Watch for multiple fades multiplying into an unexpectedly quiet result.
+4. Confirm project preview mute is off.
+5. Render a short review only after browser playback sounds consistent.
+
+See [Audio overview](/editor/audio/overview), [volume](/editor/audio/volume), and [fades in depth](/editor/audio/fades).

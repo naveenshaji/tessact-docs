@@ -1,0 +1,187 @@
+---
+title: "Search workspace media with AI"
+description: "Describe the moment you need, inspect semantic matches, preview or trim a result, and place it precisely in the edit."
+icon: "magnifying-glass"
+---
+
+AI Search finds useful moments by meaning rather than by filename alone. Describe a scene, subject, action, spoken idea, or sound; the editor searches media available in the active workspace and returns candidates you can preview, add at the playhead, or drag to a precise destination.
+
+For the walkthrough below, search for:
+
+```text
+misty Wayanad landscapes, tea estates
+```
+
+<Frame caption="AI Search showing six Wayanad landscape and tea-estate matches">
+  <img src="/images/editor/screenshots/editor-media-ai-search-wayanad-results.png" alt="AI Search panel in the video editor showing six Wayanad tea-estate result cards for the query misty Wayanad landscapes, tea estates" />
+</Frame>
+
+## Find and add a moment
+
+<Steps>
+  <Step title="Open AI Search">
+    Select **AI Search** in the left rail. The search field receives focus so you can type without first clicking into it.
+  </Step>
+  <Step title="Describe the desired content">
+    Enter `misty Wayanad landscapes, tea estates`. Use visible or audible details that could identify the source moment; you do not need to know its filename.
+  </Step>
+  <Step title="Choose the search intent">
+    Keep **All** for a broad first pass, or select **Visual**, **Dialogue**, or **Audio** before submitting. The filter changes the request sent to search, not merely which completed cards are hidden.
+  </Step>
+  <Step title="Run the query">
+    Press <kbd>Enter</kbd> or select **Search**. The panel shows a searching state, then reports the result count and active filter above the grid.
+  </Step>
+  <Step title="Inspect a promising card">
+    Select a thumbnail or focus the card and press <kbd>Enter</kbd> or <kbd>Space</kbd> to open its full preview. Hovering or focusing a card also reveals **Add to timeline** and **Open preview** controls.
+  </Step>
+  <Step title="Place the result">
+    Use **Add range** or **Add asset** in the preview, press <kbd>A</kbd>, select the card's add control, or drag the card to the canvas or timeline. Confirm the new layer at its intended time before continuing.
+  </Step>
+</Steps>
+
+### Panel keyboard controls
+
+| Shortcut | Action |
+| --- | --- |
+| <kbd>⌘</kbd>+<kbd>3</kbd> / <kbd>Ctrl</kbd>+<kbd>3</kbd> | Open or focus the AI Search panel |
+| <kbd>⌘</kbd>+<kbd>F</kbd> / <kbd>Ctrl</kbd>+<kbd>F</kbd> | While the panel is open and no preview is active, focus the query field and select its text |
+| <kbd>Enter</kbd> | Submit the query while focus is in the search field |
+| <kbd>Esc</kbd> | Close the panel when no result preview is open |
+
+## Choose the right filter
+
+Filters participate in retrieval and ranking. If a query has already completed, changing the filter reruns the same query with the new intent.
+
+| Filter | Searches for | Use it when |
+| --- | --- | --- |
+| **All** | Every eligible result type | You want broad discovery or are unsure how a source was indexed |
+| **Visual** | Video and image scenes, shots, and stills | Appearance, place, action, composition, weather, lighting, or objects matter most |
+| **Dialogue** | Dialogue and speech moments | The relevant idea is spoken, even if you do not know the exact wording |
+| **Audio** | Indexed speech in audio resources | You need an audible passage from an audio-first source |
+
+For the Wayanad example, begin with **All** to discover the available result mix. Switch to **Visual** when you want the strongest emphasis on terrain, mist, plantation rows, workers, or time of day.
+
+## Read the result grid
+
+The compact two-column grid is designed for fast scanning. Each card contains an aspect-ratio-aware thumbnail and a title of up to two lines. The panel intentionally avoids dense badges so the imagery and title remain the primary comparison signals.
+
+The header above the grid communicates two independent facts:
+
+- The left side shows **Searching** while a request is pending, then the number of results.
+- The right side shows the active filter, such as **All** or **Visual**.
+
+The grid can show up to 24 candidates at a time. When the search service reports a larger total, the header can represent all matches rather than only the cards currently visible.
+
+### Card interactions
+
+| Gesture | Outcome |
+| --- | --- |
+| Click the card | Open the full preview without changing the edit |
+| Focus the card and press <kbd>Enter</kbd> or <kbd>Space</kbd> | Open the same preview with the keyboard |
+| Hover or focus | Reveal add and expand controls in the thumbnail corners |
+| Select the add control | Add the matching workspace media at the current playhead |
+| Focus the card and press <kbd>A</kbd> | Add it at the current playhead when the underlying media is available |
+| Drag the card | Carry the result and any selected source range toward the canvas or timeline |
+
+Video results can expose more than a static poster. Moving across an eligible thumbnail scrubs representative frames. Holding the pointer still briefly can start a muted hover preview that continues until the pointer leaves. Reduced-motion preferences prevent the delayed playback transition.
+
+<Tip>
+  Hover to compare composition and action, then open the full preview for timing decisions. A thumbnail is useful for triage, but the preview is the authoritative place to judge a source range.
+</Tip>
+
+## Preview and refine a result
+
+The full-screen preview does not add anything by itself. It gives the selected result enough space for playback, range inspection, navigation, and an intentional add action.
+
+The preview header shows:
+
+- The result's position within the visible result set, such as **2 of 6**.
+- The source moment range when a valid range exists.
+- The result title.
+- **Add range** for a timed segment or **Add asset** when there is no editable result range.
+- **Info** for the result inspector and **Close** for returning to the grid.
+
+Use the left and right controls to compare adjacent results without closing the preview. For timed video or audio, the trim strip at the bottom represents the source interval. Move its handles to keep only the useful portion; the preview and final insertion use the selected interval. The lightbox enforces a valid positive range, clamps it to known media duration, and prevents an inverted selection.
+
+### Preview keyboard controls
+
+| Shortcut | Context | Action |
+| --- | --- | --- |
+| <kbd>←</kbd> / <kbd>→</kbd> | Preview open, focus outside an input or slider | Move to the previous or next result |
+| <kbd>I</kbd> | Preview open | Toggle result information |
+| <kbd>A</kbd> | Preview open and source is addable | Add the selected range or complete asset |
+| <kbd>Esc</kbd> | Preview open | Close the preview and restore focus |
+| <kbd>Tab</kbd> / <kbd>Shift</kbd>+<kbd>Tab</kbd> | Preview open | Move within the preview's focus trap |
+
+## Add versus drag
+
+All successful placement paths confirm that the selected result maps to supported workspace media before adding a layer. Choose the interaction based on how precisely you already know the destination.
+
+| Placement path | Composition time | Spatial or track destination | Best for |
+| --- | --- | --- | --- |
+| Card add control or card <kbd>A</kbd> | Current playhead | Editor-selected compatible track/placement | Fast assembly while reviewing the grid |
+| Preview **Add range** / **Add asset** or <kbd>A</kbd> | Current playhead | Editor-selected compatible track/placement | Trimming and verifying before insertion |
+| Drag to canvas | Drop-time placement behavior | Pointer position for visual resources | Positioning an image or video directly in the frame |
+| Drag to timeline | Pointer-derived frame | Hovered compatible track | Exact editorial timing and track choice |
+
+### Source time and timeline time are different
+
+A search result can identify a useful interval inside a longer source. That interval is the **source range**. The location where you add or drop it is the **composition placement**.
+
+For example, a result may represent source seconds `12.0–18.0`. Dropping it at `00:15.00` on the timeline keeps the 12–18 second source trim but places that trimmed segment at the 15-second composition position. The source timestamps never become timeline coordinates.
+
+## Search state model
+
+Use the panel copy—not the presence or absence of thumbnails alone—to determine what happened.
+
+| State | What the panel shows | Meaning | Best next action |
+| --- | --- | --- | --- |
+| Start | Search field, suggestions, and up to three recent searches | No direct query has completed in this panel session | Enter a description or reuse a recent query |
+| Searching | **Searching** label and loading cards | A request is pending | Wait; the Search action is disabled to prevent overlap |
+| Results | Count, active filter, and a two-column card grid | The search completed with one or more unique results | Preview, add, drag, or refine the query |
+| No results | Empty-state explanation, sometimes supplied by the search service | The request succeeded but no eligible match was returned | Broaden the wording, use **All**, or change one concept at a time |
+| Search failed | **Search failed** plus an error detail | The search did not complete successfully | Preserve the detail and follow [AI Search diagnostics](/editor/media/ai-search-diagnostics) |
+| Preparing media | Spinner on the selected add action | The editor is preparing the matching workspace media | Wait; do not repeat the add gesture |
+| Added | A new layer appears in the edit | Media preparation and insertion completed | Verify placement, trim, dimensions, and playback |
+
+<Warning>
+  A visible result is not automatically insertable. Preview can work even when the underlying workspace media is temporarily unavailable or incompatible with the editor. If preview works but insertion fails, follow the diagnostic guide rather than rerunning the search repeatedly.
+</Warning>
+
+## Write stronger queries
+
+Semantic search works best when the description names evidence that could appear in a frame, transcript, or audio segment.
+
+### Build from observable concepts
+
+Combine two or more of these elements:
+
+- **Subject:** tea workers, winding road, tea leaves, mountain ridge.
+- **Setting:** Wayanad, plantation, valley, hillside.
+- **Condition:** misty, fog-covered, rain-soaked, sunrise.
+- **Action:** walking between rows, harvesting, fog moving across hills.
+- **Framing:** aerial landscape, macro detail, wide establishing shot.
+
+The walkthrough query—`misty Wayanad landscapes, tea estates`—works because it combines atmosphere, geography, scene scale, and a recognizable environment without depending on a filename.
+
+### Refine one axis at a time
+
+If the first pass is too broad:
+
+1. Keep the same subject and add an action or framing detail.
+2. Switch from **All** to **Visual** without rewriting the query, so you can compare the effect of the filter.
+3. Add a time-of-day or weather cue.
+4. Remove adjectives that are not observable in the media.
+
+If the first pass returns nothing, reverse that process: remove the least essential qualifier, return to **All**, and retry once. This makes each change interpretable and avoids turning a useful semantic query into an overconstrained sentence.
+
+## Verify the insertion
+
+After an add or drop completes, check all four layers of correctness:
+
+1. **Identity:** the new layer depicts or contains the intended result.
+2. **Placement:** its start frame and track match the add or drop gesture.
+3. **Source range:** playback begins and ends on the expected portion of the original resource.
+4. **Presentation:** visual dimensions, audio capability, and duration are sensible for the edit.
+
+If the grid never appears, the result count disagrees with the panel state, or a card previews but cannot be inserted, continue with [AI Search diagnostics](/editor/media/ai-search-diagnostics).

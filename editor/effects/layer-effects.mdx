@@ -1,0 +1,40 @@
+---
+title: "Layer Effects"
+description: "Add, order, tune, animate, and remove the effects exposed for a selected layer."
+icon: "sparkles"
+---
+
+Open **Layer Effects** in the inspector. The add grid contains only effects currently authorable for the selected type.
+
+## Live authoring catalog
+
+| Layer family | Effects exposed when supported |
+| --- | --- |
+| Text and captions | Typewriter Reveal, Layer Blur |
+| Image, video, GIF | Layer Blur plus supported media post effects |
+| Frame | Layer Blur plus supported media post effects |
+
+Supported media post choices include Vignette, Scan Lines, CRT Curvature, Film Grain, Riso Print, Glitch, RGB Split, Radial Chromatic, Blur, Pixelate, Blueprint Mode, Halftone, Film Dust, and Sparkles.
+
+## Parameter families
+
+- **Progress** reveals text from 0–100%.
+- **Softness** and **radius** control blur distances in pixels.
+- **Intensity**, **density**, and **grid** are typically 0–100% strengths.
+- **Offset**, **separation**, and **size** use pixel distances.
+
+The inspector clamps each value to the effect definition's minimum, maximum, and step. The parameter readout displays its unit.
+
+## Animate a parameter
+
+Use the diamond toggle beside a supported parameter to create its track. Once a track exists, changing the slider at an in-range playhead frame writes or replaces a keyframe at that frame and preserves the existing easing when replacing a point.
+
+## Reorder and disable
+
+Use the up and down controls to change processing order. Disable an effect for a nondestructive A/B review. Removing an effect also removes keyframe tracks addressed to that effect instance, preventing orphaned animation data.
+
+<Warning>
+  Effect parameters are addressed by the instance ID, not only the effect kind. Two Blur instances have independent tracks; removing one does not transfer its animation to the other.
+</Warning>
+
+See [effect animation](/editor/animation/animatable-properties#effects-and-shadows) and [performance troubleshooting](/editor/troubleshooting/performance).

@@ -1,0 +1,43 @@
+---
+title: "Zoom and resize the timeline"
+description: "Change temporal and vertical detail without changing the composition."
+icon: "magnifying-glass-plus"
+---
+
+Timeline zoom changes how many screen pixels represent a frame. Timeline height changes how many rows and expanded keyframe lanes fit vertically. Neither operation changes timing data.
+
+## Choose a temporal scale
+
+| Task | Recommended view |
+| --- | --- |
+| Reorder scenes | Zoomed out enough to see structural sections |
+| Trim dialogue | Zoom in until waveform phrases and single frames are clear |
+| Adjust keyframes | Zoom in until points no longer overlap visually |
+| Compare long audio and picture | Moderate zoom with taller timeline |
+| Inspect one-frame gap | Maximum practical zoom around the boundary |
+
+The playback strip exposes timeline zoom controls. Use `Cmd/Ctrl++` (or `=`) to zoom in, `Cmd/Ctrl+-` to zoom out, `Cmd/Ctrl+0` or unmodified `\` to fit the full sequence, and `Cmd/Ctrl+Shift+2` to fit the selected range.
+
+## Resize vertically
+
+Drag the boundary between canvas and timeline to allocate more height. A taller timeline is useful for many layers, expanded animation lanes, or large waveforms. A shorter timeline returns space to the canvas during detailed composition work.
+
+The separator is keyboard-operable after focus: Arrow keys resize by `24 px`, `Shift+Arrow` uses `72 px`, `Home` moves to the minimum, `End` moves to the maximum, and double-click restores the default. The vertical separator beside the left panel uses the same step sizes and min/max/reset pattern for panel width.
+
+## Scroll and playhead following
+
+During playback, the visible timeline may follow the playhead so the current frame remains in view. Manual scrolling and seeking can reset the useful viewport. Pause before making a tiny trim; moving content underneath an actively advancing playhead is difficult to judge.
+
+For manual navigation, middle-drag or `Space` + primary-drag pans horizontally/vertically, `Shift+wheel` scrolls horizontally, and `Cmd/Ctrl+wheel` zooms around the pointer. A simple `Space` tap still toggles transport; it becomes a pan gesture only once dragging begins.
+
+Hovering ordinary timeline space shows a vertical guide with formatted time and `F<frame>`. The frame is rounded and clamped to the visible range. The guide hides during pan, marquee, drag/drop, or active scrolling so it is not mistaken for an edit boundary.
+
+<Tip>
+  Preserve context by zooming around the current playhead or selection. If you lose the clip, use a fit control or select its row before zooming again.
+</Tip>
+
+## Pixel ambiguity
+
+At low zoom, several frames map to one screen pixel. Pointer gestures must quantize to an underlying whole frame, so a one-pixel drag can represent a large time change. Increase zoom before making decisions whose tolerance is smaller than the visible pixels per frame.
+
+For the math behind this behavior, see [Timecode and frame math](/editor/reference/timecode-frame-math).

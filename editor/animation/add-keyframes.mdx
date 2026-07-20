@@ -1,0 +1,45 @@
+---
+title: "Add and remove keyframes"
+description: "Use property diamonds and frame navigation controls to start a track safely."
+icon: "diamond"
+---
+
+Keyframe-capable inspector rows include previous, diamond, and next controls. The diamond adds a point at the current whole frame or removes the point already there.
+
+## Add the first point
+
+<Steps>
+  <Step title="Select one layer">
+    Seek inside its active interval and open the relevant inspector section.
+  </Step>
+  <Step title="Set the initial value">
+    Establish the layer's intended appearance at this frame.
+  </Step>
+  <Step title="Choose the diamond">
+    The new point captures the currently evaluated value and begins a track. Its initial easing is linear.
+  </Step>
+  <Step title="Move to another frame">
+    Seek to the next meaningful beat, then change the property or add another point and set its value.
+  </Step>
+  <Step title="Expand the lane">
+    Confirm both points, their frames, and the interpolation between them.
+  </Step>
+</Steps>
+
+## Capturing evaluated value
+
+When adding a point to an existing track, the editor evaluates the property at the insertion frame and stores that value. This avoids an immediate visual jump merely from inserting a keyframe.
+
+## Remove one point
+
+At a frame containing a point, the diamond becomes active. Choosing it removes only that point. If the track becomes empty, the property returns to its base value and the empty map entry is cleaned up.
+
+## Navigate the track
+
+Previous and next buttons seek to adjacent points and reveal the relevant timeline region. They disable when no point exists in that direction.
+
+<Note>
+  A point can exist at the layer's end edge for interpolation bookkeeping even though the layer is not active at that exclusive output frame. Inspect the final visible frame as well as the endpoint.
+</Note>
+
+See [edit keyframes](/editor/animation/edit-keyframes) and [keyframe lanes](/editor/animation/keyframe-lanes).

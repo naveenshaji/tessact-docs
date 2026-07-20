@@ -1,0 +1,39 @@
+---
+title: "Layer types"
+description: "Understand the common state model and the controls each layer adds."
+icon: "layer-group"
+---
+
+A layer is a timed composition object. Every layer has identity, ordering, an active frame interval, and type-specific state. Visual layers also participate in canvas geometry and compositing; audible layers participate in the audio mix.
+
+## Type map
+
+| Type | Primary content | Distinct controls |
+| --- | --- | --- |
+| Video | Time-based visual source, optionally with audio | Crop, playback rate, audio, captions |
+| Audio | Time-based sound source | Volume, playback rate, fades, waveform feedback |
+| Image | Static visual source | Transform, appearance, crop |
+| GIF | Animated image source | Transform, appearance, playback rate, crop |
+| Text | Editable text | Typography, text value, appearance, crop |
+| Solid | Drawn color rectangle | Fill, appearance, crop |
+| Frame | Visual container | Fill, stroke, children, auto layout, grid |
+| Captions | Timed transcript pages and tokens | Typography, page timing, line count, caption styling |
+
+## Shared visual pipeline
+
+```mermaid
+flowchart LR
+  B["Base layer state"] --> K["Keyframe evaluation"] --> L["Parent / layout resolution"] --> C["Crop and geometry"] --> E["Effects and shadows"] --> O["Opacity / blend"] --> P["Canvas composite"]
+```
+
+Not every type participates in every stage. An audio-only layer has no visual transform; a solid has no remote decoder; a frame can calculate descendant rectangles; captions map transcript timing into text pages.
+
+## Inspector composition
+
+The inspector begins with the type-specific sections documented in this chapter. Additional **Effects**, **Shadows**, or **Keyframe** sections can appear when supported and relevant. With multiple layers selected, a shared inspector replaces the individual type panel.
+
+<Note>
+  A layer's displayed value can be its evaluated value at the current frame, not merely its stored base value. Check for active keyframe toggles and lanes before assuming an inspector number is static.
+</Note>
+
+Use the [property matrix](/editor/reference/property-matrix) for exact cross-type comparison.

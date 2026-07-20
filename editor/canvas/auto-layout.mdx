@@ -1,0 +1,48 @@
+---
+title: "Auto layout frames"
+description: "Arrange frame children in a row or column with responsive spacing and sizing."
+icon: "bars-staggered"
+---
+
+An **Auto layout frame** changes child placement from free absolute coordinates to a flow algorithm. This is ideal for title stacks, badges, credits, icon-label pairs, and modules whose spacing should remain coherent as content changes.
+
+## Container controls
+
+| Control | Meaning |
+| --- | --- |
+| Direction | Row, row reverse, column, or column reverse |
+| Wrap | No wrap, wrap, or wrap reverse |
+| Justify content | Distribution along the main axis |
+| Align items | Default alignment along the cross axis |
+| Align content | Distribution of multiple wrapped lines |
+| Gap | Spacing between children or wrapped lines |
+| Padding | Top, right, bottom, and left inset |
+| Width / height sizing | Fixed versus content-responsive sizing where exposed |
+
+## Switching from manual layout
+
+When a frame becomes an auto-layout container, its direct children are arranged in the selected flow and a consistent order. Manual positions that conflict with the flow can be reset, including related position keyframes. The editor preserves useful visible sizes and uses them as inputs to the new layout.
+
+<Warning>
+  Switching layout modes is a structural edit. Inspect every child and its animation afterward; an absolute-position motion track may no longer describe the intended flow behavior.
+</Warning>
+
+## Child controls
+
+Children can expose order, grow, shrink, self-alignment, sizing constraints, and parent-relative offsets. A child frame can remain a layout container in its own right, enabling nested responsive structures.
+
+## Layout motion
+
+**Animate layout changes** can visually interpolate children in the live browser when computed rectangles change. The controls expose spring parameters:
+
+- **Stiffness** controls how strongly the motion approaches its target.
+- **Damping** reduces oscillation.
+- **Mass** changes the apparent inertia.
+
+This motion is a live layout-reflow transition, distinct from ordinary property keyframes. It begins when the layout target changes and has no authored composition-frame start or duration. Do not treat it as deterministic timeline motion or rely on it to appear in H.264 output; use frame-addressed property keyframes for render-timed animation.
+
+## Practical example
+
+For the Wayanad title card, place title and location text in a column frame, use a small gap, center cross-axis alignment, and symmetrical padding. Text changes then reflow without manually recalculating the stack.
+
+See [parenting](/editor/canvas/parenting) and [keyframed layout considerations](/editor/animation/animatable-properties#layout-managed-properties).

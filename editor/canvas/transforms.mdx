@@ -1,0 +1,45 @@
+---
+title: "Transform geometry"
+description: "Control position, dimensions, rotation, scale, opacity, alignment, and aspect ratio."
+icon: "expand"
+---
+
+import { TechnicalTruth } from '/snippets/editor-notes.mdx'
+
+The **Transform** inspector expresses a layer's geometry in composition or parent space. Direct canvas manipulation and numeric controls are two interfaces to the same state.
+
+## Property roles
+
+| Property | Role | Important interaction |
+| --- | --- | --- |
+| Position | Places the layer or applies a managed offset | Parent layout can own the base position |
+| Width / height | Defines the layout box | Aspect-ratio lock can derive the paired dimension |
+| Scale | Multiplies visual size around the transform origin | Does not rewrite source resolution |
+| Rotation | Rotates the rendered box | Current snap math still uses the crop-adjusted unrotated base box |
+| Opacity | Multiplies the layer's alpha | Combines with fades and effect output |
+| Alignment | Places geometry against composition, parent, or selection | Scope changes with hierarchy and selection count |
+
+## Base values and animated values
+
+Without animation, the inspector edits a base property. Once a property has a keyframe track, the current playhead frame determines the evaluated value. Editing can upsert a point on that track, preserving other frames.
+
+```text
+evaluated property(frame) = interpolate(track around frame, easing)
+fallback when no track    = base property
+```
+
+<TechnicalTruth />
+
+## Layout-managed children
+
+Auto-layout and grid containers calculate a child's base rectangle. A child can still expose size constraints, self-alignment, and supported offsets, but ordinary absolute position is no longer the sole owner of placement. The inspector can clear or normalize conflicting position tracks when a frame switches into managed layout.
+
+## Precision recommendations
+
+- Use canvas dragging for rapid composition and numeric input for repeated values.
+- Keep aspect ratio for video, images, and GIFs unless distortion is intentional.
+- Inspect rotated pixels after snapping; guides do not account for rotation or scale.
+- Verify every keyframed transform at its exact frame and between points.
+- Use the [motion path](/editor/animation/motion-paths) to understand animated position.
+
+See [move, resize, and rotate](/editor/editing/move-resize-rotate) for gesture details.

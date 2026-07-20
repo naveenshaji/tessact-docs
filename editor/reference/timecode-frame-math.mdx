@@ -1,0 +1,267 @@
+---
+title: Timecode and frame math
+description: Exact formulas for composition frames, source mapping, trims, keyframes, captions, and fades.
+icon: calculator
+---
+
+The editor's authoritative timeline unit is the integer **composition frame**. Timecode, seconds, milliseconds, pixel positions, media timestamps, and caption-token times are views or mappings of that frame domain.
+
+<Info>
+  In the examples below, the draft runs at `30 fps`. One frame is `1 / 30` second, or approximately `33.333 ms`.
+</Info>
+
+## Frames and time
+
+For zero-based frame `f` at frame rate `fps`:
+
+```text
+seconds at frame start = f / fps
+milliseconds at frame start = (f / fps) × 1000
+```
+
+To map a time to a frame, the rounding policy matters:
+
+```text
+floor frame   = floor(seconds × fps)   // frame containing the instant
+nearest frame = round(seconds × fps)   // nearest boundary
+ceil frame    = ceil(seconds × fps)    // first boundary not earlier than the instant
+```
+
+Editing boundaries must land on integer frames. If an external timestamp falls between boundaries, choose the rounding rule that preserves the intended semantic edge.
+
+## Half-open layer intervals
+
+A layer with:
+
+```text
+from = s
+durationInFrames = d
+```
+
+is active on the half-open interval:
+
+```text
+[s, s + d)
+```
+
+Its first playable frame is `s`; its last playable frame is `s + d - 1`; its right edit edge is `s + d`.
+
+| Example | Value |
+|---|---:|
+| Start | `120` |
+| Duration | `90` frames |
+| Active frames | `120…209` |
+| Right edge | `210` |
+| Start time at 30 fps | `4.000 s` |
+| End edge time at 30 fps | `7.000 s` |
+
+This convention lets adjacent clips meet exactly: `[120, 210)` followed by `[210, 270)` has neither a gap nor an overlapping frame.
+
+## Timecode display
+
+For non-drop-frame `HH:MM:SS:FF` timecode:
+
+```text
+totalSeconds = floor(frame / fps)
+FF = frame mod fps
+SS = totalSeconds mod 60
+MM = floor(totalSeconds / 60) mod 60
+HH = floor(totalSeconds / 3600)
+```
+
+At `30 fps`, frame `3,725` is:
+
+```text
+3725 / 30 = 124 seconds, remainder 5 frames
+00:02:04:05
+```
+
+The frame field is a frame count within the displayed second, not a decimal fraction. At `25 fps`, valid values are `00…24`; at `30 fps`, `00…29`.
+
+## Composition duration
+
+The minimum duration needed to include every layer is the maximum right edge:
+
+```text
+composition duration = max(item.from + item.durationInFrames)
+```
+
+The last playable frame is therefore `composition duration - 1`. The duration readout describes the edge after that last frame.
+
+## Playhead versus edge
+
+The playhead represents a frame to evaluate. Trim handles represent edges between frames. At the final visible frame, the evaluation frame can be `duration - 1` while the right edge is `duration`.
+
+This distinction explains why:
+
+- `End` seeks the last playable frame, not the frame after the draft.
+- a right trim can end at edge `210` while the last visible sample is frame `209`;
+- seeking to a selected clip's end uses its last playable frame for preview.
+
+## Split math
+
+Split a layer `[s, e)` at interior frame boundary `p`, where `s < p < e`:
+
+```text
+left  = [s, p)   with duration p - s
+right = [p, e)   with duration e - p
+```
+
+For source-backed media, exact continuity means advancing the right output's source start by the source time consumed by the left output:
+
+```text
+right source start
+  = original source start + ((p - s) × playback rate) / fps
+```
+
+At `1×`, this reduces to the elapsed composition time. For non-`1×` media, frame-step and listen across the boundary before continuing the edit. If exact continuity is critical, perform the structural split at `1×`, verify the boundary, and then apply and review the intended speed on each result.
+
+## Trim math
+
+### Trim the start
+
+Move the left edge from `s` to `p`:
+
+```text
+delta = p - s
+new from = p
+new duration = d - delta
+new startFromInSeconds = old startFromInSeconds + (delta × playbackRate) / fps
+```
+
+This preserves the same source sample at every unchanged composition frame.
+
+### Trim the end
+
+Move the right edge from `e` to `p`:
+
+```text
+new duration = p - s
+startFrom is unchanged
+```
+
+### Move without trimming
+
+Move a layer by `n` frames:
+
+```text
+new from = old from + n
+duration and startFromInSeconds are unchanged
+```
+
+## Playback-rate mapping
+
+For an active media layer at composition frame `f`:
+
+```text
+local composition frame = f - from
+source seconds
+  = startFromInSeconds + (local composition frame × playbackRate) / fps
+```
+
+At `2×`, one composition frame advances `2 / fps` source seconds. At `0.5×`, two composition frames advance `1 / fps` source seconds. Draft FPS remains unchanged.
+
+<Warning>
+  An animated GIF can restart its animation after a left trim or split. Treat every new GIF boundary as visually unverified until you play and frame-step across it.
+</Warning>
+
+<Warning>
+  Changing playback rate can make the requested source range exceed the available media. Inspect the layer's final frames and audio tail after changing rate or trimming near a source boundary.
+</Warning>
+
+## Caption timestamps
+
+Caption tokens commonly carry millisecond start and end timestamps. To determine whether a token is active at frame `f`, the evaluator maps the composition-local time into milliseconds and compares it with token intervals.
+
+```text
+local milliseconds ≈ ((f - captionLayer.from) / fps) × 1000
+```
+
+A token starting at `2,500 ms` maps to frame `75` at `30 fps`. A timestamp such as `2,517 ms` falls between frames `75` and `76`; the evaluator must consistently apply its boundary rule. For editorial alignment, judge the visual result on the nearest frames rather than expecting arbitrary millisecond precision from a frame-based render.
+
+Caption page duration is entered in milliseconds with a minimum of `200 ms` and `100 ms` steps. The visual page transition still resolves against composition frames.
+
+## Keyframe timing
+
+Keyframes are stored at whole composition frames. For adjacent keyframes at `f0` and `f1` with values `v0` and `v1`:
+
+```text
+raw progress t = (f - f0) / (f1 - f0)
+clamped progress = clamp(t, 0, 1)
+evaluated value = interpolate(v0, v1, easing(clamped progress))
+```
+
+The destination keyframe provides the easing for the segment leading into it. There is no subframe keyframe between integer frames.
+
+## Audio fades
+
+Let a layer start at `s`, end at edge `e`, fade-in length `fi`, and fade-out length `fo`:
+
+```text
+fade-in multiplier  = clamp((f - s) / fi, 0, 1)
+fade-out multiplier = clamp((e - f) / fo, 0, 1)
+gain = base gain × fade-in multiplier × fade-out multiplier
+```
+
+The fade handles preserve at least a one-frame separation when they approach one another. This prevents the transitions from crossing and keeps a valid middle interval.
+
+## Decibels and linear gain
+
+For editor volume `dB`:
+
+```text
+linear gain = 0                     when dB = -60
+linear gain = 10^(dB / 20)         otherwise
+```
+
+Examples:
+
+| dB | Approximate linear gain | Interpretation |
+|---:|---:|---|
+| `-60` | `0` | Editor-defined silence endpoint |
+| `-20` | `0.1` | One tenth amplitude |
+| `-6` | `0.501` | Roughly half amplitude |
+| `0` | `1` | Unity |
+| `+6` | `1.995` | Roughly double amplitude |
+| `+20` | `10` | Maximum inspector value |
+
+Amplitude is not perceived loudness, and clipping depends on the mixed signal. Monitor the combined result.
+
+## Timeline pixels and snapping
+
+Timeline pixels are a view mapping, not authored time:
+
+```text
+pixels per frame = usable timeline width / visible frame count
+frame delta ≈ pixel drag delta / pixels per frame
+```
+
+The snapping threshold is converted from a small screen-pixel tolerance into frames at the current zoom. Consequently, the number of frames inside the snap tolerance can change as you zoom while the pointer tolerance remains visually practical.
+
+## Worked Wayanad example
+
+Suppose the opening shot in **Wayanad — A Quiet Journey** is:
+
+```text
+from = 0
+duration = 180 frames
+startFromInSeconds = 1.0
+playbackRate = 1
+fps = 30
+```
+
+- It occupies `[0, 180)`, or six seconds.
+- Its last playable frame is `179`.
+- Splitting at frame `72` creates durations `72` and `108`.
+- The right half begins at source time `3.4 s` (`1.0 + 72 / 30`).
+- Trimming the right half's start from `72` to `87` advances its source start from `3.4 s` to `3.9 s` (`15 / 30 = 0.5 s`).
+- Nudging that trimmed half ten frames later changes only its composition `from`; its source start remains `3.9 s`.
+
+<CardGroup cols={2}>
+  <Card title="Timeline fundamentals" icon="timeline" href="/editor/timeline/overview">
+    Apply the frame model to clips, tracks, and edit points.
+  </Card>
+  <Card title="Keyframe lanes" icon="diamond" href="/editor/animation/keyframe-lanes">
+    Apply composition-frame timing to animation tracks, values, and interpolation.
+  </Card>
+</CardGroup>

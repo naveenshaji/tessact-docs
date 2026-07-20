@@ -1,0 +1,48 @@
+---
+title: "Grid frames"
+description: "Build repeatable rows and columns with explicit tracks, auto placement, and weighted fills."
+icon: "grid"
+---
+
+A **Grid frame** places direct children into two-dimensional tracks. It is suited to contact sheets, contributor grids, before-and-after panels, image mosaics, and structured data cards.
+
+## Placement model
+
+The grid can fill rows or columns. Dense variants reuse earlier empty cells when later children fit, which can change visual order relative to source order. Choose dense flow only when compact packing matters more than strict positional predictability.
+
+## Column modes
+
+<Tabs>
+  <Tab title="Fixed count">
+    Set an explicit number of columns. The grid derives available track space from the frame's content box.
+  </Tab>
+  <Tab title="Auto fit">
+    Build as many columns as fit a minimum width and collapse unused tracks.
+  </Tab>
+  <Tab title="Auto fill">
+    Build potential tracks from the minimum width even when some remain unoccupied.
+  </Tab>
+</Tabs>
+
+## Track sizing
+
+Columns and rows can use **Fill** or **Hug** behavior. Fill tracks divide available space; hug tracks follow content or explicit sizes. For fill tracks, per-track weights act like fractional units: a column weight of `2` receives twice the share of a neighboring weight of `1`, after fixed space, padding, and gaps are accounted for.
+
+## Advanced controls
+
+The inspector supports explicit row counts, auto column width, auto row height, individual fixed track-size overrides, per-track fill weights, pack columns, pack rows, item alignment, content alignment, row and column gaps, and four-sided padding. Large grids expose selected-track controls so the inspector remains usable without rendering every track field at once.
+
+```text
+available width = frame width - left/right padding - total column gaps - fixed tracks
+fill track size = available width × track weight / sum(fill weights)
+```
+
+<Tip>
+  Use a two-column fixed grid for a Wayanad image comparison, then set unequal fill weights when the primary image needs stronger hierarchy.
+</Tip>
+
+## Switching modes
+
+As with auto layout, entering grid mode normalizes direct children into grid items and resolves conflicting absolute placement. Review child order, self-alignment, dimensions, and animation after the switch.
+
+See [frames](/editor/canvas/frames) and [parenting](/editor/canvas/parenting).

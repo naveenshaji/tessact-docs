@@ -1,0 +1,41 @@
+---
+title: "Canvas workspace"
+description: "Evaluate the current frame and manipulate visual layers directly."
+icon: "rectangle-wide"
+---
+
+The canvas shows the composition at the current playhead frame. It combines rendered layer content with editor-only overlays such as selection outlines, resize handles, crop handles, alignment guides, motion paths, and tool feedback.
+
+## What you see
+
+Layers are evaluated only when the playhead falls inside their active intervals. Active visual layers are resolved in stack order, with transforms, parent layout, crop, opacity, effects, shadows, and keyframed values applied to the current frame.
+
+<Frame caption="The Wayanad composition with a video layer selected">
+  <img src="/images/editor/screenshots/editor-inspector-video-crop.png" alt="Wayanad video on the canvas with crop controls visible in the inspector" />
+</Frame>
+
+## Canvas-only controls
+
+The lower-right controls change the workspace view rather than the video:
+
+- Zoom in or out to inspect details or see off-canvas motion.
+- Use the percentage control to understand the current view scale.
+- Fit the composition when panning or zooming has moved the useful area away.
+
+Fullscreen is in the playback strip, not the lower-right canvas controls.
+
+Canvas pan and view zoom do not modify layer position, scale, composition dimensions, or render output.
+
+## Direct manipulation
+
+With the Select tool active, drag a layer to move it and use corner or edge handles to resize it. Crop mode changes which source pixels appear inside the layer box. Rotation is edited numerically in the inspector; the canvas has no rotation handle. Inspector values also provide repeatable position and size when a freehand gesture is not precise enough.
+
+<Note>
+  Selection overlays are editor UI and never render. To judge the clean image, deselect the layer or use fullscreen playback.
+</Note>
+
+## Coordinate resolution
+
+Top-level layer positions are interpreted in composition space. A child of a frame is first resolved inside the frame's content box; auto-layout or grid rules may determine its base placement, after which supported offsets and animation are evaluated. This is why dragging a managed child can behave differently from dragging a free top-level layer.
+
+Continue to [Canvas navigation](/editor/canvas/navigation), [transforms](/editor/canvas/transforms), and [frames](/editor/canvas/frames).

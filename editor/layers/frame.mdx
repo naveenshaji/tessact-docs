@@ -1,0 +1,41 @@
+---
+title: "Frame inspector"
+description: "Control a frame's geometry, layout mode, fill, stroke, children, and crop."
+icon: "square-dashed"
+---
+
+The frame inspector is the most structurally powerful layer inspector because it combines ordinary visual controls with a child-layout engine.
+
+## Transform
+
+Alignment, position, dimensions, rotation, and scale place the frame itself. Descendants inherit the result through the parent transform chain.
+
+## Auto layout
+
+The **Frame layout** selector offers:
+
+- **Manual** for absolute child placement.
+- **Auto layout frame** for row or column flow.
+- **Grid frame** for two-dimensional tracks.
+
+Changing this control changes how direct children are placed and can reset manual positions that conflict with the selected layout.
+
+At the bottom of the layout controls, **Clip content** determines whether descendants are clipped to the frame bounds. It applies in manual, auto-layout, and grid frames. The frame's own fill and stroke are unaffected.
+
+## Frame appearance
+
+Opacity and blend mode affect the frame's visual surface. The fill can be a solid color or two-stop linear gradient; border radius, stroke width, and solid-only stroke color complete the container. Children are composed within the frame; the fill appears behind them.
+
+## Crop and bounds
+
+Crop changes the visible frame surface where exposed. **Clip content** is the explicit descendant-overflow control; layout padding still determines the managed content box. Use fullscreen review to verify rounded corners and descendant edges at output scale.
+
+## Layout motion
+
+Managed frames can animate live reflow with spring stiffness, damping, and mass. This is a layout transition triggered by a target change, not a composition-frame-addressed animation. It should not be relied on as deterministic playback or H.264 motion; keyframe layer properties when timing must render.
+
+<Warning>
+  Switching from manual to managed layout can reset manual child positions, including related position keyframes. Duplicate the structure first if you need an easy visual comparison.
+</Warning>
+
+See [frames](/editor/canvas/frames), [auto layout](/editor/canvas/auto-layout), [grid layout](/editor/canvas/grid-layout), and [parenting](/editor/canvas/parenting).

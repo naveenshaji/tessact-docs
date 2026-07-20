@@ -1,0 +1,191 @@
+---
+title: Keyboard shortcuts
+description: A verified, context-aware command reference for navigating and editing a video draft.
+icon: keyboard
+---
+
+Keyboard shortcuts act on the area and selection that currently have focus. `Cmd` means Command on macOS; use `Ctrl` for the equivalent command on Windows or Linux.
+
+<Warning>
+  Shortcuts pause while you type in a text field, edit a caption token, rename a layer, or use another editable control. Finish or cancel that edit before expecting a global command to run.
+</Warning>
+
+## Essential commands
+
+| Action | macOS | Windows / Linux | Context |
+|---|---:|---:|---|
+| Undo | `Cmd+Z` | `Ctrl+Z` | Most committed editing operations |
+| Redo | `Cmd+Shift+Z` | `Ctrl+Shift+Z` or `Ctrl+Y` | After undo |
+| Cut | `Cmd+X` | `Ctrl+X` | Selected layers |
+| Copy | `Cmd+C` | `Ctrl+C` | Selected layers |
+| Paste | `Cmd+V` | `Ctrl+V` | Inserts at the playhead; copied visual layers keep their relative geometry |
+| Duplicate | `Cmd+D` | `Ctrl+D` | Selected layers and their included frame descendants |
+| Delete | `Delete` or `Backspace` | `Delete` or `Backspace` | Selected keyframes first; otherwise selected layers |
+| Select all | `Cmd+A` | `Ctrl+A` | Selects editable layers |
+| Deselect all | `Cmd+Shift+A` | `Ctrl+Shift+A` | Clears layer and keyframe selection |
+| Rename one selected layer | `F2` | `F2` | Exactly one renameable layer |
+
+<Note>
+  Draft changes are persisted by the editor's autosave flow. There is no keyboard command you need to press to persist a normal edit.
+</Note>
+
+## Tools and panels
+
+| Action | Shortcut | Notes |
+|---|---:|---|
+| Select tool | `V` | Returns to selection and transform work |
+| Solid tool | `R` | Draw a solid layer on the canvas |
+| Frame tool | `F` | Draw a frame container |
+| Text tool | `T` | Click the canvas to insert text |
+| Open Bin | `Cmd/Ctrl+2` | Opens or focuses the draft Bin panel |
+| Open AI Search | `Cmd/Ctrl+3` | Opens or focuses the AI Search panel |
+| Open Inspector | `Cmd/Ctrl+7` | Shows properties for the current selection |
+| Open Canvas settings | `Cmd/Ctrl+8` | Shows composition dimensions, FPS, and duration |
+
+Tool letters do not fire while an editable field has focus. Press `Escape` to leave a field or cancel an in-progress drawing gesture, then choose the tool.
+
+## Playback and seeking
+
+| Action | Shortcut | Behavior |
+|---|---:|---|
+| Play or pause | `Space` | Toggles normal preview playback |
+| Reverse shuttle | `J` | Starts reverse playback; press again to increase speed up to the available shuttle steps |
+| Pause shuttle | `K` | Stops playback |
+| Forward shuttle | `L` | Starts forward playback; press again to increase speed |
+| Step one frame backward | Hold `K`, tap `J` | Seeks exactly one composition frame |
+| Step one frame forward | Hold `K`, tap `L` | Seeks exactly one composition frame |
+| Step one frame backward | `Left` or `,` | Seeks exactly one composition frame |
+| Step one frame forward | `Right` or `.` | Seeks exactly one composition frame |
+| Jump one second backward | `Shift+Left` or `Page Up` | Seeks `fps` frames backward |
+| Jump one second forward | `Shift+Right` or `Page Down` | Seeks `fps` frames forward |
+| Previous edit point | `Up` | Seeks the preceding eligible layer boundary |
+| Next edit point | `Down` | Seeks the following eligible layer boundary |
+| Previous keyframe | `Option/Alt+Left` | Seeks the preceding keyframe in the active keyframe context |
+| Next keyframe | `Option/Alt+Right` | Seeks the following keyframe in the active keyframe context |
+| Start of composition | `Home` | Seeks frame `0` |
+| Last playable frame | `End` | Seeks the final playable frame in the draft |
+| Earliest selected start | `Shift+[` | Seeks the earliest start among selected layers |
+| Latest selected end | `Shift+]` | Seeks the latest playable frame among selected layers |
+| Toggle loop | `Shift+L` | Changes preview looping; it does not alter draft duration |
+| Toggle fullscreen | `Shift+F` | Enters or exits browser fullscreen for the preview |
+
+`J`, `K`, and `L` are a transport system. Holding `K` changes `J` and `L` from shuttling to single-frame stepping. Releasing `K` restores normal shuttle behavior.
+
+<Caution>
+  In some selection contexts, the unmodified `M` key can toggle both preview mute and the selected track's mute state. Use the visible preview-volume and track-gutter controls when the target must be unambiguous.
+</Caution>
+
+## Timeline edits
+
+| Action | macOS | Windows / Linux | Preconditions |
+|---|---:|---:|---|
+| Split at playhead | `Cmd+B` | `Ctrl+B` | Splits eligible selected targets under the playhead; if none of the selection is splittable there, falls back to all eligible clips under the playhead on non-hidden tracks |
+| Trim start to playhead | `[` | `[` | Playhead is after the clip start and before its end |
+| Trim end to playhead | `]` | `]` | Playhead is after the clip start and before its end |
+| Nudge one frame earlier | `Cmd+Left` | `Ctrl+Left` | Timeline layer selection |
+| Nudge one frame later | `Cmd+Right` | `Ctrl+Right` | Timeline layer selection |
+| Nudge one second earlier | `Cmd+Shift+Left` | `Ctrl+Shift+Left` | Moves by the draft's FPS value in frames |
+| Nudge one second later | `Cmd+Shift+Right` | `Ctrl+Shift+Right` | Moves by the draft's FPS value in frames |
+| Toggle snapping | `Shift+M` | `Shift+M` | Applies to timeline edge snapping |
+| Show or hide selected keyframe lanes | `U` | `U` | Selection has animatable properties |
+| Frame selection | `Shift+2` | `Shift+2` | Wraps eligible selected layers in a frame |
+
+Trimming, splitting, and nudging are frame-quantized. A one-second nudge is exactly `fps` frames, not an estimate from wall-clock time. See [Timecode and frame math](/editor/reference/timecode-frame-math).
+
+## Canvas geometry
+
+| Action | macOS | Windows / Linux | Amount |
+|---|---:|---:|---:|
+| Nudge left/right/up/down | `Cmd+Option+Arrow` | `Ctrl+Alt+Arrow` | `1` composition pixel |
+| Large canvas nudge | `Cmd+Option+Shift+Arrow` | `Ctrl+Alt+Shift+Arrow` | `10` composition pixels |
+
+Canvas nudges exclude audio-only layers. Repeated key presses are grouped into a single practical undo boundary after the nudge gesture finishes.
+
+## Canvas viewport
+
+| Action | Shortcut / gesture |
+| --- | --- |
+| Fit composition | `0` |
+| Actual size | `Shift+0` |
+| Zoom in | `+` or `=` |
+| Zoom out | `-` |
+| Pan | Wheel, middle-drag, or `Space`-drag |
+| Zoom around cursor | `Cmd/Ctrl+wheel` |
+
+## Select and navigate layers
+
+| Action | Shortcut | Selection rule |
+|---|---:|---|
+| Previous layer in track order | `Option/Alt+Up` | Replaces selection |
+| Next layer in track order | `Option/Alt+Down` | Replaces selection |
+| First layer | `Option/Alt+Home` | Jumps to the first selectable layer |
+| Last layer | `Option/Alt+End` | Jumps to the last selectable layer |
+| Extend selection while navigating | Add `Shift` | Preserves the range anchor |
+| Cycle visible layers at the playhead | `D` | Moves forward through candidates under the playhead |
+| Cycle backward at the playhead | `Shift+D` | Moves backward through candidates |
+
+Hidden tracks are excluded from the playhead candidate cycle. If one layer is selected and the playhead is outside it, keyboard navigation may seek to its nearest edge so the result is visible.
+
+## Align, distribute, and order
+
+| Action | Shortcut |
+|---|---:|
+| Align left | `Option/Alt+A` |
+| Align horizontal centers | `Option/Alt+H` |
+| Align right | `Option/Alt+D` |
+| Align top | `Option/Alt+W` |
+| Align vertical centers | `Option/Alt+V` |
+| Align bottom | `Option/Alt+S` |
+| Distribute horizontally | `Option/Alt+Shift+H` |
+| Distribute vertically | `Option/Alt+Shift+V` |
+| Bring to front | `Cmd/Ctrl+Shift+]` |
+| Send to back | `Cmd/Ctrl+Shift+[` |
+
+Alignment requires an eligible visual selection. Distribution needs enough items to preserve two outer anchors and redistribute the layers between them.
+
+## Track commands
+
+| Action | Shortcut | Target |
+|---|---:|---|
+| Toggle selected track visibility | `Shift+H` | Tracks containing the current layer selection |
+| Solo selected tracks | `Shift+S` | Unhides selected tracks and hides every other populated track; not a toggle, so use Undo to restore prior visibility |
+
+Right-click the track gutter for Hide/Unhide or Mute/Unmute. See [Track controls](/editor/timeline/track-controls).
+
+## Timeline view
+
+| Action | Shortcut | Result |
+|---|---:|---|
+| Zoom timeline in | `Cmd/Ctrl++` or `Cmd/Ctrl+=` | Increases pixels per frame around the current timeline focus |
+| Zoom timeline out | `Cmd/Ctrl+-` | Decreases pixels per frame |
+| Fit the timeline | `Cmd/Ctrl+0` | Resets the visible range to the full draft |
+| Fit the timeline | `\\` | Resets the visible range to the full draft |
+| Fit selected layers | `Cmd/Ctrl+Shift+2` | Zooms and scrolls to the current selection |
+
+Zoom buttons and the timeline's view controls are the most reliable choice when browser or operating-system shortcuts intercept common plus, minus, or zero key combinations.
+
+## Why a shortcut may do nothing
+
+<AccordionGroup>
+  <Accordion title="A field is still active">
+    Text, numeric, caption-token, and rename controls intentionally block global shortcuts. Follow the field's own commit behavior. In the shared numeric control, `Escape` behaves like `Enter`: it commits a pending valid value and blurs rather than cancelling it.
+  </Accordion>
+  <Accordion title="The selection is not eligible">
+    Audio cannot be moved on the canvas; a boundary trim needs the playhead inside the clip; keyframe-lane toggling needs an animatable selection; and frame selection excludes invalid nesting combinations.
+  </Accordion>
+  <Accordion title="The command is context-sensitive">
+    Timeline, canvas, transport, and track commands can share letter keys. Focus the intended area and use visible controls for ambiguous operations.
+  </Accordion>
+  <Accordion title="The browser owns the key">
+    Browser zoom, tab navigation, fullscreen security, or assistive technology may intercept a key. Use the corresponding editor button when available.
+  </Accordion>
+</AccordionGroup>
+
+<CardGroup cols={2}>
+  <Card title="Context menus" icon="computer-mouse" href="/editor/reference/context-menus">
+    Find the same commands close to the layer you are editing.
+  </Card>
+  <Card title="Timeline track controls" icon="sliders" href="/editor/timeline/track-controls">
+    Combine keyboard commands with track visibility, locking, ordering, and selection controls.
+  </Card>
+</CardGroup>

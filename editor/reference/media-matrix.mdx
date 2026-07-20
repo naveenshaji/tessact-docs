@@ -1,0 +1,133 @@
+---
+title: Media and layer matrix
+description: Compare acquisition, decoding, timeline visualization, source-time behavior, and render participation.
+icon: photo-film-music
+---
+
+The editor separates three concepts that can look interchangeable at first:
+
+1. A **source asset** is uploaded, selected from the workspace library, or returned by a supported service.
+2. A **timeline layer** is one use of that source in the current draft.
+3. An **evaluated frame** is what the preview and final H.264 render produce at a specific composition frame.
+
+Changing one timeline layer does not rewrite its source asset. Duplicating a layer creates another timeline instance that may continue to reference the same media.
+
+## Acquisition and authoring
+
+| Kind | Bin / Library | Upload or drop | Clipboard | Draw / insert tool | AI Search |
+|---|:---:|:---:|:---:|:---:|:---:|
+| Video | ✓ | ✓ | Copied Tessact layer | — | Supported video result |
+| Livestream source | Library only; final MP4 or ready chunk group | — | — | — | — |
+| Audio | ✓ | ✓ | Copied Tessact layer | — | Supported audio result |
+| Image | ✓ | ✓ | PNG or copied Tessact layer | — | Supported image result |
+| GIF | ✓ | ✓ | Copied Tessact layer | — | — |
+| Text | Draft-local | Plain text creates a layer when pasted on canvas | ✓ | `T` | — |
+| Solid | Draft-local | — | Copied Tessact layer | `R` | — |
+| Frame | Draft-local | — | Copied Tessact layer | `F` | — |
+| Captions | Draft-local, derived from a video layer with detected audio/subtitle metadata | — | Copied Tessact layer | Caption creation action | — |
+
+## Preview and timeline behavior
+
+| Layer | Visible on canvas | Timeline visualization | Has source-time mapping | Can carry audio | Frame-trimmable | Split at interior playhead |
+|---|:---:|---|:---:|:---:|:---:|:---:|
+| Video | ✓ | Filmstrip when decode succeeds | ✓ | ✓, if the source contains audio | ✓ | ✓ |
+| Livestream group | ✓ | Grouped video clip and update placeholder when source grows | Chunk-aware mapping | ✓, when recorded chunks contain audio | ✓ | ✓, subject to group detachment semantics |
+| Audio | — | Waveform when decode succeeds | ✓ | ✓ | ✓ | ✓ |
+| Image | ✓ | Thumbnail / color-identifiable clip body | — | — | ✓ | ✓ |
+| GIF | ✓ | Animated-media clip body; no filmstrip | Playback rate; verify continuity after structural edits | — | ✓, with continuity caveat | ✓, with restart caveat |
+| Text | ✓ | Named text layer | — | — | ✓ | ✓ |
+| Solid | ✓ | Color-identifiable layer | — | — | ✓ | ✓ |
+| Frame | Container plus appearance | Frame layer with nested descendants | — | — | ✓ | ✓, subject to structural eligibility |
+| Captions | ✓ when tokens are active | Caption layer | Token timestamps map from milliseconds | — | ✓ | ✓ |
+
+All timeline layers have a composition start and frame duration. “Source-time mapping” means the layer additionally maps those composition frames into a decoded source using a source offset and, where supported, playback rate.
+
+## Inspector capability summary
+
+| Layer | Transform | Crop | Playback rate | Inspector volume | Typography | Layout | Effects | Shadows |
+|---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| Video | ✓ | ✓ | ✓ | If source has audio | — | — | ✓ | ✓ |
+| Audio | — | — | ✓ | ✓ | — | — | — | — |
+| Image | ✓ | ✓ | — | — | — | — | ✓ | ✓ |
+| GIF | ✓ | ✓ | ✓ | — | — | — | ✓ | ✓ |
+| Text | ✓ | ✓ | — | — | ✓ | — | Typewriter / blur | ✓ |
+| Solid | ✓ | ✓ | — | — | — | — | — | ✓ |
+| Frame | ✓ | ✓ | — | — | — | ✓ | ✓ | ✓ |
+| Captions | ✓ | ✓ | — | — | ✓ | — | Typewriter / blur | ✓ |
+
+For individual fields, read the [Property matrix](/editor/reference/property-matrix).
+
+## Source mapping
+
+For an active media layer:
+
+```text
+source time = source in-point
+            + time elapsed since the layer begins × playback rate
+```
+
+The preview evaluates a layer from its start through its last active composition frame. A left trim normally advances the video or audio source in-point; a right trim shortens the active duration. Playback rate changes how quickly source time advances without changing the draft frame rate. A trimmed or split GIF can restart at the new boundary, so review animation continuity after either edit.
+
+Audio fade durations are authored with timeline handles rather than in the Inspector. Video and audio inspectors provide base volume where applicable.
+
+<Note>
+  Source metadata can use a native frame rate or time base different from the draft. The editor's public timing contract is the draft's integer composition frames; decoding chooses the best source sample for that requested time.
+</Note>
+
+## Audio gain path
+
+Audio level begins with the layer's decibel value:
+
+```text
+base gain = 0, when dB = -60
+base gain = 10^(dB / 20), otherwise
+evaluated gain = base gain × fade-in multiplier × fade-out multiplier
+```
+
+Track mute and preview mute are monitoring/composition controls applied in addition to layer gain. A waveform is only a visualization; its height does not replace the numeric gain setting.
+
+## Media formats and MIME types
+
+Upload acceptance is broader than a single extension list and depends on browser-reported MIME type, metadata probing, and the browser's actual decode support.
+
+| Family | Typical examples | Important caveat |
+|---|---|---|
+| Video | MP4, WebM, QuickTime-compatible files | A recognized container may still contain a codec that the browser cannot decode |
+| Audio | MP3, WAV, AAC/M4A, Ogg-family audio | Waveform creation and preview decode can fail independently of upload |
+| Image | PNG, JPEG, WebP, common browser image formats | Very large dimensions increase decode and canvas memory |
+| Animated image | GIF and supported animated formats | Duration and frame decoding depend on usable metadata |
+
+See [Supported media formats](/editor/media/supported-formats) for the operational upload checklist.
+
+## Remote media
+
+Remote media needs a URL that remains readable by the browser and render path. A thumbnail URL succeeding does not prove the full-resolution asset or byte-range requests will succeed. Insert a result and verify full-resolution decoding before building dependent timing around it.
+
+## Cache layers
+
+The timeline can reuse decoded filmstrip frames and waveform data to avoid repeating expensive work. Cache artifacts are disposable visual accelerators:
+
+- A missing cache should trigger regeneration, not change the layer's authored values.
+- A stale filmstrip does not alter the evaluated video frame.
+- Clearing browser site data can make filmstrips and waveforms rebuild.
+- Export reads the actual media and draft state, not a screenshot of the timeline cache.
+
+## H.264 render participation
+
+| Layer | Included in final H.264 image | Included in final H.264 audio |
+|---|:---:|:---:|
+| Video | ✓ when visible at the frame | ✓ when source has audio and gain/track state permits |
+| Audio | — | ✓ when active and not effectively muted |
+| Image / GIF | ✓ when visible at the frame | — |
+| Text / Solid / Frame / Captions | ✓ when visible at the frame | — |
+
+Timeline guides, selection boxes, handles, the playhead, panel UI, waveform drawings, and filmstrips are editor chrome and are not rendered into the video.
+
+<CardGroup cols={2}>
+  <Card title="Media workflow" icon="diagram-project" href="/editor/media/overview">
+    Follow media discovery, upload, insertion, placement, and verification in the editor.
+  </Card>
+  <Card title="Media troubleshooting" icon="wrench" href="/editor/troubleshooting/media">
+    Diagnose metadata, decoding, proxy, waveform, and caption-source failures.
+  </Card>
+</CardGroup>

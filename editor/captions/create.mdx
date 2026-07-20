@@ -1,0 +1,47 @@
+---
+title: "Create captions"
+description: "Apply available source subtitles from a video layer with audio to create a caption layer."
+icon: "closed-captioning"
+---
+
+Caption creation starts from a video layer whose asset reports an audio track. The selected video interval determines which transcript cues are used. Create captions at `1×` for the most predictable timing; captions created from speed-adjusted video require a complete synchronization review.
+
+## Create from the Wayanad narration
+
+<Steps>
+  <Step title="Select the source layer">
+    Choose an audio-capable video in the timeline. Use `1×` while creating captions; for a sped-up or slowed-down clip, normalize the rate or verify the full caption range carefully after creation.
+  </Step>
+  <Step title="Open Captions">
+    Expand **Captions** in the source inspector. Wait for available subtitle metadata to load.
+  </Step>
+  <Step title="Apply the available source language">
+    Choose the auto-detected source entry only after it is shown as available. The editor requests cues for the selected clip's in and out range.
+  </Step>
+  <Step title="Wait for the caption layer">
+    Successful cues are clamped to the source interval, converted into timed word tokens, stored as a caption asset, and inserted directly above the source track.
+  </Step>
+  <Step title="Verify the result">
+    Seek into several phrases and compare audio, displayed words, timeline interval, and token times.
+  </Step>
+</Steps>
+
+## Default layer geometry
+
+The initial caption box is centered horizontally, placed below composition center, limited to a practical width, and sized for two lines. Defaults include a bold TikTok Sans treatment, white text, bright highlight, black stroke, centered alignment, and a two-second page duration. Treat them as a readable starting point—not a final design.
+
+## Range behavior
+
+Only cues intersecting the selected source interval are kept. Cue starts and ends are clamped to the range, empty or zero-duration cues are discarded, and sentence-like cues are split into word-level time segments for page-based rendering.
+
+## Caption-source link
+
+Creation links the new caption layer to its source video in both directions. That relationship keeps ordinary moves and nudges together. Trimming the video can propagate to its captions; trimming the caption alone does not change the video. The timeline link control can unlink the pair.
+
+Deleting either member of an intact source-video/caption pair deletes the linked member too. Unlink first when you need to remove or restructure only one. Also unlink before splitting a linked video/caption pair: a split does not rebuild the source relationship across the resulting pieces. Keep the pieces independently timed, or recreate captions from the intended source video when you need a linked caption layer.
+
+<Warning>
+  Language options that are pending, processing, or not yet successfully applied are not verified caption data. Do not time the edit around them until a caption layer is created and audibly checked. Treat captions from any non-`1×` source as unverified even before later speed changes.
+</Warning>
+
+See [caption timing](/editor/captions/timing) and [caption diagnostics](/editor/troubleshooting/media#caption-source-problems).

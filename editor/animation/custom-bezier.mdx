@@ -1,0 +1,39 @@
+---
+title: "Custom cubic Bézier curves"
+description: "Design exact easing with two control points and understand overshoot bounds."
+icon: "bezier-curve"
+---
+
+A custom curve is stored as `cubic-bezier(x1, y1, x2, y2)`. The keyframe inspector provides a visual editor plus numeric fields.
+
+## Axis bounds
+
+| Coordinate | Range | Meaning |
+| --- | --- | --- |
+| `x1`, `x2` | 0–1 | Time positions; must remain monotonic enough to solve progress |
+| `y1`, `y2` | −2–2 | Output shape; values outside 0–1 create anticipation or overshoot |
+
+## How evaluation works
+
+For each normalized time `x`, the evaluator solves the Bézier curve's parametric X position to find parameter `t`, then evaluates the Y curve at that `t`. It uses iterative Newton steps followed by bounded binary refinement, producing a stable value for each frame.
+
+```text
+x(t) = cubic(t, x1, x2)
+y(t) = cubic(t, y1, y2)
+find t where x(t) ≈ normalized frame progress
+eased progress = y(t)
+```
+
+## Build a restrained entrance
+
+Start from **Smooth** (`0.16, 1, 0.3, 1`). Reduce the early Y control when the layer arrives too abruptly, or move `x1` right when it should hold longer before accelerating. Apply the curve, then review at normal speed.
+
+## Overshoot implications
+
+Y values below 0 or above 1 can drive a property outside the endpoint range. This can briefly create negative-looking offsets, scale beyond the final value, or opacity that is later clamped. Inspect intermediate canvas bounds and crop.
+
+<Warning>
+  A visually dramatic curve preview can be almost invisible across a two-frame interval or excessive across a long interval. Curve and duration must be designed together.
+</Warning>
+
+See [Easing presets](/editor/animation/easing) and [Motion paths](/editor/animation/motion-paths).

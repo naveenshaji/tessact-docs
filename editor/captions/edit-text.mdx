@@ -1,0 +1,43 @@
+---
+title: "Edit caption text and tokens"
+description: "Correct words and per-token timestamps in the Tokens inspector."
+icon: "pen-to-square"
+---
+
+The **Tokens** section lists every caption entry and displays the total count. Each row contains a start timestamp, end timestamp, and text field.
+
+## Correct a token
+
+1. Seek to the spoken word.
+2. Edit the token text without adding unintended leading or trailing whitespace.
+3. Adjust start and end timestamps if the highlight or page change is early or late.
+4. Press **Enter**, **Escape**, or blur the field to commit the edit.
+5. Replay the phrase and inspect the adjacent token boundary.
+
+## Commit behavior
+
+Token fields update the preview while you type and group continuous typing into one practical undo step. The edit commits when you pause or finish the field, keeping feedback responsive without creating one undo entry per keystroke.
+
+## Timestamp validity
+
+Timestamp inputs can temporarily hold an incomplete value while focused. Only valid values update caption timing. A stable token should satisfy:
+
+```text
+0 ≤ start time < end time
+timing remains coherent with neighboring entries
+```
+
+## Understand shared caption text
+
+Token edits apply to the caption source used by the layer. If the draft reuses that caption source in multiple places, a correction can appear in every linked instance; verify the draft structure before making broad corrections.
+
+## Text conventions
+
+- Preserve intentional punctuation that improves reading rhythm.
+- Remove filler only when editorial policy allows it and meaning remains accurate.
+- Use consistent spelling for place names such as **Wayanad**.
+- Avoid manually inserting line breaks before testing page grouping and box width.
+
+<Tip>
+  Fix neighboring tokens as a phrase, then replay from before the first corrected word. Isolated frame checks can miss unnatural reading rhythm.
+</Tip>

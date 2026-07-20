@@ -1,0 +1,38 @@
+---
+title: "Select and move clips"
+description: "Reposition intervals while preserving source content and relative timing."
+icon: "arrows-left-right"
+---
+
+Moving a clip changes where its active interval falls in composition time. It does not inherently change the selected source range, visual geometry, effects, or keyframe values.
+
+## Move one clip
+
+1. Select the clip body, avoiding trim edges and fade handles.
+2. Drag horizontally to a new start frame, or vertically to a valid track insertion/reassignment target.
+3. Use snapping guides to meet another item's start or end boundary.
+4. Release, then inspect the new first and last frames.
+
+## Move a group
+
+Multi-select related layers—such as title, backing solid, and sound effect—before dragging. Their start frames shift by the same delta, preserving internal offsets. Parent-child structures should be moved through the appropriate container or coherent selection so layout relationships remain clear.
+
+The move expansion automatically includes intact linked layers and owned frame descendants where the operation requires them. Hold **Option/Alt** while starting a drag to duplicate the move set and place the copies instead. An invalid row, hierarchy, collision, or insertion position produces not-allowed destination feedback; do not release until the preview indicates a valid placement.
+
+## Keyframes move with layer intent
+
+Animation tracks are stored as frame-addressed data associated with a layer. A normal timeline move shifts their keyframe frame numbers by the same composition delta, preserving motion relative to the clip. Verify that the shifted animation still lands on the intended narrative beat; nested timing, copied legacy data, or independently selected track points can create a different outcome than expected.
+
+## Avoid accidental trim
+
+At low zoom, the clip body and trim edge can occupy only a few pixels. If the pointer changes to an edge affordance, zoom in before dragging. A move preserves duration; a trim changes a boundary and can change visible source content.
+
+<Tip>
+  The playhead is a useful visual reference, but it is not a magnetic snap target. For an exact destination frame, zoom in and verify the resulting interval numerically.
+</Tip>
+
+## Gaps and overlaps
+
+A gap is not automatically filled. An overlap between visual layers is valid and follows stack order; an overlap between audible layers mixes their audio unless muted or faded. After a structural move, scan vertically for unintended simultaneous layers and horizontally for blank intervals.
+
+See [selection](/editor/editing/selection), [snapping](/editor/editing/snapping), and [trimming](/editor/timeline/trim).

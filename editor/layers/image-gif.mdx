@@ -1,0 +1,35 @@
+---
+title: "Image and GIF inspectors"
+description: "Edit static and animated image layers while preserving aspect ratio and timing intent."
+icon: "images"
+---
+
+Images and GIFs share visual geometry and appearance controls. A GIF adds time-based playback behavior.
+
+## Shared controls
+
+Both inspectors expose **Transform** with alignment, position, dimensions, rotation, and scale; **Appearance** with opacity, blend mode, border radius, stroke width, and stroke color; and **Crop** when enabled.
+
+## Image behavior
+
+A static image displays the same source pixels throughout its active interval unless geometry, crop, effects, shadows, or opacity are animated. Its timeline duration is editorial rather than derived from a recorded source duration.
+
+## GIF behavior
+
+A GIF has an animated source timeline and a **GIF** section containing playback rate from `0.25×` to `5×` in `0.05×` steps. Increasing the rate caps duration at the smaller of the current interval and remaining source. Decreasing the rate tries to expand through the remaining source, stopping at the nearest clip on the same track or at a parent boundary. Review existing fades and keyframes afterward because they may extend beyond a newly shortened layer.
+
+A left trim or split can restart GIF playback at the new boundary instead of continuing from the corresponding point in the original animation. Review the complete interval and every structural boundary; a good first frame does not prove the loop seam or source continuity is clean.
+
+## Quality and scaling
+
+The layer's width and height are composition-space pixels, not the source's intrinsic resolution. Scaling a small raster image above 100% of its available detail can reveal softness. Oversized sources consume more memory. Preserve aspect ratio unless intentional distortion is part of the design.
+
+## Transparency and borders
+
+Opacity multiplies source alpha. Border radius clips the visual corners, and stroke is composed around the layer's visual box. GIF transparency can produce matte fringes; test over both dark and light solids.
+
+<Warning>
+  Treat only the standard controls currently shown for the selected source as actionable. Conditional placeholder metadata is not a substitute for a resolved media asset.
+</Warning>
+
+See [crop](/editor/editing/crop), [supported formats](/editor/media/supported-formats), and [effects](/editor/effects/layer-effects).

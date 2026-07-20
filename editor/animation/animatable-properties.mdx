@@ -1,0 +1,39 @@
+---
+title: "Animatable properties"
+description: "Know which geometry, finish, effect, and shadow values can own keyframe tracks."
+icon: "list-check"
+---
+
+The base animation system supports numeric properties. A keyframe diamond appears beside controls that can create a track for the selected layer and context.
+
+## Core property set
+
+| Family | Properties | Stored interpretation |
+| --- | --- | --- |
+| Position | X / left, Y / top | Composition or parent-space pixels / managed offset |
+| Size | Width, height, scale | Pixels for box size; multiplier for scale |
+| Orientation | Rotation | Angle |
+| Appearance | Opacity, border radius, stroke width | 0–1 alpha or pixel values |
+| Crop | Left, top, right, bottom | Non-negative crop values |
+
+## Effects and shadows
+
+Effect parameter tracks use `effect.<instanceId>.<parameterId>`. Their min, max, step, and unit come from the effect definition. Shadow tracks use `shadows.<index>.offsetX`, `offsetY`, or `blur`.
+
+## Type support
+
+A property can exist in the generic track model but be unavailable for a specific layer. For example, an audio-only layer has no visual geometry inspector. The visible diamond beside a live control is the user-facing authority.
+
+## Layout-managed properties
+
+Auto-layout and grid containers can own a child's base position. Entering managed layout may clear absolute X/Y ownership and its tracks to avoid conflicting placement systems. Size tracks can also interact with fixed, hug, fill, grow, shrink, and constraints.
+
+<Warning>
+  Animate either the layout target or a supported child offset with clear intent. Keyframing absolute position and asking a parent flow algorithm to own the same axis creates ambiguous design logic and can be normalized away.
+</Warning>
+
+## Value normalization
+
+Width and height remain at least one pixel, scale stays positive, opacity clamps to 0–1, radius and stroke are non-negative, and effect values clamp to their definitions. The keyframe inspector converts display values where a control has a user-facing unit.
+
+See the [property matrix](/editor/reference/property-matrix) and [layout guide](/editor/canvas/auto-layout).

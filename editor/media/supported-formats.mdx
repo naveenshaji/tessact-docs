@@ -1,0 +1,36 @@
+---
+title: "Supported media guidance"
+description: "Choose source formats that upload, decode, preview, and render reliably."
+icon: "file-circle-check"
+---
+
+Tessact accepts broad image, video, and audio media categories. Reliability depends on the full chain: file signature, container, codec, remote ingestion, browser decode support, source metadata, and render access.
+
+## Recommended source families
+
+| Kind | Practical choices | Preserve and verify |
+| --- | --- | --- |
+| Video | MP4 with a common browser-decodable codec | Frame rate, pixel dimensions, rotation metadata, audio channels |
+| Audio | MP3, WAV, or another browser-decodable audio source | Sample integrity, channel layout, duration, loudness |
+| Still image | PNG, JPEG, WebP, or supported SVG | Alpha, color appearance, pixel dimensions, SVG safety |
+| Animated image | GIF where a GIF-specific layer is created | Looping, source duration, playback rate, alpha behavior |
+
+<Note>
+  The file extension is only a hint. A `.mp4` container can carry different codecs, and browser support varies. Diagnose using actual source metadata when a familiar extension fails.
+</Note>
+
+## Source-quality tradeoffs
+
+High-resolution sources preserve reframing freedom but increase download, decode, memory, filmstrip, and render costs. A still image several times larger than the composition rarely improves the visible result unless the edit zooms deeply into it.
+
+Variable-frame-rate video can make source-time reasoning less intuitive. The editor ultimately evaluates composition frames at the project frame rate, while source decoding selects the corresponding media time. For exact synchronization, use normalized source files when possible.
+
+## Transparency
+
+PNG and WebP can carry alpha; JPEG cannot. An SVG can be transparent but is parsed differently from raster images. GIF transparency is limited and can produce fringes. Inspect edges against both dark and light solids before finalizing.
+
+## Security and access
+
+Remote media must remain accessible to the editor and render service. A browser preview backed by a temporary URL does not by itself prove durable render access; imported assets should resolve to the workspace's managed remote reference.
+
+Use the [media matrix](/editor/reference/media-matrix) for layer behavior and [media troubleshooting](/editor/troubleshooting/media) for failures.

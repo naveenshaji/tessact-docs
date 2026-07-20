@@ -1,0 +1,135 @@
+---
+title: Property matrix
+description: A layer-by-layer map of inspector sections, timeline controls, and animation support.
+icon: table-cells
+---
+
+The Inspector is selection-driven. A section appears only when the selected layer type supports it; a mixed selection exposes the safe intersection or purpose-built bulk controls.
+
+## Core inspector support
+
+| Layer | Transform | Appearance | Crop | Type controls | Playback | Audio | Layout | Caption controls | Layer effects | Shadows |
+|---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| Video | ✓ | ✓ | ✓ | Face tracking when uploaded, processed, and eligible | ✓ | When source has audio | — | Transcript action when eligible | ✓ | ✓ |
+| Audio | — | — | — | — | ✓ | ✓ | — | — | — | — |
+| Image | ✓ | ✓ | ✓ | — | — | — | — | — | ✓ | ✓ |
+| GIF | ✓ | ✓ | ✓ | — | ✓ | — | — | — | ✓ | ✓ |
+| Text | ✓ | ✓ | ✓ | Typography | — | — | — | — | Typewriter and blur | ✓ |
+| Solid | ✓ | ✓ | ✓ | — | — | — | — | — | — | ✓ |
+| Frame | ✓ | ✓ | ✓ | — | — | — | Manual, auto layout, or grid | — | ✓ | ✓ |
+| Captions | ✓ | ✓ | ✓ | Typography | — | — | — | Timing, paging, style, tokens | Typewriter and blur | ✓ |
+
+`✓` indicates an authorable section in the video-draft editor. Individual fields can still be read-only because of selection count, source metadata, or the current frame-layout mode.
+
+Face tracking is status-driven rather than universally actionable. An eligible uploaded and processed video can expose detection for `9:16`, `4:5`, or `1:1`; enabling it changes composition dimensions, can update the composition frame rate, and fill-fits the selected video. See [Face tracking and automatic reframing](/editor/layers/video-face-tracking).
+
+## Transform fields
+
+| Field | Video | Image | GIF | Text | Solid | Frame | Captions | Keyframeable |
+|---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| Left | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| Top | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| Width | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| Height | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| Rotation | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| Scale | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| Opacity | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| Border radius | ✓ | ✓ | ✓ | Text background only | ✓ | ✓ | — | Visual-layer radius; text-background radius is static |
+| Stroke width | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| Crop left/top/right/bottom | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+
+Coordinates and dimensions are stored in composition pixels, independent of the on-screen preview scale. Rotation is in degrees. Scale and opacity are evaluated values; the exact editor control may display a friendlier unit.
+
+## Appearance and type
+
+| Property family | Supported layers | Notes |
+|---|---|---|
+| Blend mode | Visual layers | Changes compositing with layers behind the selection |
+| Fill / color | Text, captions, solid, frame as applicable | Text and caption color belongs to typography/appearance; solid color is the layer fill |
+| Stroke | Visual layers with appearance support | Width is keyframeable; stroke color is edited as a static style value |
+| Corner radius | Video, image, GIF, solid, frame; optional text background | Evaluated before clipping and most post-processing effects; captions have no independent radius control |
+| Font family, weight, size, line height, spacing, alignment | Text and captions | Caption tokens inherit the selected caption layer's typography |
+| Caption page duration and maximum lines | Captions | Page duration is entered in milliseconds and mapped to frame evaluation |
+| Caption token text | Captions | Token edits commit after a short idle period or when focus leaves the field |
+
+Fill-like color fields for text, captions, solids, frames, and text backgrounds support a two-stop linear gradient. Stroke and shadow colors are solid-only. See [Colors and gradients](/editor/effects/colors-gradients) for alpha, angle, presets, and grouped Undo behavior.
+
+## Playback and source mapping
+
+| Control | Video | Audio | GIF | Behavior |
+|---|:---:|:---:|:---:|---|
+| Timeline start and duration | ✓ | ✓ | ✓ | Composition-frame placement |
+| Source start offset | ✓ | ✓ | Verify after a left trim or split | Video/audio advance with the trimmed source range; a GIF can restart at a new boundary |
+| Playback rate | ✓ | ✓ | ✓ | Maps composition elapsed time into source elapsed time |
+| Volume | When audio exists | ✓ | — | Inspector dB range is `-60` to `+20`; `-60 dB` is silence |
+| Fade handles | When audio exists | ✓ | — | Timeline fades multiply the base gain and preserve a one-frame gap |
+| Filmstrip | ✓ | — | — | Video-only timeline visualization; not an export property |
+| Waveform | When audio exists | ✓ | — | Timeline visualization derived from decoded audio |
+
+## Effects and shadows
+
+| Family | Layers | Authorable controls |
+|---|---|---|
+| Typewriter Reveal | Text, captions | Reveal progress/timing controls exposed by the effect inspector |
+| Layer Blur | Text, captions, image, video, GIF, frame | Blur parameters exposed by the effect inspector |
+| Vignette | Image, video, GIF, frame | Post-processing parameters |
+| Scan Lines | Image, video, GIF, frame | Post-processing parameters |
+| CRT Curvature | Image, video, GIF, frame | Post-processing parameters |
+| Film Grain | Image, video, GIF, frame | Post-processing parameters |
+| Riso Print | Image, video, GIF, frame | Post-processing parameters |
+| Glitch | Image, video, GIF, frame | Post-processing parameters |
+| RGB Split | Image, video, GIF, frame | Post-processing parameters |
+| Radial Chromatic | Image, video, GIF, frame | Post-processing parameters |
+| Blur | Image, video, GIF, frame | Post-processing parameters |
+| Pixelate | Image, video, GIF, frame | Post-processing parameters |
+| Blueprint Mode | Image, video, GIF, frame | Post-processing parameters |
+| Halftone | Image, video, GIF, frame | Post-processing parameters |
+| Film Dust | Image, video, GIF, frame | Post-processing parameters |
+| Sparkles | Image, video, GIF, frame | Post-processing parameters |
+| Shadows | Captions, frame, GIF, image, solid, text, video | Multiple shadows; enabled, color, X, Y, and blur. X, Y, and blur can be animated |
+
+Only effects offered by **Add effect** are part of the authoring surface. See [Layer effects](/editor/effects/layer-effects) for ordering and evaluation details.
+
+## Frame layout matrix
+
+| Capability | Manual frame | Auto layout frame | Grid frame |
+|---|:---:|:---:|:---:|
+| Children keep manual horizontal and vertical positions | ✓ | — | — |
+| Direction and wrapping | — | ✓ | — |
+| Main/cross-axis alignment | — | ✓ | — |
+| Gap and four-side padding | — | ✓ | ✓ |
+| Layout spring: stiffness, damping, mass | — | ✓ | — |
+| Fixed column count | — | — | ✓ |
+| Auto-fit / auto-fill columns | — | — | ✓ |
+| Fill / hug sizing | — | — | ✓ |
+| Explicit tracks and weights | — | — | ✓ |
+| Dense flow / packing | — | — | ✓ |
+
+Moving a child in a layout-managed frame changes its layout membership or order rather than establishing an arbitrary absolute position. Read [Auto layout](/editor/canvas/auto-layout) and [Grid layout](/editor/canvas/grid-layout) before converting a populated frame.
+
+## Animation support
+
+Base property keyframes cover transform, opacity, rotation, scale, border radius, stroke width, and crop edges. Effect parameter keys are keyframeable when the effect defines them as animatable. Shadow X, Y, and blur can also create lanes.
+
+Keyframes store whole evaluated frames and use the destination keyframe's easing for the segment leading into it. See [Animatable properties](/editor/animation/animatable-properties) and [Easing](/editor/animation/easing).
+
+Timeline visual-fade handles are supported for video, image, GIF, text, and solid layers. Use opacity keyframes for frames and captions. Audio and video-audio fades use separate audio handles. See [Visual fade handles](/editor/timeline/visual-fades).
+
+## Multiple selection
+
+The multi-selection inspector groups controls by compatibility:
+
+- Timing and transforms can apply to eligible visual layers as a group.
+- Alignment and distribution need multiple visual layers.
+- Typography appears only when the selection has compatible text-bearing layers.
+- Type-specific sections disappear for mixed selections when a safe shared edit is unavailable.
+- Layer order operations use the applicable stacking context; frame relationships can constrain the result.
+
+<CardGroup cols={2}>
+  <Card title="Layer types" icon="layer-group" href="/editor/layers/overview">
+    Read the behavior and constraints of every authorable layer.
+  </Card>
+  <Card title="Animation properties" icon="wave-sine" href="/editor/animation/animatable-properties">
+    See lanes, values, interpolation, and boundary behavior.
+  </Card>
+</CardGroup>

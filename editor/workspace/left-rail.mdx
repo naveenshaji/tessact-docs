@@ -1,0 +1,31 @@
+---
+title: "Left rail, media panels, and Library"
+description: "Switch between Bin and AI Search or open the Library selection modal."
+icon: "sidebar"
+---
+
+The left rail controls source acquisition. Bin and AI Search occupy the resizable left panel. Library is different: it closes the active left panel and opens a modal selection surface over the editor.
+
+| Destination | Surface | Use it for |
+| --- | --- | --- |
+| **Bin** | Left panel | Review assets already associated with the draft |
+| **Library** | Modal | Select one or more workspace assets and add them at the playhead |
+| **AI Search** | Left panel | Find supported workspace sources with a semantic query |
+
+## Open, switch, collapse, and dismiss
+
+Select Bin or AI Search to open its panel. Choose the other panel destination to switch content; choosing the active panel again collapses it and returns horizontal space to the canvas. Select Library to clear the active left panel and open the Library modal. Close or complete that modal to return to the editing surface; selecting Library again is not a panel-collapse gesture.
+
+<Frame caption="Library media selected for the Wayanad sequence">
+  <img src="/images/editor/screenshots/editor-media-library-wayanad-selection.png" alt="Tessact editor Library modal with a Wayanad media asset selected" />
+</Frame>
+
+## From source asset to timeline layer
+
+A source asset and a timeline layer are related but not identical. The asset represents reusable media metadata and a remote file reference. Inserting it creates a layer instance with its own start frame, duration, transform, crop, opacity, audio settings, keyframes, effects, and parent relationship. Inserting the same source twice creates two independently editable layer instances.
+
+<Note>
+  Local operating-system files dropped into the editor are inserted at the current playhead. Always place the playhead intentionally before a drop.
+</Note>
+
+Continue with [Media overview](/editor/media/overview), [Bin](/editor/media/bin), [Library import](/editor/media/library), or the [AI Search guide](/editor/media/ai-search).

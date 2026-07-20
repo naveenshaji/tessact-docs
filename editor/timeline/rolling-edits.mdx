@@ -1,0 +1,40 @@
+---
+title: "Rolling edits"
+description: "Move a shared cut while preserving the outer duration of two adjacent clips."
+icon: "left-right"
+---
+
+A rolling edit adjusts the exact shared boundary between two adjacent items on the same track. The outgoing item gains exactly the time the incoming item loses, or vice versa. Their combined outer interval remains fixed. Source-backed media is constrained by available head/tail material; text, solids, frames, captions, and other non-media adjacency is constrained by interval rules instead.
+
+```text
+before: A [0, 60) + B [60, 120)
+after:  A [0, 54) + B [54, 120)
+outer interval remains [0, 120)
+```
+
+## When to roll
+
+- Change the precise action or dialogue handoff without shifting everything later.
+- Hide a camera movement at the tail of one shot by revealing more of the next.
+- Improve match motion while preserving music synchronization.
+- Refine a cut after downstream titles and captions are already timed.
+
+## Requirements
+
+The items must be on one track and meet exactly at a shared boundary. Hover the narrow `4 px` seam between them to reveal the rolling handle. For media, only the side being expanded needs unused head/tail source in that direction; the shrinking side needs enough interval to remain above its minimum duration. Non-media items do not have a decoded-source limit. Parent and minimum-duration constraints can still stop the roll.
+
+## Review method
+
+1. Play the original cut several times and identify what feels early or late.
+2. Roll only a few frames.
+3. Inspect outgoing last frame and incoming first frame.
+4. Replay at speed with audio enabled.
+5. Check dependent captions, sound effects, and visual overlays at the same beat.
+
+<Tip>
+  A video's picture and embedded audio roll together. A true J- or L-cut requires picture and audio to be separated first, and rolling can then operate only between adjacent items on the same track. Select the specific seam you mean to change.
+</Tip>
+
+## Rolling versus trimming
+
+Trimming one side alone creates a gap or overlap unless another edit compensates. Rolling couples the two boundaries and preserves the sequence's outer timing. Use [trimming](/editor/timeline/trim) for an isolated edge and rolling for a shared editorial decision.

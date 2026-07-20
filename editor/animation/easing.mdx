@@ -1,0 +1,41 @@
+---
+title: "Easing presets"
+description: "Choose how normalized time maps to motion between keyframes."
+icon: "chart-line"
+---
+
+Easing changes the rate of interpolation without changing keyframe frames or endpoint values. The selected easing record belongs to the **destination keyframe** for the interval leading into it.
+
+```text
+progress = (frame - current.frame) / (next.frame - current.frame)
+value = current.value + (next.value - current.value) × ease(next.easing, progress)
+```
+
+## Preset groups
+
+| Group | Presets | Character |
+| --- | --- | --- |
+| Basic | Linear, In, Out, In Out | Familiar timing fundamentals |
+| Natural | Smooth, Standard, Soft, Hold | Restrained UI and editorial motion |
+| Expressive | Cubic, Expo, Snap, Punch | Stronger acceleration or overshoot |
+| Entrance | Settle, Rise, Float | Arrival-focused curves |
+| Exit | Leave, Vanish | Departure acceleration |
+| Dynamics | Back, Recoil, Magnet | Pronounced anticipation or overshoot |
+
+## Choose by intent
+
+- Use **Out** or **Smooth** for an object entering and settling.
+- Use **In** for an object accelerating out.
+- Use **In Out** for travel between two equally important positions.
+- Use **Linear** for mechanical motion, steady progress, or a property that should change at constant rate.
+- Use overshoot curves sparingly on scale and position; they can leave safe areas or cause visible collisions.
+
+## Multi-selection
+
+Applying a preset writes the same easing string to every selected point. Curve buckets summarize how many selected points use each existing easing and let you narrow the selection to one curve family.
+
+<Note>
+  Easing is evaluated deterministically at each whole frame. A very short interval may have too few intermediate frames for a subtle curve to become visible.
+</Note>
+
+Continue to [Custom cubic Bézier curves](/editor/animation/custom-bezier).
