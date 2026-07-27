@@ -27,7 +27,7 @@ An empty search and a failed search can both leave the result area without cards
 
 ```mermaid
 flowchart TD
-  Submit["Search for misty Wayanad landscapes, tea estates"] --> Outcome{"What appears?"}
+  Submit["Search for misty landscapes, tea estates"] --> Outcome{"What appears?"}
   Outcome -->|Error message| Error["Record the message and request details"]
   Outcome -->|0 results| Refine["Select All and simplify one phrase"]
   Outcome -->|Result cards| Preview{"Does a result preview?"}
@@ -48,7 +48,7 @@ flowchart TD
 If you need to compare results across attempts, use the same workspace, draft, filter, and query. This example is specific enough to make the test easy to recognize:
 
 ```text
-misty Wayanad landscapes, tea estates
+misty landscapes, tea estates
 ```
 
 Select **All**, submit the query once, and record:
@@ -81,7 +81,7 @@ A completed `0 results` state is not an error. It means the search ran successfu
 Refine the search one change at a time:
 
 1. Switch the filter to **All**.
-2. Remove one descriptive phrase. For example, try `Wayanad tea estates`.
+2. Remove one descriptive phrase. For example, try `tea estates`.
 3. Replace a highly specific visual adjective with a broader term.
 4. Check spelling and place names.
 5. Submit once and compare the new count.
@@ -116,7 +116,7 @@ This section is optional. Use it when Tessact Support asks for additional techni
     Open your browser's developer tools, choose **Network**, and keep the panel open. Do not enable options that export cookies or browser storage.
   </Step>
   <Step title="Submit one identifiable search">
-    In AI Search, submit `misty Wayanad landscapes, tea estates` once. Use the request start time to identify the new search request in the Network list.
+    In AI Search, submit `misty landscapes, tea estates` once. Use the request start time to identify the new search request in the Network list.
   </Step>
   <Step title="Record the safe fields">
     Note the HTTP method and status, total duration, environment hostname, and any request, correlation, or trace ID shown in the response headers. Also record the short error detail if one is present.
@@ -222,7 +222,7 @@ Video draft title:
 Active workspace name:
 Environment hostname:
 Browser and operating-system version:
-Query: misty Wayanad landscapes, tea estates
+Query: misty landscapes, tea estates
 Filter: All / Visual / Dialogue / Audio
 Observed local time and time zone:
 Visible result count or exact error message:
