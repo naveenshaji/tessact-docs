@@ -1,0 +1,202 @@
+---
+title: "Livestream"
+sidebarTitle: "Livestream"
+description: "Stream directly into Tessact over RTMP to capture, review, and use AI features on live content in real time."
+tag: "New"
+---
+
+## Overview
+
+A livestream in Tessact is a Library asset that receives a live video signal. Point any RTMP encoder (OBS, Streamlabs, vMix, a hardware encoder, or ffmpeg) at the stream's ingest URL, and Tessact captures the session in recorded chunks while it is still running. You can watch the live feed, drop timecoded comments, cut clips in the Editor, and let AI indexing make the content searchable before the stream even ends.
+
+<Frame caption="A live session playing on the asset page while recording is in progress">
+  ![Tessact livestream asset page playing a live feed](/images/livestream/livestream-live-playback-live-v2.jpg)
+</Frame>
+
+- **Stream from anywhere:** Tessact provisions dedicated RTMP ingest details per stream; any RTMP-compatible tool can push to them.
+- **Recorded in chunks:** the session is captured as segments of a duration you choose, so recorded media appears while the stream is live.
+- **A growing asset:** the livestream behaves like any other Library asset. Comment on it, share it, open it in the Editor, and search it.
+- **AI-ready in real time:** each finished chunk is analysed, so transcripts, detections, and AI Search results build up during the session.
+
+---
+
+## Create a livestream
+
+<Steps>
+  <Step title="Open the Library and choose New livestream">
+    In the **Library**, select the chevron next to the new-folder button, or right-click empty space, and choose **New livestream**.
+
+    <Frame caption="The Library create menu with New livestream">
+      ![New livestream option in the Tessact Library create menu](/images/livestream/livestream-new-menu-live-v2.jpg)
+    </Frame>
+  </Step>
+  <Step title="Name the stream and pick a chunk size">
+    In the **Add Live Stream** dialog, enter a **Livestream name** and choose a **Chunk Size** of 1, 5, 10, 15, 30, or 60 minutes. Shorter chunks make recorded media and AI results appear sooner; longer chunks give the AI more continuous context per segment. **RTMP Pull** is the livestream method. Select **Configure Livestream**.
+
+    <Frame caption="Configuring the livestream name and chunk size">
+      ![Add Live Stream dialog with chunk size options](/images/livestream/livestream-configure-live-v2.jpg)
+    </Frame>
+  </Step>
+  <Step title="Wait for the stream receiver">
+    Tessact provisions a dedicated stream receiver. The dialog shows **Preparing Stream** for a short while, then reveals your streaming details.
+  </Step>
+  <Step title="Copy the RTMP URL and Stream Key">
+    Copy the **RTMP URL (Primary)** and **Stream Key (Primary)** into your streaming software. You can close the dialog with **Done** at any point.
+
+    <Frame caption="Connect your streaming software: RTMP URL and Stream Key">
+      ![RTMP URL and Stream Key shown after the stream is provisioned](/images/livestream/livestream-rtmp-details-live-v2.jpg)
+    </Frame>
+
+    <Check>The livestream now appears as a Library card with the status **Stream Created**.</Check>
+  </Step>
+</Steps>
+
+<Info>
+  You do not have to set up the encoder immediately. The RTMP URL and Stream Key stay available on the asset page: open the card's menu and choose **View details**, or select **Stream Details** on the asset page.
+</Info>
+
+<Frame caption="Stream Details is always available from the asset page">
+  ![Stream Details dialog showing status, RTMP URL and Stream Key](/images/livestream/livestream-stream-details-live-v2.jpg)
+</Frame>
+
+---
+
+## Connect your streaming software
+
+Any RTMP-compatible encoder works. In OBS Studio:
+
+1. Open **Settings → Stream** and set **Service** to **Custom**.
+2. Paste the **RTMP URL (Primary)** into **Server** and the **Stream Key (Primary)** into **Stream Key**, then select **OK**.
+3. Select **Start Streaming** when you are ready to send the signal.
+
+<Frame caption="OBS Studio configured with the Tessact RTMP server and stream key">
+  ![OBS Studio stream settings with Tessact RTMP details](/images/livestream/livestream-obs-settings-live-v2.jpg)
+</Frame>
+
+<Warning>
+  Treat the Stream Key like a password: anyone who has both the URL and the key can push video into your livestream.
+</Warning>
+
+---
+
+## Run the live session
+
+<Steps>
+  <Step title="Start the live session">
+    On the Library card menu or the asset page, choose **Start live session**. Tessact starts the stream receiver and the asset page begins polling for a signal.
+
+    <Frame caption="Starting the live session from the Library card">
+      ![Library card menu with Start live session](/images/livestream/livestream-card-start-live-v2.jpg)
+    </Frame>
+  </Step>
+  <Step title="Wait for the signal">
+    Until your encoder starts pushing, the asset page shows **Waiting for signal**. You can already enable **Start recording** here if you want capture to begin the moment the signal arrives.
+
+    <Frame caption="The live session is ready and waiting for the encoder signal">
+      ![Waiting for signal state on the livestream asset page](/images/livestream/livestream-waiting-signal-live-v2.jpg)
+    </Frame>
+  </Step>
+  <Step title="Start streaming from your encoder">
+    Begin streaming in OBS (or your encoder of choice). When the feed reaches Tessact, the page switches to **Signal Detected**.
+
+    <Frame caption="Signal Detected: the live feed is being received">
+      ![Signal detected state on the livestream asset page](/images/livestream/livestream-signal-detected-live-v2.jpg)
+    </Frame>
+  </Step>
+  <Step title="Start recording">
+    Select **Start recording** to begin capturing the session. The status changes to **Recording in progress**, live playback becomes available, and recorded media keeps appearing as new chunks are prepared.
+
+    <Frame caption="Recording in progress: chunks are captured as the stream continues">
+      ![Recording in progress state on the livestream asset page](/images/livestream/livestream-recording-live-v2.jpg)
+    </Frame>
+  </Step>
+</Steps>
+
+<Tip>
+  Recording is what produces recorded chunks and the final archive. Going live without recording is useful for a signal check; start recording before the moment you actually want to keep.
+</Tip>
+
+---
+
+## Watch, comment, and share
+
+While the session runs, the asset page plays the live feed with the standard Tessact player. The **Comments** panel works exactly as it does for uploaded videos: comments are timecoded, support `#tags` and `@mentions`, and notify collaborators. Use **Share** to give teammates access, and the Library card shows the live state at a glance (a pulsing red indicator with the current status).
+
+---
+
+## Edit while it is still live
+
+You can cut a livestream in the Editor before the stream ends:
+
+1. In the **Library**, create a **New video draft** and open it.
+2. In the Editor, open **Library**, select the livestream, and choose **Add to Timeline**.
+3. The ready chunks appear as one grouped clip with filmstrips and waveforms, ready to trim and arrange.
+
+<Frame caption="Importing a livestream into a video draft while it is live">
+  ![Import from Library dialog with a livestream selected](/images/livestream/livestream-draft-import-live-v2.jpg)
+</Frame>
+
+The livestream is a growing timeline. As new chunks finish, the end of the layer shows a purple livestream control. Select **Update live stream** to append the latest recorded material as an ordinary, undoable edit.
+
+<Frame caption="The growing livestream layer: Update live stream appends newly recorded chunks">
+  ![Livestream clip on the editor timeline with the update control](/images/livestream/livestream-update-timeline-live-v2.jpg)
+</Frame>
+
+For grouped-clip behaviour, trims, and troubleshooting inside the Editor, see [Livestream sources](/editor/media/livestream-sources).
+
+---
+
+## End the session and archive
+
+When the broadcast is over, choose **End live session** (also available as **End Stream** on the Library card menu). Tessact captures the trailing partial chunk, then stitches every recorded chunk into a single MP4. The Library card shows **Finalizing Stream** while this happens and settles on **MP4 Ready**, at which point the asset page plays the full recording like any other video. The recording stays in your Library; ending a stream tears down the live infrastructure, not the captured media.
+
+<Frame caption="After ending: Finalizing Stream, then MP4 Ready">
+  ![Library cards showing Finalizing Stream and MP4 Ready statuses](/images/livestream/livestream-mp4-states-live-v2.jpg)
+</Frame>
+
+---
+
+## Status reference
+
+| Status | Meaning | What to do |
+| --- | --- | --- |
+| **Preparing Stream** | Tessact is provisioning the stream receiver | Wait; streaming details appear when setup finishes |
+| **Stream Created** | Ingest is ready; the session has not started | Share the RTMP details with the encoder, then start the live session |
+| **Waiting for signal** | The session is live-ready but no feed is arriving | Start streaming from your encoder; optionally enable recording (the card then shows **Recording enabled, waiting for signal**) |
+| **Signal Detected** | A live signal is being received | Start recording when you want to capture |
+| **Recording in progress** | The signal is being captured in chunks | Watch, comment, and edit; end the session when done |
+| **Finalizing Stream** | The session has ended; the trailing chunk is captured and the recording is stitched | Wait; this includes a short grace period after the signal stops |
+| **MP4 Ready** | The stitched recording is available | Play, share, and edit it like any uploaded video |
+| **Stream Failed** | Provisioning or streaming hit an error | Check **Stream Details** for the reason, or create a fresh livestream |
+
+---
+
+## AI features on live content
+
+Because the session is captured in chunks, Tessact's AI can work on the stream while it is still running:
+
+- **Search during the stream:** each finished chunk is indexed, so scenes, shots, and dialogue from earlier in the session surface in [AI Search](/ai-search) before the stream ends.
+- **Transcripts and detections:** the asset's Metadata panel fills with transcriptions, keywords, and detected people as chunks complete.
+- **Faster with shorter chunks:** a 1 to 5 minute chunk size makes live AI results appear sooner; longer chunks favour deeper per-segment context.
+
+---
+
+## Related guides
+
+<Card title="AI Search" arrow="true" horizontal href="/ai-search">
+Find moments from your livestreams, and everything else in the Library, by describing them.
+</Card>
+
+<Card title="Livestream sources in the Editor" arrow="true" horizontal href="/editor/media/livestream-sources">
+How growing livestreams behave on the timeline: chunk groups, updates, and safe trimming.
+</Card>
+
+<Card title="Review assets with comments" arrow="true" horizontal href="/review-collaboration">
+Timecoded comments, #tags, and @mentions work on live sessions too.
+</Card>
+
+---
+
+<Check>
+You can now provision a livestream, push a signal from any RTMP encoder, record the session in chunks, collaborate on it live, and archive it as a searchable asset.
+</Check>

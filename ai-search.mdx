@@ -1,117 +1,254 @@
 ---
-title: "AI Search for Clips"
-description: "Instantly surface 1–3-minute, context-aware clips from any video using Tessact’s multimodal, LLM-powered search."
+title: "AI Search"
+sidebarTitle: "AI Search"
+description: "Find the exact moment across your library by describing scenes, shots, spoken moments, people, settings, and visual cues in plain language."
+tag: "New"
 ---
 
 ## Overview
 
-**AI Search for Clips** lets you type a natural-language prompt and receive ready-to-edit clips—normally between **1 and 3 minutes**—that match the *meaning* of your query, even when no exact words appear on-screen or in the transcript. The engine fuses computer vision, audio analysis, OCR, and a fast large-language model (LLM) that understands entire story arcs, so it can infer implied scenes (e.g., “hero triumphs” or “tense negotiation”) that traditional metadata alone would miss.
+AI Search finds moments by meaning, not by filename. Describe what you remember (a scene, a shot, a spoken line, a person, a mood) and Tessact returns the matching moments from across your library, each with a thumbnail, a time range, and a one-click path into the asset or the Editor.
 
-<Frame caption="Results: semantically matching clips with scrub previews">
-![Search results grid](/images/ai-search-results.jpg)
+<Frame caption="The AI Search landing page">
+  ![AI Search landing page with the Find the exact moment search bar and recent searches](/images/ai-search/ai-search-hero-live-v2.jpg)
 </Frame>
+
+- **One search surface:** a single query runs across video, image, audio, and document assets in the workspace.
+- **Moments, not files:** video results are shots, scenes, and spoken spans with usable in and out points, ready to preview or send to the Editor.
+- **Multilingual dialogue:** spoken-word search works across languages, including Hindi and Hinglish.
+- **Understands intent:** the query is interpreted before it is matched; AI Search even adjusts loose wording and tells you when it did.
 
 ---
 
-## Accessing AI Search for Clips
+## Open AI Search
 
-You can open AI Search for Clips by clicking on the **Search** icon in the root left sidebar on any screen.
+Select **AI Search** at the very top of the left sidebar, above your Productivity links. You can also start from the **Library**: expand the search field in the action bar, type a query, and press <kbd>Enter</kbd>; the search runs scoped to the folder you were in.
+
+<Frame caption="AI Search sits at the top of the sidebar">
+  ![AI Search entry at the top of the Tessact sidebar](/images/ai-search/ai-search-sidebar-live-v2.jpg)
+</Frame>
+
+The landing page cycles example prompts in the search bar, suggests queries beneath it, and keeps your **Recent searches** one click away.
+
+---
+
+## Run a search
+
+<Steps>
+  <Step title="Describe the moment">
+    Type what you would say to a colleague: the subject, the setting, an action, or a line of dialogue. You do not need the filename. You can also record a spoken query with the microphone button instead of typing.
+  </Step>
+  <Step title="Narrow the search (optional)">
+    Use the controls under the search bar:
+
+    | Control | What it does |
+    | --- | --- |
+    | **Search inside** | Opens a Library picker so the search runs only inside a chosen folder or file |
+    | **Search All** | Chooses which result types come back: **Shot**, **Scene**, **Spoken**, **Image**, **Documents** |
+    | **Match by** | Steers the matching: **Best match** (default), **Visuals** for what appears on screen, **Transcript** for dialogue, narration, and transcripts, or **Context** for what the content is about |
+
+    <Frame caption="Search All chooses which result types come back">
+      ![Search All dropdown with Shot, Scene, Spoken, Image and Documents options](/images/ai-search/ai-search-result-types-live-v2.jpg)
+    </Frame>
+
+    <Frame caption="Match by lets you steer between visual, transcript, and contextual matching">
+      ![Match by dropdown with Best match, Visuals, Transcript and Context options](/images/ai-search/ai-search-match-by-live-v2.jpg)
+    </Frame>
+
+    <Frame caption="Search inside scopes the query to any folder or file in the Library">
+      ![Search inside picker with the Library folder tree](/images/ai-search/ai-search-scope-picker-live-v2.jpg)
+    </Frame>
+  </Step>
+  <Step title="Review the AI Results">
+    Results appear under an **AI Results** header with a running total, such as *showing 20 out of 47 results*, and the result-type chips let you show or hide **Shot**, **Scene**, **Spoken**, **Image**, and **Documents** results without rerunning the search. If AI Search rewrote loose wording into a stronger query, a **Query adjusted to** note shows exactly what was searched, so nothing happens silently.
+
+    <Frame caption="The AI Results header: type filters, result count, and the query adjustment note">
+      ![AI Results header with result-type chips and query adjusted note](/images/ai-search/ai-search-results-header-live-v2.jpg)
+    </Frame>
+  </Step>
+</Steps>
 
 <Tip>
-Use <kbd>⌘/Ctrl + K</kbd> to open the command palette and start AI Search from any screen.
+  Phrase queries as *subject + setting + action*, e.g. *friends catching up over drinks at a restaurant*. If a title, show, or person name is part of the query, Tessact uses it to scope the search automatically.
 </Tip>
 
 ---
 
-## How the Engine Builds Clips
+## What can you search for?
 
-1. **Signal extraction** – Tessact’s proprietary AI agent deeply analyzes every aspect of your video, capturing all relevant signals for the most accurate understanding of its content.  
-2. **Semantic parsing** – A domain-tuned LLM ingests the entire video timeline, builds a context graph, and aligns scenes with your prompt, including implied meaning (e.g., “reveal,” “celebration,” “problem statement”).  
-3. **Clip carving** – Tessact auto-selects a start and end that form a coherent narrative unit (≈ 1–3 min) with clean audio and video cut-points.  
-4. **Ranking & deduplication** – Clips score on relevance, freshness, and diversity before display.
+If you can describe it, you can find it. During analysis Tessact indexes what is visible, what is said, how it is filmed, and what it all means, so every one of these query styles works. Steal these and adapt them to your library:
+
+<Tabs>
+  <Tab title="People &amp; emotions">
+    - `Abhilash apologises to Guri for their falling out`
+    - `two friends arguing until one walks out`
+    - `a sincere conversation between old friends at night`
+    - `crowd celebrating and hugging`
+
+    Names work when people are identified in your content; emotions and interactions work everywhere.
+  </Tab>
+  <Tab title="Places &amp; time">
+    - `roadside tea stall at night`
+    - `dimly lit restaurant, indoor`
+    - `misty hills at sunrise`
+    - `busy street in the rain`
+
+    Settings, indoor or outdoor, weather, and time of day are all part of the index.
+  </Tab>
+  <Tab title="Actions &amp; story beats">
+    - `friends raise a toast`
+    - `someone reads a message on their phone and reacts`
+    - `classroom lecture that frames preparation as a marathon`
+    - `flashback to an older memory at the bar`
+
+    Describe what happens, not what the file is called.
+  </Tab>
+  <Tab title="Camera language">
+    - `extreme close-up of a worried face`
+    - `wide establishing shot of the city`
+    - `over-the-shoulder conversation`
+    - `low-angle shot walking towards camera`
+
+    Shot size, angle, and framing are detected per shot, so you can search the way an editor talks.
+  </Tab>
+  <Tab title="Spoken words">
+    - `the line about turning pressure into a lifestyle`
+    - `dialogue where they debate the optional subject`
+    - `the joke about SK's haircut`
+    - `"tension mat le" moments in Hinglish`
+
+    You need the idea, not the exact wording, and Hindi or Hinglish dialogue is searchable too.
+  </Tab>
+  <Tab title="Text, brands &amp; documents">
+    - `scenes where a brand logo appears on screen`
+    - `frames showing a WhatsApp notification`
+    - `the passage about pricing in the product PDF`
+    - `poster image with a red background`
+
+    On-screen text, logos, document passages, and image styles are all fair game.
+  </Tab>
+</Tabs>
+
+These dimensions combine naturally: `medium shot of three friends debating the exam at a tea stall at night` mixes framing, people, action, setting, and time in one query.
+
+---
+
+## Work with the results
+
+Every result card carries the evidence you need to judge it at a glance: a thumbnail of the exact moment (document results preview their matching pages), a type badge such as **Scene**, the clip duration, a descriptive title, and a short summary of what happens. Hovering a card reveals its quick actions: **Add selection** to start collecting clips, and an expand control that jumps straight into the full preview.
+
+<Frame caption="AI Results for a natural-language query: scene and document moments with titles, durations, and summaries">
+  ![AI Search results grid with scene and document cards](/images/ai-search/ai-search-results-live-v2.jpg)
+</Frame>
+
+### Preview a result
+
+Select a card to open it full screen. The matched segment plays immediately, the header names the source (show, episode, and file), and the moment's full profile sits beside the player.
+
+<Frame caption="The result preview: the matched scene plays beside its full profile">
+  ![AI Search result preview with player and detail panel](/images/ai-search/ai-search-preview-live-v2.jpg)
+</Frame>
+
+The header actions cover everything you would do next with a result:
+
+| Control | What it does |
+| --- | --- |
+| **Copy link** (chain icon) | Copies a shareable link to this exact result, so a teammate lands on the same moment |
+| **Download** (arrow icon) | Downloads the matched media to your machine |
+| **View asset** | Opens the source asset in the Library at the matched moment, with comments and metadata around it |
+| **Open in editor** | Sends the asset to the Tessact Editor with the matched range carried over, ready to trim and place |
+
+<Frame caption="Result actions: copy link, download, view the asset, or open it in the editor">
+  ![Preview toolbar with copy link, download, View asset and Open in editor](/images/ai-search/ai-search-preview-actions-live-v2.jpg)
+</Frame>
+
+### The moment's profile
+
+The panel beside the player explains why this moment matched and what is in it, section by section:
+
+- **Output type:** what kind of result you are looking at, such as *Scene*.
+- **Summary:** an AI-written account of what actually happens in the clip, detailed enough to judge without scrubbing.
+- **Keywords:** thematic tags like *#friendship* or *#reconciliation* for quick topical context.
+- **Settings:** where and when the moment takes place, such as *lounge*, *night*, *indoor*.
+- **Emotions:** the mood detected in the moment, such as *sincere*.
+- **Objects:** notable items visible in frame, such as *glass*, *table*, *suit jacket*.
+
+<Frame caption="Every result carries its own profile: summary, keywords, settings, emotions, and objects">
+  ![Result detail panel with summary, keywords, settings, emotions and objects](/images/ai-search/ai-search-preview-details-live-v2.jpg)
+</Frame>
+
+### Compare and give feedback
+
+The strip along the bottom keeps the rest of your results one click away: use the thumbnail rail or the arrow buttons to flip between matches without leaving the preview. Next to it, **How was this search result?** takes a quick thumbs up or down; feedback tunes ranking for your workspace over time.
+
+<Frame caption="Flip through results on the rail, and rate the match when you land on the right one">
+  ![Thumbnail rail with previous and next arrows and the search feedback control](/images/ai-search/ai-search-preview-rail-live-v2.jpg)
+</Frame>
+
+---
+
+## From search to edit, in one move
+
+This is the flow editors love: describe the moments you need, tick them off the results, and land in the Editor with every clip already on hand. No hunting through bins, no exporting and re-importing.
+
+<Frame caption="Pick moments from the results; the selection bar keeps count">
+  ![AI Search results with two selected clips and the selection bar in focus](/images/ai-search/ai-search-select-results-live-v2.jpg)
+</Frame>
+
+<Steps>
+  <Step title="Add clips to your selection">
+    Hover any result and select **Add selection** (the **+** control). A checkmark marks it as picked, and you can keep collecting across the whole result set, mixing scenes, shots, and even document moments.
+
+    <Frame caption="Hovering a card reveals Add selection">
+      ![Add selection control on a hovered result card](/images/ai-search/ai-search-add-selection-live-v2.jpg)
+    </Frame>
+  </Step>
+  <Step title="Review the selection bar">
+    The floating bar at the bottom counts what you have picked, for example **2 files selected**, sourced *From Library*. Clear everything with the **X** if you want to start over.
+  </Step>
+  <Step title="Edit the selected clips">
+    Select the draft control on the bar to open **Edit selected clips**. The dialog notes that *Editing these clips creates a Video Draft*: choose where it lives with **Location: In Library**, then select **Open in editor**.
+
+    <Frame caption="Edit selected clips: pick a location and open the draft in the editor">
+      ![Edit selected clips dialog with Location and Open in editor](/images/ai-search/ai-search-edit-clips-live-v2.jpg)
+    </Frame>
+  </Step>
+  <Step title="Start cutting">
+    Tessact creates the Video Draft and opens it in the Editor with your searched clips ready on the timeline.
+    <Check>From a described moment to an editable timeline without ever browsing folders.</Check>
+  </Step>
+</Steps>
+
+---
+
+## Refine your query
+
+- **Refine one axis at a time:** add a time of day, switch **Match by**, or drop one adjective; small changes keep results interpretable.
+- **Broaden when empty:** remove the least essential qualifier, reset **Search All**, and widen the **Search inside** scope before rewriting the whole query.
+- **Trust the adjustment note:** if **Query adjusted to** appears, the rewritten phrasing is a good starting point for your next refinement.
 
 <Info>
-**Quick Search** handles metadata-centric look-ups (custom fields, codecs, file names). **AI Search for Clips** focuses on semantic scene discovery.
+  Newly uploaded assets become searchable once their AI analysis completes; a livestream becomes searchable chunk by chunk while it is still live. If a search reports no indexed assets in the current scope, the content there has not been analysed yet.
 </Info>
 
 ---
 
-## Running a Search
+## Related guides
 
-<Steps>
-<Step title="Launch AI Search">
-  Press <kbd>⌘/Ctrl + K</kbd>, type “AI Search for Clips”, and press <kbd>Enter</kbd>.<br/>
-  _or_<br/>
-  Click the **Search** icon in the sidebar.
-</Step>
+<Card title="Content Library" arrow="true" horizontal href="/content-library">
+Organise the media that AI Search draws from.
+</Card>
 
-<Step title="Enter your prompt">
-  Use plain language—examples:<br/>
-  • <code>founder talking about company vision</code><br/>
-  • <code>slow-motion dunk close-up</code><br/>
-  • <code>tense moment before battle</code>
-</Step>
+<Card title="Livestream" arrow="true" horizontal href="/livestream">
+Live sessions are indexed while they run, so you can search a stream before it ends.
+</Card>
 
-<Step title="Review results">
-  Hover to scrub. Click to open the clip in a preview modal.
-</Step>
-</Steps>
-
-<Frame caption="Search bar with autosuggestions from previous prompts">
-![Search autosuggest](/images/ai-search-results.jpg)
-</Frame>
-
----
-
-## Working with Results
-
-| Action | Where | Outcome |
-|--------|-------|---------|
-| **Select clip → “Add to Library”** | Library, Search modal | Saves a sub-asset in the current folder. |
-| **Multi-select → “Add to Project”** | Library, Project view | Copies clips to the Project bin for collaborative edits. |
-| **Add to timeline** <kbd>E</kbd> | Inside Tessact Editor | Inserts clip at playhead, retaining in/out points. |
-
-After adding, clips behave like any other asset: searchable, remix-able, and shareable.
-
----
-
-## Performance Expectations
-
-| Library size | Avg. response time |
-|--------------|-------------------|
-| ≤ 100 K assets | ~1 s |
-| 100 K–1 M | 1 – 1.5 s |
-| > 1 M | Up to 2 s |
-
-The first 40 clips render immediately; additional pages load on demand.
-
----
-
-## Best-practice Prompts
-
-| Goal | Example prompt |
-|------|---------------|
-| **Thematic** | <code>quiet tension before launch countdown</code> |
-| **Visual** | <code>close-up of smartwatch interface scrolling</code> |
-| **Audio-driven** | <code>crowd cheering loudly at reveal</code> |
-| **Emotional** | <code>team celebrating milestone with high-fives</code> |
-
-<Tip>
-Combine mood + action + subject for highest precision, e.g. <code>somber CEO apology on stage</code>.
-</Tip>
-
----
-
-## Next steps
-
-| Topic | Link |
-|-------|------|
-| Add AI-found clips to a multi-agent workflow | [Creating Workflows](/workflows/creating-workflows) |
-| Enrich clips with custom fields | [Metadata Management](/metadata/working-with-metadata) |
-| Automate search via API | [Search API Reference](/api/search) |
+<Card title="AI Search in the Editor" arrow="true" horizontal href="/editor/media/ai-search">
+Pull searched moments straight onto the timeline while editing.
+</Card>
 
 ---
 
 <Check>
-You can now locate contextually perfect clips in seconds and feed them straight into your edits, projects, or workflows—no manual scrubbing required.
+You can now find any moment in your library by describing it, steer the search with scopes and filters, and jump from a result straight into review or editing.
 </Check>
